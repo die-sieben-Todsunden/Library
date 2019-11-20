@@ -1,8 +1,36 @@
-#header {
-    margin: 2%;
-}
-
 #header>* {
     align-items: center;
 }
 
+.quicksearch button {
+    height: 37px;
+    width: 37px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../img/Icon_search.png);
+    background-color: white;
+}
+
+.quicksearch {
+    background-color: white;
+    margin-right: 10px;
+}
+
+#quicksearch-hidden {
+    margin-right: 10px;
+}
+
+.usericon {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+}
+
+.container-fluid {
+    padding: 20px 40px;
+}
+
+.menu {
+    margin: 0px -40px;
+}
