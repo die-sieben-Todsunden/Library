@@ -7,11 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Homepage</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo&display=swap" type="text/css">
 </head>
 
 <body>
+  <div id="includedHeader"></div>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img src="" alt="">
@@ -58,9 +59,121 @@
     </div>
   </nav>
   <div class="banner">
-
+    <div>
+      <h1>THƯ VIỆN</h1>
+      <p>Đại học khoa học tự nhiên</p>
+      <p>Khoa công nghệ thông tin</p>
+    </div>
+  </div>
+  <div class="newbook">
+    <div class="title">
+      <h1>SÁCH MỚI</h1>
+    </div>
+    <div class="content">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="content_img">
+                    <img src="img/Book1.png" alt="">
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="bookname">
+                    <h1>Computer Science</h1>
+                  </div>
+                  <div class="bookauthor">
+                    <p>Dr.Anandumuragon</p>
+                  </div>
+                  <div class="booksummary">
+                    <p>Helo Hello Helo Hello Helo Hello Helo Hello Helo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                    </p>
+                  </div>
+                  <button>Thêm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="content_img">
+                    <img src="img/Book1.png" alt="">
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="bookname">
+                    <h1>Computer Science</h1>
+                  </div>
+                  <div class="bookauthor">
+                    <p>Dr.Anandumuragon</p>
+                  </div>
+                  <div class="booksummary">
+                    <p>Helo Hello Helo Hello Helo Hello Helo Hello Helo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                    </p>
+                  </div>
+                  <button>Thêm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="content_img">
+                    <img src="img/Book1.png" alt="">
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="bookname">
+                    <h1>Computer Science</h1>
+                  </div>
+                  <div class="bookauthor">
+                    <p>Dr.Anandumuragon</p>
+                  </div>
+                  <div class="booksummary">
+                    <p>Helo Hello Helo Hello Helo Hello Helo Hello Helo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                    </p>
+                  </div>
+                  <button>Thêm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+          <img src="img/previous.png" alt="">
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+          <img src="img/next.png" alt="">
+        </a>
+      </div>
+    </div>
   </div>
   <script language="javascript">
+    $(function () {
+      $("#includedHeader").load("header.html");
+    });
+
     document.getElementById("search").onclick = function () {
       document.getElementById("quicksearch-hidden").hidden = false;
       document.getElementById("search").hidden = true;
@@ -71,17 +184,20 @@
       document.getElementById("search").hidden = false;
     };
   </script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
   </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous">
+  <!-- bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous">
-  </script>
+  <!-- aos-->
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+  <script type="text/javascript" src="HTTP://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 
 </body>
 
