@@ -1,0 +1,8 @@
+#header {
+    margin: 2%;
+}
+
+#header>* {
+    align-items: center;
+}
+
