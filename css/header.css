@@ -1,10 +1,16 @@
 #header>* {
     align-items: center;
 }
+.dropdown-menu{
+    margin: 20px;
+}
+.dropdown-item:focus{
+    background-color: white;
+}
 .navbar{
-    background-color: #f6f6f6 !important;
-    border:#f6f6f6;
-    border-bottom: gray;
+    background-color: white !important;
+    border:white;
+    border-bottom: #b0b0b0;
     border-style: solid;
 }
 .quicksearch button {
@@ -30,6 +36,13 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 5px;
+}
+.usericon > a{
+    margin:5px;
+}
+.usericon >a:hover{
+    border-radius: 10px;
+    background-color: #f6f6f6;
 }
 
 .container-fluid {
