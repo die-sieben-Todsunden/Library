@@ -1,6 +1,5 @@
-* {
-  font-family: "Baloo";
-}
+* {}
+
 .quicksearch button {
   height: 37px;
   width: 37px;
@@ -28,13 +27,71 @@
   background-color: white;
   font-family: "Ballo" !important;
   text-align: center;
+  position: relative;
+}
+
+.bannerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 .banner h1 {
-  font-size: 50px;
+  font-size: 80px;
+  color: white;
+}
+
+.banner p {
+  font-size: 25px;
   color: white;
 }
 
 .content img {
   height: 350px;
+}
+
+.carousel-control-prev img,
+.carousel-control-next img {
+  width: 50px;
+  height: 60px;
+}
+
+.subcontentflex {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.subcontent {
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  -ms-border-radius: 150px;
+  -o-border-radius: 150px;
+}
+
+.title {
+  text-align: center;
+}
+
+.newbook {
+  margin: 40px 0px;
+}
+
+.catalog {
+  margin: 40px 0px;
+}
+
+.title {
+  margin-bottom: 30px;
 }
