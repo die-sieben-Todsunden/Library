@@ -52,14 +52,10 @@
 }
 
 .content img {
-  height: 350px;
+  height: 250px;
+  margin-bottom: 40px;
 }
 
-.carousel-control-prev img,
-.carousel-control-next img {
-  width: 50px;
-  height: 60px;
-}
 
 .subcontentflex {
   display: flex;
@@ -85,13 +81,35 @@
 }
 
 .newbook {
-  margin: 40px 0px;
+  padding-bottom: 40px;
+  padding-top: 10px;
+}
+
+.newbook .content {
+  background-color: #d1eecc;
+  padding-top: 40px;
 }
 
 .catalog {
   margin: 40px 0px;
 }
 
-.title {
-  margin-bottom: 30px;
+.bookinfo {
+  position: relative;
+}
+
+.controlbtn {
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+}
+
+.controlbtn button {
+  border: 0px solid;
+  padding: 5px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
