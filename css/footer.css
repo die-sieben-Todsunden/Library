@@ -9,3 +9,6 @@
     right: 0;
     justify-content: space-between;
 }
+#footer{
+    align-items: center;
+}
