@@ -8,10 +8,10 @@
                 <div>
                     <button class="btn " style="position: relative; background-color: white;" data-toggle="dropdown">
                         <i class="fa fa-envelope-o" style="font-size: 48px;" aria-hidden="true"></i>
-                        <span class="badge badge-primary"
-                            style="position: absolute; top: 10px;right: 10px; background-color: red; border-radius: 10px;">3</span>
+                        <span class="badge badge-primary noti-badge"
+                            style="position: absolute; top: 10px;right: 10px; background-color: red; border-radius: 10px;"></span>
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu noti">
                         <a class="dropdown-item" href="#">Link 1</a>
                         <a class="dropdown-item" href="#">Link 2</a>
                         <a class="dropdown-item" href="#">Link 3</a>
@@ -64,9 +64,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="searchInput">
                 <div class="input-group-append">
-                    <a class="input-group-text" href="#" id="searchClose">
-                        <img src="img/search_button.png" alt="">X
-                    </a>
+                    <a class="input-group-text" href="#" id="searchClose">X</a>
                 </div>
             </div>
         </div>
@@ -83,4 +81,7 @@
         document.getElementById("quicksearch-hidden").hidden = true;
         document.getElementById("search").hidden = false;
     };
+</script>
+<script>
+    $(".noti-badge").prepend($(".noti a").length)
 </script>
