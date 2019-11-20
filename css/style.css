@@ -1,0 +1,26 @@
+.quicksearch button {
+  height: 37px;
+  width: 37px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/Icon_search.png);
+  background-color: white;
+}
+
+.quicksearch {
+  background-color: white;
+  margin-right: 10px;
+}
+
+#quicksearch-hidden {
+  margin-right: 10px;
+}
+
+.banner {
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/Home_Banner.png);
+  background-color: white;
+}
