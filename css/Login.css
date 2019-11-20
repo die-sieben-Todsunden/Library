@@ -1,8 +1,14 @@
+* {
+    font-family: "Baloo";
+}
+
 body {
     overflow: hidden;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-image: url(../img/Home_Banner.png);
+    backdrop-filter: blur(10px);
     height: 700px;
 }
 
@@ -10,7 +16,7 @@ body {
     height: 37px;
     width: 37px;
     overflow: hidden;
-    background-size: cover;
+    background-size: auto;
     background-position: center;
     background-image: url(../img/Icon_search.png);
     background-color: white;
@@ -27,10 +33,9 @@ body {
 
 form {
     background-color: white;
-    margin-top: 3%;
     padding: 30px;
+    width: 470px;
     position: fixed;
-    width: 500px;
 }
 
 .icon_KHTN {
@@ -42,8 +47,4 @@ input {
     border-bottom: 1px solid black!important;
     border-radius: 0px!important;
     padding-left: 0px!important;
-}
-
-input:focus-visible {
-    border: none!important;
 }
