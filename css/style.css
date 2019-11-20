@@ -1,3 +1,6 @@
+* {
+  font-family: "Baloo";
+}
 .quicksearch button {
   height: 37px;
   width: 37px;
@@ -18,9 +21,20 @@
 }
 
 .banner {
-  height: 500px;
+  height: 350px;
   background-size: cover;
   background-position: center;
   background-image: url(../img/Home_Banner.png);
   background-color: white;
+  font-family: "Ballo" !important;
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 50px;
+  color: white;
+}
+
+.content img {
+  height: 350px;
 }
