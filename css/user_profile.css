@@ -1,0 +1,35 @@
+#body{
+    background-color: #F6F6F6;
+    padding: 40px;
+}
+#body-content{
+    margin:40px;
+    align-items: center;
+    border: #b0b0b0;
+    border-style: solid;
+    border-radius: 13px;
+    background-color: white;
+}
+#body-content-left{
+    margin: 50px;
+    margin-right: 0px;
+}
+#body-content-right{
+    margin:50px;
+    margin-left: 0px;
+    font-weight: bold;
+}
+#body-content-right div p{
+    font-weight: 300;
+    margin-left: 10px;
+}
+#body-content-right div h6{
+    height: 30px;
+    line-height: 30px;
+}
+#body-content-left > button{
+    margin: 30px;
+    margin-bottom: 0px;
+    background-color: #5AB4F4;
+    color: white;
+}
