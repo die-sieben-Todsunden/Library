@@ -1,7 +1,12 @@
 #header>* {
     align-items: center;
 }
-
+.navbar{
+    background-color: #f6f6f6 !important;
+    border:#f6f6f6;
+    border-bottom: gray;
+    border-style: solid;
+}
 .quicksearch button {
     height: 37px;
     width: 37px;
@@ -29,6 +34,7 @@
 
 .container-fluid {
     padding: 20px 40px;
+    padding-bottom: 0px;
 }
 
 .menu {
