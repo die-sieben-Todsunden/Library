@@ -1,0 +1,18 @@
+* {
+    font-family: "Baloo";
+}
+
+.books {
+    width: 200;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.book-info {
+    padding-left: 30px;
+    position: relative;
+}
+
+.containner {
+    border: 2px solid brown!important;
+}
