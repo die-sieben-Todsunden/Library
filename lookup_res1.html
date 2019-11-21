@@ -64,7 +64,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Trang chủ<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Tìm kiếm</a>
@@ -122,7 +122,7 @@
         </div>
 
         <div class="col-lg-2">
-          <button class="btn" onclick="lookup();"
+          <button class="btn"
             style="height: 38px; border-radius: 10px; margin-left: 100%; transform: translate(-100%)">Tìm kiếm</button>
         </div>
         <div class="col-lg-1"></div>
@@ -130,6 +130,150 @@
 
     </div>
   </div>
+  <!--Result ----------------------------------------------------------------------------------------------- -->
+  <div class="container line">
+    <hr>
+  </div>
+  <div class="body container">
+    <div class="title">
+      <h1> Kết quả</h1>
+    </div>
+    <div class="filter" style="display: flex">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="Filter" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Sắp xếp kết quả
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div id="pupulationRate">
+            <a class="dropdown-item" href="#">Sắp xếp theo độ phổ biến</a>
+          </div>
+          <a class="dropdown-item" href="#" id="establishYear">Sắp xếp theo năm xuất bản</a>
+          <a class="dropdown-item" href="#" id="sameKeyword">Sắp xếp theo số từ khóa trùng khớp</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="Filter" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Số kết quả hiển thị
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div id="top10">
+            <a class="dropdown-item" href="#">Hiển thị top 10 kết quả</a>
+          </div>
+          <a class="dropdown-item" href="#" id="top50">Hiển thị top 50 kết quả</a>
+          <a class="dropdown-item" href="#" id="all">Hiển thị tất cả kết quả</a>
+        </div>
+      </div>
+    </div>
+    <div class="resFilter" style="display: flex">
+      <p><i id="resFilter1">Sắp xếp theo số từ khóa trùng khớp</i></p>
+      <p></p>
+      <p> <i id="resFilter2">, Hiển thị tất cả kết quả</i></p>
+    </div>
+    <div class="res">
+      <div class="row res-item" style="background-color: #FFEEB1; border-radius: 50px;">
+        <div class="col-lg-3">
+          <div class="content_img">
+            <img src="img/Book1.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-9 bookinfo">
+          <div class="bookname">
+            <h1>Computer Science</h1>
+          </div>
+          <div class="bookauthor">
+            <p>Dr.Anandumuragon</p>
+          </div>
+          <div class="booktype">
+            <p>Thể loại: Computer Science</p>
+          </div>
+          <div class="booksummary">
+            <p>Những kiến thức căn bản về khoa học máy tính,
+              những chủ đề phổ biến trong khoa học máy tính
+            </p>
+          </div>
+          <div class="controlbtn">
+            <button id="moreinfo">Xem thêm</button>
+            <button>Mượn sách</button>
+          </div>
+        </div>
+      </div>
+      <div class="row res-item" style="background-color: #FFEEB1; border-radius: 50px;">
+        <div class="col-lg-3">
+          <div class="content_img">
+            <img src="img/Book2.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-9 bookinfo">
+          <div class="bookname">
+            <h1>Software Engineering for Science</h1>
+          </div>
+          <div class="bookauthor">
+            <p>Jennifer C. Cammel </p>
+          </div>
+          <div class="booktype">
+            <p>Thể loại: Computer Science</p>
+          </div>
+          <div class="booksummary">
+            <p>Phát triển phần mềm trên lĩnh vực khoa học máy tính
+            </p>
+          </div>
+          <div class="controlbtn">
+            <button id="moreinfo">Xem thêm</button>
+            <button>Mượn sách</button>
+          </div>
+        </div>
+      </div>
+      <div class="row res-item" style="background-color: #FFEEB1; border-radius: 50px;">
+        <div class="col-lg-3">
+          <div class="content_img">
+            <img src="img/Book1.png" alt="">
+          </div>
+        </div>
+        <div class="col-lg-9 bookinfo">
+          <div class="bookname">
+            <h1>Computer Science</h1>
+          </div>
+          <div class="bookauthor">
+            <p>Dr.Anandumuragon</p>
+          </div>
+          <div class="booktype">
+            <p>Thể loại: Computer Science</p>
+          </div>
+          <div class="booksummary">
+            <p>Những kiến thức căn bản về khoa học máy tính,
+              những chủ đề phổ biến trong khoa học máy tính
+            </p>
+          </div>
+          <div class="controlbtn">
+            <button id="moreinfo">Xem thêm</button>
+            <button>Mượn sách</button>
+          </div>
+        </div>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination" style="margin-left: 50%; transform: translate(-50%);">
+          <div style="margin-left: 50%; transform: translate(-50%); display: flex">
+            <li class="page-item">
+              <a class=" page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </div>
+
+        </ul>
+      </nav>
+    </div>
+
   </div>
   <div id="includedFooter"></div>
 
@@ -165,6 +309,29 @@
       document.getElementById("quicksearch-hidden").hidden = true;
       document.getElementById("search").hidden = false;
     };
+    document.getElementById("top10").onclick = function () {
+      document.getElementById("resFilter2").innerHTML = ", Hiển thị top 10 kết quả";
+    };
+
+    document.getElementById("top50").onclick = function () {
+      document.getElementById("resFilter2").innerHTML = ", Hiển thị top 50 kết quả";
+    };
+
+    document.getElementById("all").onclick = function () {
+      document.getElementById("resFilter2").innerHTML = ", Hiển thị tất cả kết quả";
+    };
+
+    document.getElementById("pupulationRate").onclick = function () {
+      document.getElementById("resFilter1").innerHTML = "Sắp xếp theo độ phổ biến";
+    };
+
+    document.getElementById("establishYear").onclick = function () {
+      document.getElementById("resFilter1").innerHTML = "Sắp xếp theo năm xuất bản";
+    };
+
+    document.getElementById("sameKeyword").onclick = function () {
+      document.getElementById("resFilter1").innerHTML = "Sắp xếp theo số từ khóa trùng khớp";
+    };
     document.getElementById("bookname").onclick = function () {
       document.getElementById("Keyword").innerHTML = "    Tên sách  ";
     };
@@ -176,10 +343,6 @@
     document.getElementById("booktopic").onclick = function () {
       document.getElementById("Keyword").innerHTML = "Chủ đề";
     };
-
-    function lookup() {
-      window.location = "lookup_res1.html"
-    }
   </script>
 
 

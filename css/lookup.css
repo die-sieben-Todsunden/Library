@@ -19,4 +19,20 @@
   text-align: center;
 }
 
-#search ::placeholder {}
+#Filter {
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.title {
+  text-align: center
+}
+
+.res img {
+  height: 200px;
+}
+
+.res .res-item {
+  padding: 40px 0px;
+  margin-bottom: 40px;
+}
