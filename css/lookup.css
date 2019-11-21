@@ -1,0 +1,22 @@
+.body .container {
+  padding: 100px 20px;
+  background-size: cover;
+  background-position: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+#Keyword {
+  margin-bottom: 30px;
+}
+
+#search {
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  text-align: center;
+}
+
+#search ::placeholder {}

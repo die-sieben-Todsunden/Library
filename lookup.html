@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tìm kiếm</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/lookup.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo&display=swap" type="text/css">
+</head>
+
+<body>
+  <div class="container-fluid" id="header">
+    <div class="row" style="position: relative;">
+      <h1 style="margin-left: 0;margin-right: 0;font-size: 60px;">THƯ VIỆN</h1>
+      <!--<h5 style="margin-top: 5px; margin-left: 15px">Đại học Khoa học tự nhiên<br>Khoa Công nghệ
+                thông tin
+            </h5> -->
+      <div></div>
+      <div style="position: absolute; right: 0; z-index: 1;">
+        <div class="usericon">
+          <div>
+            <button class="btn " style="position: relative; background-color: white;" data-toggle="dropdown">
+              <i class="fa fa-envelope-o" style="font-size: 48px;" aria-hidden="true"></i>
+              <span class="badge badge-primary noti-badge"
+                style="position: absolute; top: 10px;right: 10px; background-color: red; border-radius: 10px;"></span>
+            </button>
+            <div class="dropdown-menu noti">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+              <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+          </div>
+          <a href="#"><img src="img/avatar-icon.png" width='64' alt=""></a>
+          <div>
+            <button type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 50px; height: 48px; background-color: #5AB4F4; border-style: none;
+                            margin-top: 10px;" data-toggle="dropdown">
+              pupipinpon
+            </button>
+            <div class="dropdown-menu" style="padding:0px 0px;">
+              <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+              <a class="dropdown-item" href="#">Quản lý sách</a>
+              <hr style="margin: 1px;">
+              <a class="dropdown-item" href="#">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Tìm kiếm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Danh mục sách</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Về thư viện</a>
+          </li>
+        </ul>
+      </div>
+      <div class="quicksearch">
+        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+          aria-controls="collapseExample" id="search">
+        </button>
+      </div>
+      <div class="" id="quicksearch-hidden" hidden=true>
+        <div class="input-group">
+          <input type="text" class="form-control" id="searchInput">
+          <div class="input-group-append">
+            <a class="input-group-text" href="#" id="searchClose">X</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="body">
+    <div class="container" style="background-image: url(img/searchbanner.jpg">
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-11">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="Keyword" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Từ khóa
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div id="bookname">
+                <a class="dropdown-item" href="#">Tên sách</a>
+              </div>
+              <a class="dropdown-item" href="#" id="booktopic">Chủ đề sách</a>
+              <a class="dropdown-item" href="#" id="authername">Tác giả</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-8">
+          <div class="form-group">
+            <input type="search" class="form-control" id="search" placeholder="Nhập vào để tìm kiếm">
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <button class="btn"
+            style="height: 38px; border-radius: 10px; margin-left: 100%; transform: translate(-100%)">Tìm kiếm</button>
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+  <div id="includedFooter"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $(function () {
+      $("#includedHeader").load("header.html");
+
+    });
+  </script>
+  <script>
+    $(function () {
+      $("#includedFooter").load("footer.html");
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- aos-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <script language="javascript">
+    document.getElementById("search").onclick = function () {
+      document.getElementById("quicksearch-hidden").hidden = false;
+      document.getElementById("search").hidden = true;
+    };
+
+    document.getElementById("searchClose").onclick = function () {
+      document.getElementById("quicksearch-hidden").hidden = true;
+      document.getElementById("search").hidden = false;
+    };
+    document.getElementById("bookname").onclick = function () {
+      document.getElementById("Keyword").innerHTML = "    Tên sách  ";
+    };
+
+    document.getElementById("authername").onclick = function () {
+      document.getElementById("Keyword").innerHTML = "Tác giả";
+    };
+
+    document.getElementById("booktopic").onclick = function () {
+      document.getElementById("Keyword").innerHTML = "Chủ đề";
+    };
+  </script>
+
+
+</body>
+
+</html>
