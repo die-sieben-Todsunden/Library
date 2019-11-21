@@ -1,0 +1,73 @@
+.usericon > div button {
+    background-color: #F6C89F !important;
+    color: black !important;
+}
+#body-content-top button {
+    background-color: #F6C89F !important;
+    color: black !important;
+    border: 3px !important;
+    width: inherit;
+}
+#body{
+    background-color: #F6F6F6;
+    padding: 40px;
+}
+#body-content-top{
+    margin:40px;
+    align-items: center;
+    border: #b0b0b0;
+    border-style: solid;
+    border-radius: 13px;
+    background-color: white;
+}
+#body-content-left{
+    margin: 40px;
+}
+#body-content-bottom{
+    height: 400px;
+    margin:40px;
+    align-items: center;
+    border: #b0b0b0;
+    border-style: solid;
+    border-radius: 13px;
+    background-color: white;
+}
+.carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        line-height: 100px;;
+    height: 100px;
+    width: 60px;
+    background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+    content: '▷';
+    font-size: 80px;
+    color: #F6C89F ;
+}
+.carousel-control-prev-icon{
+    transform: rotate(180deg);
+}
+.carousel-control-prev-icon:after {
+    content: '▷';
+    font-size: 80px;
+    color: #F6C89F ;
+}
+.carousel-inner{
+    height:340px;
+}
+.carousel-inner > img{
+    height: 200px !important;
+    width: 120px !important;
+}
+.carousel-item> div{
+    height: 200px !important;
+    width: 120px !important;
+}
+.carousel-item{
+    height:320px;
+}
+.card{
+    margin: 5px 140px;
+}
