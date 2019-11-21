@@ -8,7 +8,6 @@ body {
     background-position: center;
     background-size: cover;
     background-image: url(../img/Home_Banner.png);
-    backdrop-filter: blur(10px);
     height: 700px;
 }
 
