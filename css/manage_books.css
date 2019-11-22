@@ -16,3 +16,10 @@
 .containner {
     border: 2px solid brown!important;
 }
+
+.content {
+    border: 2px solid grey;
+    margin-right: 30px;
+    border-radius: 10px;
+    padding: 30px;
+}
