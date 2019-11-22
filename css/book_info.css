@@ -23,6 +23,15 @@
 #body-content-left{
     margin: 40px;
 }
+#body-content-left img{
+    width: 120%;
+    height: auto;
+  /* Magic! */
+    max-width: 50vw;
+}
+#body-content-right{
+    margin: 40px;
+}
 #body-content-bottom{
     height: 400px;
     margin:40px;
@@ -59,5 +68,10 @@
     width: 240px;
 }
 #body-content-bottom {
+    overflow: auto;
+}
+#body-content-right p{
+    word-wrap: unset;
+    display: block;
     overflow: auto;
 }
