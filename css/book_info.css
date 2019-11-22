@@ -54,20 +54,10 @@
     font-size: 80px;
     color: #F6C89F ;
 }
-.carousel-inner{
-    height:340px;
+#body-content-bottom img{
+    height: 320px ;
+    width: 240px;
 }
-.carousel-inner > img{
-    height: 200px !important;
-    width: 120px !important;
-}
-.carousel-item> div{
-    height: 200px !important;
-    width: 120px !important;
-}
-.carousel-item{
-    height:320px;
-}
-.card{
-    margin: 5px 140px;
+#body-content-bottom {
+    overflow: auto;
 }
