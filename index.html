@@ -62,7 +62,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo">Xem thêm</button>
-                    <button>Mượn sách</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo">Xem thêm</button>
-                    <button>Mượn sách</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo">Xem thêm</button>
-                    <button>Mượn sách</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -200,7 +200,7 @@
   <script>
     $(function () {
       $("#includedFooter").load("footer.html");
-    })
+    });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -221,8 +221,12 @@
     document.getElementById("searchClose").onclick = function () {
       document.getElementById("quicksearch-hidden").hidden = true;
       document.getElementById("search").hidden = false;
+    };
 
-
+    function Borrow() {
+      localStorage.setItem("isbn", "053av55");
+      window.location = "bookCatalog.html";
+      console.log("1");
     };
   </script>
 

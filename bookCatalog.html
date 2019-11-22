@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/lookup.css">
+  <link rel="stylesheet" href="css/schedule.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo&display=swap" type="text/css">
 </head>
 
@@ -93,7 +93,7 @@
     </nav>
   </div>
   <!-- Body ---------------------------------------------------------------------------------------------->
-  <h3>Đặt lịch</h3>
+  <h3 style="text-align: center; margin-top: 40px;">Hẹn lịch</h3>
   <div class="container">
     <div class="row">
       <div class="col-lg-2">Hẹn lịch: </div>
@@ -113,32 +113,37 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 12  px;">
       <div class="col-lg-2">Mã ISBN của sách: </div>
-      <div class="col-lg-10">
+      <div class="col-lg-8">
         <div class="form-group">
-          <input type="input" class="form-control" id="input"
+          <input type="text" class="form-control" id="inputISBN"
             placeholder="Nhập mã isbn của sách mà bạn muốn mượn/xem/trả ">
         </div>
       </div>
+      <div class="col-lg-2" id="inputvalue_isbn"></div>
     </div>
     <div class="row">
       <div class="col-lg-2">Ngày hẹn: </div>
-      <div class="col-lg-10">
+      <div class="col-lg-8">
         <div class="form-group">
-          <input type="input" class="form-control" id="input" placeholder="Nhập ngày hẹn ">
+          <input name="inputDate" type="input" class="form-control" id="inputDate" placeholder="Nhập ngày hẹn ">
         </div>
       </div>
+      <div class="col-lg-2" id="inputvalue_date"></div>
     </div>
     <div class="row">
       <div class="col-lg-2">Nội dung khác: </div>
-      <div class="col-lg-10">
+      <div class="col-lg-8">
         <div class="form-group">
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
       </div>
     </div>
-    <button>Hẹn lịch</button>
+    <button type="submit">Hẹn lịch</button>
+  </div>
+  <div id="inputISBN">
+    aaa
   </div>
   <div id="includedFooter">
 
@@ -176,6 +181,24 @@
       document.getElementById("quicksearch-hidden").hidden = true;
       document.getElementById("search").hidden = false;
     };
+
+    window.onload = function () {
+      document.getElementById("inputvalue_isbn").innerHTML = localStorage.getItem("isbn");
+      console.log(localStorage.getItem(""));
+      console.log(document.getElementById("inputISBN").textContent);
+    };
+
+
+    $('#inputDate').keypress(function (event) {
+
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if (keycode == '13') {
+
+        console.log($('#inputDate').keypress.textContent);
+
+      }
+
+    });
   </script>
 
 
