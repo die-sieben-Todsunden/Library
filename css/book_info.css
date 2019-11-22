@@ -41,28 +41,9 @@
     border-radius: 13px;
     background-color: white;
 }
-.carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        line-height: 100px;;
-    height: 100px;
-    width: 60px;
-    background-image: none;
-}
 
-.carousel-control-next-icon:after
-{
-    content: '▷';
-    font-size: 80px;
-    color: #F6C89F ;
-}
-.carousel-control-prev-icon{
-    transform: rotate(180deg);
-}
-.carousel-control-prev-icon:after {
-    content: '▷';
-    font-size: 80px;
-    color: #F6C89F ;
-}
+
+
 #body-content-bottom img{
     height: 320px ;
     width: 240px;

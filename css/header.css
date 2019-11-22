@@ -64,7 +64,7 @@ button {
     margin: 0;
     border: 0px solid;
 }
-
+button.active,
 a.active.focus,
 a.active:focus,
 a.focus,
@@ -82,10 +82,22 @@ button:focus,
 .btn.focus,
 .btn:active.focus,
 .btn:active:focus,
-.btn:focus {
+.btn:focus,
+.btn-primary.active.focus,
+.btn-primary.focus,
+.btn-primary.active:focus,
+.btn-primary:active.focus,
+.btn-primary:active:focus,
+.btn-primary:focus,
+.btn-primary.dropdown-toggle:focus {
     outline: 0;
     outline-color: transparent;
     outline-width: 0;
     outline-style: none;
-    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    box-shadow:none !important;
+    cursor: pointer;
+}
+#searchClose{
+    text-decoration: none;
+    color: black;
 }
