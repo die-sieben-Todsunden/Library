@@ -1,3 +1,11 @@
 .row .col-lg-2 {
   margin-top: 5px;
 }
+#inputvalue_isbn_moreinfo {
+  color: blue;
+  
+}
+#inputvalue_isbn_moreinfo:hover {
+  font-weight: bolder;
+  cursor: pointer;
+}

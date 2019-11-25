@@ -146,10 +146,10 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div id="pupulationRate">
-            <a class="dropdown-item" href="#">Sắp xếp theo độ phổ biến</a>
+            <a class="dropdown-item" href="">Sắp xếp theo độ phổ biến</a>
           </div>
-          <a class="dropdown-item" href="#" id="establishYear">Sắp xếp theo năm xuất bản</a>
-          <a class="dropdown-item" href="#" id="sameKeyword">Sắp xếp theo số từ khóa trùng khớp</a>
+          <a class="dropdown-item" href="" id="establishYear">Sắp xếp theo năm xuất bản</a>
+          <a class="dropdown-item" href="" id="sameKeyword">Sắp xếp theo số từ khóa trùng khớp</a>
         </div>
       </div>
       <div class="dropdown">
@@ -159,10 +159,10 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div id="top10">
-            <a class="dropdown-item" href="#">Hiển thị top 10 kết quả</a>
+            <a class="dropdown-item" href="">Hiển thị top 10 kết quả</a>
           </div>
-          <a class="dropdown-item" href="#" id="top50">Hiển thị top 50 kết quả</a>
-          <a class="dropdown-item" href="#" id="all">Hiển thị tất cả kết quả</a>
+          <a class="dropdown-item" href="" id="top50">Hiển thị top 50 kết quả</a>
+          <a class="dropdown-item" href="" id="all">Hiển thị tất cả kết quả</a>
         </div>
       </div>
     </div>
@@ -170,6 +170,40 @@
       <p><i id="resFilter1">Sắp xếp theo số từ khóa trùng khớp</i></p>
       <p></p>
       <p> <i id="resFilter2">, Hiển thị tất cả kết quả</i></p>
+    </div>
+    <div class="searchAdv">
+      <a data-toggle="collapse" href="#collapseExample"><i>Tìm kiếm nâng cao ?</i></a>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <form>
+            <div class="form-group">
+              <label for="searchAdv_Authername">Tên tác giả</label>
+              <input type="email" class="form-control" id="searchAdv_Authername" placeholder="Nhập tên của tác giả">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Thể loại</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Lập trình web</option>
+                <option>Java</option>
+                <option>C và C++</option>
+                <option>Công nghệ mới</option>
+                <option>Khác</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="searchAdv_EstablishYear">Năm xuất bản</label>
+              <input type="email" class="form-control" id="searchAdv_EstablishYear" placeholder="Nhập năm xuất bản">
+            </div>
+            <div class="form-group">
+              <label for="searchAdv_Language">Ngôn ngữ</label>
+              <select class="form-control" id="searchAdv_Language">
+                <option>Tiếng việt</option>
+                <option>Tiếng anh</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
     <div class="res">
       <div class="row res-item" style="background-color: #FFEEB1; border-radius: 50px;">
