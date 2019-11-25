@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo&display=swap" type="text/css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +26,7 @@
       <p>Khoa công nghệ thông tin</p>
     </div>
   </div>
-  <div class="newbook">
+  <div class="newbook container">
     <div class="title">
       <h1>Sách mới</h1>
       <h5>Sách mới nhập về, sách mới tái bản, sách mới cập nhật phiên bản mới</h5>
@@ -62,7 +63,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo">Xem thêm</button>
-                    <button>Mượn sách</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -91,7 +92,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo">Xem thêm</button>
-                    <button>Mượn sách</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -124,7 +125,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo">Xem thêm</button>
-                    <button>Mượn sách</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -167,6 +168,27 @@
       </div>
     </div>
   </div>
+  <!-- Lịch làm việc -->
+  <div class="container" style="padding: 30px;" data-aos="fade-left" data-aos-offset="300"
+    data-aos-easing="ease-in-sine">
+    <div class="row worktime" style="background-color:beige">
+      <div class="col-lg-6 worktime_img" style="background-image: url(img/worktime.jpg); width: 500px; height: 500px">
+      </div>
+      <div class="col-lg-6 worktime_content"
+        style="text-align: center; margin-top: 20%; transform: translate(-0%,-20%)">
+        <h1>Lịch làm việc</h1>
+        <div class="worktime_content_time">
+          <p>Thứ 2 - Thứ 6: 9h00 - 16h00</p>
+          <p>Hẹn lịch trước khi đến thư viện <a href="bookCatalog.html">(Hẹn lịch ngay)</a></p>
+        </div>
+        <div class="worktime_content_notification">
+          <p><b>Thông báo: </b>Ngày 2-12-2019 thư viện tạm không làm việc</p>
+          <p> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="includedFooter"></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -179,7 +201,7 @@
   <script>
     $(function () {
       $("#includedFooter").load("footer.html");
-    })
+    });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -200,8 +222,11 @@
     document.getElementById("searchClose").onclick = function () {
       document.getElementById("quicksearch-hidden").hidden = true;
       document.getElementById("search").hidden = false;
+    };
 
-
+    function Borrow() {
+      localStorage.setItem("isbn", "053av55");
+      window.location = "bookCatalog.html";
     };
   </script>
 
