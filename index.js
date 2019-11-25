@@ -3,7 +3,7 @@ const app = express();
 
 // set static folder
 
-app.use(express.static(__dirname + "/Home_guest.html"));
+app.use(express.static(__dirname + "/"));
 
 // start server
 app.set("port", process.env.PORT || 3000);
