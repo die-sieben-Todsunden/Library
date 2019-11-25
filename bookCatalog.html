@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tìm kiếm</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/schedule.css">
@@ -121,16 +123,61 @@
             placeholder="Nhập mã isbn của sách mà bạn muốn mượn/xem/trả ">
         </div>
       </div>
-      <div class="col-lg-2" id="inputvalue_isbn"></div>
+      <div class="col-lg-2 row">
+        <a id="inputvalue_isbn_moreinfo" data-toggle="modal" data-target="#inputvalue_isbn_modal" disable="true"
+        ><i>Kiểm tra thông tin</i></a>
+        <div class="modal fade" id="inputvalue_isbn_modal" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="row">
+                <h5 style="margin-bottom: 0">Mã sách: </h5>
+                <h5 class="modal-title" id="inputvalue_isbn_modal_title" style="margin: none!important">
+                </div>
+                </h5>   
+                                             
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                
+              </div>
+              <div class="modal-body">
+                  <p><i>Chắc chắn rằng bạn đã nhập đúng mã sách</i></p> 
+                  <img src="img/book1.png" style="height:200px">
+                ...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-2">Ngày hẹn: </div>
       <div class="col-lg-8">
         <div class="form-group">
-          <input name="inputDate" type="input" class="form-control" id="inputDate" placeholder="Nhập ngày hẹn ">
+          <input id="datepicker" />
         </div>
       </div>
-      <div class="col-lg-2" id="inputvalue_date"></div>
+      <a class="col-lg-2" id="inputvalue_date" data-toggle="modal" data-target="#inputvalue_date_modal"></a>
+      <div class="modal fade" id="inputvalue_date_modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="inputvalue_date_modal_title">
+
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-2">Nội dung khác: </div>
@@ -142,14 +189,17 @@
     </div>
     <button type="submit">Hẹn lịch</button>
   </div>
-  <div id="inputISBN">
-    aaa
-  </div>
+
+
   <div id="includedFooter">
 
   </div>
+  <script>
+    $('#datepicker').datepicker({
+      uiLibrary: 'bootstrap4',
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    });
+  </script>
   <script>
     $(function () {
       $("#includedHeader").load("header.html");
@@ -183,21 +233,26 @@
     };
 
     window.onload = function () {
-      document.getElementById("inputvalue_isbn").innerHTML = localStorage.getItem("isbn");
-      console.log(localStorage.getItem(""));
-      console.log(document.getElementById("inputISBN").textContent);
+      document.getElementById("inputvalue_isbn").innerHTML = sessionStorage.getItem("isbn");
     };
 
 
-    $('#inputDate').keypress(function (event) {
+    /*$('#datepicker').change(function (event) {
+      var date = $('#datepicker').val();
 
-      var keycode = (event.keyCode ? event.keyCode : event.which);
-      if (keycode == '13') {
+      $('#inputvalue_date').html(date);
+    });*/
 
-        console.log($('#inputDate').keypress.textContent);
+    $('#inputISBN').change(function (event) {
+      var isbn = $('#inputISBN').val();
 
-      }
+      $('#inputvalue_isbn').html(isbn);
+    });
 
+    $('#inputvalue_isbn_moreinfo').click(function (event) {
+      var date2 = $('#inputISBN').val();
+      console.log( $('#inputISBN').val());
+      $('#inputvalue_isbn_modal_title').html(date2);
     });
   </script>
 
