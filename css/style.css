@@ -134,3 +134,8 @@
     font-size: 80px;
     color: #F6C89F ;
 }
+
+.booksummary{
+  height: 100px;;
+  overflow: auto;
+}
