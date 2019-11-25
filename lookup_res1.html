@@ -73,10 +73,10 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div id="pupulationRate">
-            <a class="dropdown-item" href="">Sắp xếp theo độ phổ biến</a>
+            <a class="dropdown-item" href="#">Sắp xếp theo độ phổ biến</a>
           </div>
-          <a class="dropdown-item" href="" id="establishYear">Sắp xếp theo năm xuất bản</a>
-          <a class="dropdown-item" href="" id="sameKeyword">Sắp xếp theo số từ khóa trùng khớp</a>
+          <a class="dropdown-item" href="#" id="establishYear">Sắp xếp theo năm xuất bản</a>
+          <a class="dropdown-item" href="#" id="sameKeyword">Sắp xếp theo số từ khóa trùng khớp</a>
         </div>
       </div>
       <div class="dropdown">
@@ -86,10 +86,10 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div id="top10">
-            <a class="dropdown-item" href="">Hiển thị top 10 kết quả</a>
+            <a class="dropdown-item" href="#">Hiển thị top 10 kết quả</a>
           </div>
-          <a class="dropdown-item" href="" id="top50">Hiển thị top 50 kết quả</a>
-          <a class="dropdown-item" href="" id="all">Hiển thị tất cả kết quả</a>
+          <a class="dropdown-item" href="#" id="top50">Hiển thị top 50 kết quả</a>
+          <a class="dropdown-item" href="#" id="all">Hiển thị tất cả kết quả</a>
         </div>
       </div>
     </div>
@@ -261,16 +261,8 @@
   </script>
 
   <script language="javascript">
-    document.getElementById("search").onclick = function () {
-      document.getElementById("quicksearch-hidden").hidden = false;
-      document.getElementById("search").hidden = true;
-    };
-
-    document.getElementById("searchClose").onclick = function () {
-      document.getElementById("quicksearch-hidden").hidden = true;
-      document.getElementById("search").hidden = false;
-    };
     document.getElementById("top10").onclick = function () {
+      console.log("a");
       document.getElementById("resFilter2").innerHTML = ", Hiển thị top 10 kết quả";
     };
 
