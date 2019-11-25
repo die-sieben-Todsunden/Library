@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="css/Login.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo&display=swap" type="text/css">
+    \
+    <link rel="stylesheet" href="css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
 
 </head>
 
@@ -21,16 +23,19 @@
 
     <div id="includedHeader"></div>
     <!-- Modal -->
-    <div class="modal fade" id="modalForgetPassForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 30px;">
+    <div class="modal fade" id="modalForgetPassForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="margin-top: 30px;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <img src="img/icon_KHTN.png " alt="icon_KHTN " class="icon_KHTN ">
-                    <label for="exampleInputEmail1 " style="font-size: 20px;text-align: center; padding-top: 10px; padding-left: 40px;">Đại Học Khoa Hoc Tự Nhiên <br> Khoa Công nghệ thông tin <br></label>
+                    <label for="exampleInputEmail1 "
+                        style="font-size: 20px;text-align: center; padding-top: 10px; padding-left: 40px;">Đại Học Khoa
+                        Hoc Tự Nhiên <br> Khoa Công nghệ thông tin <br></label>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
 
                 <div class="modal-body mx-3">
@@ -40,16 +45,21 @@
 
                     <div class="md-form mb-3">
                         <label for="exampleInputEmail1 ">Tên tài khoản</label>
-                        <input type="email " class="form-control " id="exampleInputEmail1 " aria-describedby="emailHelp " placeholder="Enter email ">
+                        <input type="email " class="form-control " id="exampleInputEmail1 "
+                            aria-describedby="emailHelp " placeholder="Enter email ">
                         <small id="emailHelp " class="form-text text-muted ">VD:1753057@student.hcmus.edu.vn</small>
                     </div>
 
                     <div class="md-form mb-3">
-                        <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                        <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
+                        <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"
+                            data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback">
+                        </div>
+                        <input class="form-control d-none" data-recaptcha="true" required
+                            data-error="Please complete the Captcha">
                         <div class="help-block with-errors"></div>
                         <div>
-                            <small style="color: grey;">Email tạo lại mật khẩu sẽ được gửi đến hộp thư của bạn trong thời gian sớm nếu không thấy thông báo thư mới hãy kiểm tra trong mục Spam.</small>
+                            <small style="color: grey;">Email tạo lại mật khẩu sẽ được gửi đến hộp thư của bạn trong
+                                thời gian sớm nếu không thấy thông báo thư mới hãy kiểm tra trong mục Spam.</small>
                         </div>
                     </div>
 
@@ -74,17 +84,22 @@
                     <form style="margin-top:4%;">
                         <div class="form-group ">
                             <img src="img/icon_KHTN.png " alt="icon_KHTN " class="icon_KHTN ">
-                            <label for="exampleInputEmail1 " style="font-size: 50px;text-align: center; padding-top: 10px; padding-left: 40px;">THƯ VIỆN</label>
+                            <label for="exampleInputEmail1 "
+                                style="font-size: 50px;text-align: center; padding-top: 10px; padding-left: 40px;">THƯ
+                                VIỆN</label>
                         </div>
                         <div class="form-group ">
 
                             <label for="exampleInputEmail1 ">Tên tài khoản</label>
-                            <input type="email " class="form-control " id="exampleInputEmail1 " aria-describedby="emailHelp " placeholder="Nhập email ">
-                            <small id="emailHelp " class="form-text text-muted ">Chúng tôi sẽ không bao giờ tiết lộ danh tính của bạn.</small>
+                            <input type="email " class="form-control " id="exampleInputEmail1 "
+                                aria-describedby="emailHelp " placeholder="Nhập email ">
+                            <small id="emailHelp " class="form-text text-muted ">Chúng tôi sẽ không bao giờ tiết lộ danh
+                                tính của bạn.</small>
                         </div>
                         <div class="form-group ">
                             <label for="exampleInputPassword1 ">Mật khẩu</label>
-                            <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="Nhập mật khẩu">
+                            <input type="password" id="defaultForm-pass" class="form-control validate"
+                                placeholder="Nhập mật khẩu">
                         </div>
                         <div class="row">
                             <div class="col-5">
@@ -96,7 +111,8 @@
 
                             <div class="col-2"></div>
                             <div class="col-5">
-                                <button type="submit " class="btn btn-primary " style="float: right;"><a href="index.html">Đăng nhập</a></button>
+                                <button type="submit " class="btn btn-primary " style="float: right;"><a
+                                        href="index.html">Đăng nhập</a></button>
                             </div>
                         </div>
                 </div>
@@ -115,7 +131,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        $(function() {
+        $(function () {
             $("#includedHeader").load("header_guest.html");
             $("#includedFooter").load("footer.html");
         });
