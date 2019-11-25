@@ -7,7 +7,6 @@
 }
 
 body {
-    overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -15,30 +14,10 @@ body {
     height: 700px;
 }
 
-.quicksearch button {
-    height: 37px;
-    width: 37px;
-    overflow: hidden;
-    background-size: auto;
-    background-position: center;
-    background-image: url(../img/Icon_search.png);
-    background-color: white;
-}
-
-.quicksearch {
-    background-color: white;
-    margin-right: 10px;
-}
-
-#quicksearch-hidden {
-    margin-right: 10px;
-}
-
 form {
     background-color: white;
     padding: 30px;
     width: 470px;
-    position: fixed;
 }
 
 .icon_KHTN {
