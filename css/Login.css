@@ -2,6 +2,10 @@
     font-family: "Baloo";
 }
 
+#header {
+    background-color: white;
+}
+
 body {
     overflow: hidden;
     background-repeat: no-repeat;

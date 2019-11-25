@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/Login.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo&display=swap" type="text/css">
 </head>
 
@@ -17,47 +19,7 @@
 
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="" alt=""> Fit-Library
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="userHomepage.html">Trang chủ<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="lookup.html">Tìm kiếm</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="bookCatalog.html">Danh mục sách</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">Về thư viện</a>
-                </li>
-            </ul>
-        </div>
-        <div class="quicksearch">
-            <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="search">
-        </button>
-        </div>
-        <div class="" id="quicksearch-hidden" hidden=true>
-            <div class="input-group">
-                <input type="text" class="form-control" id="searchInput">
-                <div class="input-group-append">
-                    <a class="input-group-text" href="#" id="searchClose">
-                        <img src="images/search_button.png" alt=""><i class="fa fa-times" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-
-
+    <div id="includedHeader"></div>
     <div class="Login">
 
         <div class="class=container-fluid">
@@ -65,7 +27,7 @@
 
                 <div class="col-4 "></div>
                 <div class="col-4 login_Form ">
-                    <form style="margin-top:3%;">
+                    <form style="margin-top:0%;">
                         <div class="form-group ">
                             <img src="img/icon_KHTN.png " alt="icon_KHTN " class="icon_KHTN ">
                             <label for="exampleInputEmail1 " style="font-size: 50px;text-align: center; padding-top: 10px; padding-left: 40px;">THƯ VIỆN</label>
@@ -98,25 +60,15 @@
 
 
     </div>
-    <script language="javascript ">
-        document.getElementById("search ").onclick = function() {
-            document.getElementById("quicksearch-hidden ").hidden = false;
-            document.getElementById("search ").hidden = true;
-        };
-
-        document.getElementById("searchClose ").onclick = function() {
-            document.getElementById("quicksearch-hidden ").hidden = true;
-            document.getElementById("search ").hidden = false;
-        };
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("#includedHeader").load("header_guest.html");
+            $("#includedFooter").load("footer.html");
+        });
     </script>
-    <link rel="stylesheet " href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css " integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M " crossorigin="anonymous ">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous ">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js " integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1 " crossorigin="anonymous ">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js " integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4 " crossorigin="anonymous ">
-    </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
