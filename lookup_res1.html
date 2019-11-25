@@ -155,8 +155,8 @@
             </p>
           </div>
           <div class="controlbtn">
-            <button id="moreinfo">Xem thêm</button>
-            <button>Mượn sách</button>
+            <button id="moreinfo" onclick="Moreinfo();">Xem thêm</button>
+            <button onclick="Borrow();">Mượn sách</button>
           </div>
         </div>
       </div>
@@ -181,8 +181,8 @@
             </p>
           </div>
           <div class="controlbtn">
-            <button id="moreinfo">Xem thêm</button>
-            <button>Mượn sách</button>
+            <button id="moreinfo" onclick="Moreinfo();">Xem thêm</button>
+            <button onclick="Borrow();">Mượn sách</button>
           </div>
         </div>
       </div>
@@ -208,8 +208,8 @@
             </p>
           </div>
           <div class="controlbtn">
-            <button id="moreinfo">Xem thêm</button>
-            <button>Mượn sách</button>
+            <button id="moreinfo" onclick="Moreinfo();">Xem thêm</button>
+            <button onclick="Borrow();">Mượn sách</button>
           </div>
         </div>
       </div>
@@ -303,6 +303,16 @@
 
     document.getElementById("booktopic").onclick = function () {
       document.getElementById("Keyword").innerHTML = "Chủ đề";
+    };
+
+    function Borrow() {
+      localStorage.setItem("isbn", "053av55");
+      window.location = "bookCatalog.html";
+    };
+
+    function Moreinfo() {
+
+      window.location = "book_info.html";
     };
   </script>
 
