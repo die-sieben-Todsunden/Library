@@ -1,0 +1,28 @@
+ <!-- Body ---------------------------------------------------------------------------------------------->
+  <div>
+    <p>Nội dung giới thiệu thư viện, nội quy, ...</p>
+  </div>
+ 
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- aos-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <script language="javascript">
+    document.getElementById("search").onclick = function () {
+      document.getElementById("quicksearch-hidden").hidden = false;
+      document.getElementById("search").hidden = true;
+    };
+
+    document.getElementById("searchClose").onclick = function () {
+      document.getElementById("quicksearch-hidden").hidden = true;
+      document.getElementById("search").hidden = false;
+    };
+  </script>

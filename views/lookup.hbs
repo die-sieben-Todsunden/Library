@@ -1,0 +1,77 @@
+
+    <link rel="stylesheet" href="css/lookup.css">
+    <div class="body">
+        <div class="container" style="background-image: url(img/searchbanner.jpg">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-11">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="Keyword" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Từ khóa
+            </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div id="bookname">
+                                <a class="dropdown-item" href="#">Tên sách</a>
+                            </div>
+                            <a class="dropdown-item" href="#" id="booktopic">Chủ đề sách</a>
+                            <a class="dropdown-item" href="#" id="authername">Tác giả</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <input type="search" class="form-control" id="search" placeholder="Nhập vào để tìm kiếm">
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <button class="btn" onclick="lookup();" style="height: 38px; border-radius: 10px; margin-left: 100%; transform: translate(-100%)">Tìm kiếm</button>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- aos-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script language="javascript">
+        document.getElementById("search").onclick = function() {
+            document.getElementById("quicksearch-hidden").hidden = false;
+            document.getElementById("search").hidden = true;
+        };
+
+        document.getElementById("searchClose").onclick = function() {
+            document.getElementById("quicksearch-hidden").hidden = true;
+            document.getElementById("search").hidden = false;
+        };
+        document.getElementById("bookname").onclick = function() {
+            document.getElementById("Keyword").innerHTML = "    Tên sách  ";
+        };
+
+        document.getElementById("authername").onclick = function() {
+            document.getElementById("Keyword").innerHTML = "Tác giả";
+        };
+
+        document.getElementById("booktopic").onclick = function() {
+            document.getElementById("Keyword").innerHTML = "Chủ đề";
+        };
+
+        function lookup() {
+            window.location = "lookup_res1.html"
+        }
+    </script>

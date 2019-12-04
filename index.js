@@ -1,12 +1,81 @@
-const express = require("express");
-const app = express();
+var express = require('express');
+var app = express();
 
-// set static folder
+//Setting for app here
+app.use(express.static(__dirname + '/public'));
 
-app.use(express.static(__dirname, { index: "Home_guest.html" }));
+var expressHbs = require('express-handlebars');
 
-// start server
-app.set("port", process.env.PORT || 3000);
-app.listen(app.get("port"), () => {
-  console.log(`server is listening on port ${app.get("port")}`);
+var hbs = expressHbs.create({
+    extname: 'hbs',
+    defaultLayout: 'layout',
+    layoutsDir: __dirname + '/views/layouts/',
+    partialsDir: __dirname + '/views/partials/',
+
+});
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+
+
+app.get('/index', function(req, res) {
+    res.render('index');
+});
+
+app.get('/about', function(req, res) {
+    res.render('about');
+});
+
+app.get('/book_info', function(req, res) {
+    res.render('book_info');
+});
+
+app.get('/bookCatalog', function(req, res) {
+    res.render('bookCatalog');
+});
+
+app.get('/lookup', function(req, res) {
+    res.render('lookup');
+});
+
+app.get('/lookup_res1', function(req, res) {
+    res.render('lookup_res1');
+});
+
+app.get('/manage_books', function(req, res) {
+    res.render('manage_books');
+});
+
+app.get('/signIn', function(req, res) {
+    res.render('signIn');
+});
+
+app.get('/signUp', function(req, res) {
+    res.render('SignUp');
+});
+
+app.get('/user_profile', function(req, res) {
+    res.render('user_profile');
+});
+
+
+
+
+
+//Define your route here
+
+
+// Set Public Folder
+
+
+
+//Set Server Port & Start Server
+
+app.set('port', (process.env.PORT || 3000));
+
+
+
+
+app.listen(app.get('port'), function() {
+    console.log("Server is listening at port " + app.get('port'));
+
 });

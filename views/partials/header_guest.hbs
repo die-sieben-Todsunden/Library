@@ -1,0 +1,65 @@
+<div class="container-fluid" id="header">
+    <div class="row" style="position: relative;">
+        <h1 style="margin-left: 0;margin-right: 0;font-size: 60px;">THƯ VIỆN</h1>
+        <!--<h5 style="margin-top: 5px; margin-left: 15px">Đại học Khoa học tự nhiên<br>Khoa Công nghệ
+            thông tin
+        </h5> -->
+        <div></div>
+        <div class="Logbutton" style=" position: absolute; right: 0; z-index: 1;">
+            <a href="/signUp">Đăng kí</a>
+            <a href="/signIn">Đăng nhập</a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user_profile">Trang chủ<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/lookup">Tìm kiếm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bookCatalog">Hẹn lịch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">Về thư viện</a>
+                </li>
+            </ul>
+        </div>
+        <div class="quicksearch">
+            <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample" id="search">
+            </button>
+        </div>
+        <div class="" id="quicksearch-hidden" hidden=true>
+            <div class="input-group">
+                <input type="text" class="form-control" id="searchInput">
+                <div class="input-group-append">
+                    <a class="input-group-text" href="#" id="searchClose"><i class="fa fa-times"
+                            aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script language="javascript">
+    document.getElementById("search").onclick = function () {
+        document.getElementById("quicksearch-hidden").hidden = false;
+        document.getElementById("search").hidden = true;
+    };
+
+    document.getElementById("searchClose").onclick = function () {
+        document.getElementById("quicksearch-hidden").hidden = true;
+        document.getElementById("search").hidden = false;
+    };
+</script>
+<script>
+    $(".noti-badge").prepend($(".noti a").length)
+</script>
