@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     Book.associate = function(models) {
         // associations can be defined here
-        Book.belongsTo(models.BookInfo);
+        Book.belongsTo(models.bookInfo);
+        Book.hasOne(models.BookManagement)
     };
     return Book;
 };
