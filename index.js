@@ -17,7 +17,7 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 
-app.get('/index', function(req, res) {
+app.get('/', function(req, res) {
     res.render('index');
 });
 
