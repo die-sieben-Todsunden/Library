@@ -49,10 +49,19 @@
     width: 240px;
 }
 #body-content-bottom {
-    overflow: auto;
+    display:flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    /* overflow-y: hidden; */
+    /* height: 80px; */
+    /* white-space:nowrap; */
 }
-#body-content-right p{
-    word-wrap: unset;
+#body-content-bottom div{
+    flex: 0 0 auto;
+}
+#description{
+    height: 180px;
+    word-wrap: break-word;
     display: block;
     overflow: auto;
 }
