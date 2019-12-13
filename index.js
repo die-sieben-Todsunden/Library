@@ -17,6 +17,13 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 
+var models = require('./models');
+app.get('/sync', function(req, res) {
+    models.sequelize.sync().then(function() {
+        res.send('database sync completed!');
+    });
+});
+
 app.get('/', function(req, res) {
     res.render('index');
 });
@@ -28,6 +35,9 @@ app.get('/about', function(req, res) {
 app.get('/book_info', function(req, res) {
     res.render('book_info');
 });
+
+
+
 
 app.get('/bookCatalog', function(req, res) {
     res.render('bookCatalog');
