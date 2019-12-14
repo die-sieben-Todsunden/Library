@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
     BookCategory.associate = function(models) {
         // associations can be defined here
-        BookCategory.belongsToMany(models.bookInfo, { through: models.ManageBook });
+        BookCategory.belongsToMany(models.bookInfo, { through: models.ManageBookCategory });
     };
     return BookCategory;
 };
