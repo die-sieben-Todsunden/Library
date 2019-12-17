@@ -1,7 +1,7 @@
 'use strict';
 const fs = require('fs');
 
-let rawdata = fs.readFileSync('database_sample/demo-book.json');
+let rawdata = fs.readFileSync('database_sample/demo-category.json');
 module.exports = {
   up: (queryInterface, Sequelize) => {
     let data = JSON.parse(rawdata);
@@ -9,7 +9,7 @@ module.exports = {
       item.createdAt = Sequelize.literal('NOW()');
       item.updatedAt = Sequelize.literal('NOW()');
       return item;
-    })
+    });
     return queryInterface.bulkInsert('bookInfos', data, {});
     /*
       Add altering commands here.
