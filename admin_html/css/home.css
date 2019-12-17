@@ -1,0 +1,19 @@
+.menu .menuItem {
+  height: 50px;
+}
+
+.user-item-img {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
+.user-item {
+  border: 1px solid black;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+  <script src="jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="col-lg-2 col-md-2 menu" style="background-color: red;">
+      <div class="menuItem">
+        Trang chủ
+      </div>
+      <div class="menuItem">
+        Quản lí sách
+      </div>
+      <div class="menuItem">
+        Quản lí tài khoản
+      </div>
+      <div class="menuItem">
+        Danh mục tác giả
+      </div>
+      <div class="menuItem">
+        Yêu cầu
+      </div>
+      <div class="menuItem">
+        Thống kê
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <section class="statistic">
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Lượt truy cập hôm nay</h5>
+              <p class="card-text">50</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Yêu cầu cấp tài khoản</h5>
+              <p class="card-text">0</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Yêu cầu mới</h5>
+              <p class="card-text">16</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+        <button>Thống kê chi tiết</button>
+      </section>
+      <section class="quicksearch">
+        <div><b>Tìm kiếm nhanh</b></div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Nhập để tìm kiểm" aria-label="Username"
+            aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="danhmuctimkiem">Danh mục tìm kiếm</label>
+            <select class="form-control" id="danhmuctimkiem" onchange="searchCatalogChange(this)">
+              <option>Tài khoản</option>
+              <option>Sách</option>
+              <option>Tác giả</option>
+            </select>
+          </div>
+          <div class="form-group col-lg-3">
+            <label for="tukhoatimkiem">Từ khóa tìm kiếm</label>
+            <select class="form-control" id="tukhoatimkiem">
+              <option>Tên tài khoản</option>
+              <option>Tên người dùng</option>
+              <option>Mã số</option>
+            </select>
+          </div>
+          <div class="col-lg-4"></div>
+          <div class="col-lg-2">
+            <button>Tìm kiếm</button>
+          </div>
+      </section>
+      <section class="notification">
+        <div><b>Gửi thông báo / Đăng bài</b></div>
+        <div class="form-group">
+          <label for="subject">Chủ đề:</label>
+          <input class="form-control" id="subject">
+          </input>
+        </div>
+        <div class="form-group">
+          <label for="receive">Người nhận:</label>
+          <input class="form-control" id="receive" placeholder="Nhập mã số người nhận, 'all' để gửi tất cả">
+          </input>
+        </div>
+        <div class="form-group">
+          <label for="content">Nội dung:</label>
+          <textarea class="form-control" id="content">
+            </textarea>
+        </div>
+        <button>Gửi</button>
+      </section>
+
+    </div>
+    <div class="col-lg-2 col-md-2 user">
+      <div class="user-title">
+        Người dùng đang online
+      </div>
+      <div class="row user-item">
+        <div class="col-lg-2 user-item-img" style="background-image: url(img/avt/user1.png)">
+        </div>
+        <div class="col-lg-10 user-item-info">
+          <div class="user-item-info-id">1753048</div>
+          <div class="user-item-info-name">Phạm Khánh Duy</div>
+        </div>
+      </div>
+      <div class="row user-item">
+        <div class="col-lg-2 user-item-img" style="background-image: url(img/avt/user1.png)">
+        </div>
+        <div class="col-lg-10 user-item-info">
+          <div class="user-item-info-id">1753048</div>
+          <div class="user-item-info-name">Phạm Khánh Duy</div>
+        </div>
+      </div>
+      <div class="row user-item">
+        <div class="col-lg-2 user-item-img" style="background-image: url(img/avt/user1.png)">
+        </div>
+        <div class="col-lg-10 user-item-info">
+          <div class="user-item-info-id">1753048</div>
+          <div class="user-item-info-name">Phạm Khánh Duy</div>
+        </div>
+      </div>
+      <div class="row user-item">
+        <div class="col-lg-2 user-item-img" style="background-image: url(img/avt/user1.png)">
+        </div>
+        <div class="col-lg-10 user-item-info">
+          <div class="user-item-info-id">1753048</div>
+          <div class="user-item-info-name">Phạm Khánh Duy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script language="javascript">
+    function searchCatalogChange(option) {
+      if (option.value == "Tác giả") {
+        document.getElementById("tukhoatimkiem").innerHTML =
+          "<option>Tên tác giả</option> <option>Năm sinh tác giả</option>"
+      } else if (option.value == "Sách") {
+        document.getElementById("tukhoatimkiem").innerHTML =
+          "<option>Tên sách</option> <option>Thể loại sách</option> <option>Năm xuất bản</option>"
+      } else {
+        document.getElementById("tukhoatimkiem").innerHTML =
+          "<option>Tên tài khoản</option> <option>Tên người dùng</option> <option>Mã số</option>"
+      }
+    };
+  </script>
+</body>
+
+</html>
