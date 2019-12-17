@@ -48,45 +48,45 @@
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th scope="col">Người dùng</th>
-                <th scope="col">Khách</th>
+                <th scope="col">Số lượt mượn</th>
+
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Thứ hai</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Mon">15</td>
+
               </tr>
               <tr>
                 <th scope="row">Thứ ba</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Tue">15</td>
+
               </tr>
               <tr>
                 <th scope="row">Thứ tư</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Wed">15</td>
+
               </tr>
               <tr>
                 <th scope="row">Thứ năm</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Thu">15</td>
+
               </tr>
               <tr>
                 <th scope="row">Thứ sáu</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Fri">15</td>
+
               </tr>
               <tr>
                 <th scope="row">Thứ bảy</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Sat">15</td>
+
               </tr>
               <tr>
                 <th scope="row">Chủ nhật</th>
-                <td>15</td>
-                <td>3</td>
+                <td id="Sun">15</td>
+
               </tr>
             </tbody>
           </table>
@@ -104,11 +104,97 @@
   </div>
 
 </div>
+<script>
+  let data = [];
+  let date = [];
+</script>
+{{#each borrow}}
+<script>
+  data.push("{{status}}")
+  date.push("{{dueDate}}");
+</script>
+{{/each}}
 
 <script>
+
+  var info = new Array();
+  date.forEach(function (item, index, array) {
+    info[index] = new Array();
+    var temp = item.split(" ");
+    info[index].push(temp[0]);
+    info[index].push(temp[1]);
+    info[index].push(temp[2]);
+    info[index].push(temp[3]);
+  });
+  data.forEach(function (item, index, array) {
+    info[index].push(item);
+
+  });
+  console.log(info[1]);
   let myChart = document.getElementById('Chart').getContext('2d');
 
-  console.log({{ status }});
+  var DataChart = [];
+  let mon = 0;
+  let tue = 0;
+  let wed = 0;
+  let thu = 0;
+  let fri = 0;
+  let sat = 0;
+  let sun = 0;
+
+  var now = new Date();
+  var min = 0, max = 0;
+  if (now.getDate == "Mon")
+    min = now.getDay() - 7;
+  else if (now.getDate == "Tue")
+    min = now.getDay() - 8;
+  else if (now.getDate == "Wed")
+    min = now.getDay() - 9;
+  else if (now.getDate == "Thu")
+    min = now.getDay() - 10;
+  else if (now.getDate == "Fri")
+    min = now.getDay() - 11;
+  else if (now.getDate == "Sat")
+    min = now.getDay() - 12;
+  else if (now.getDate == "Sun")
+    min = now.getDay() - 6;
+  max = min + 6;
+
+  var check = false;
+  if (min <= 0)
+
+    console.log(min);
+  info.forEach(function (item, index, array) {
+    if (item[0] == 'Mon' && item[2] >= min && item[2] <= max)
+      mon++;
+    else if (item[0] == 'Tue' && item[2] >= min && item[2] <= max)
+      tue++;
+    else if (item[0] == 'Wed' && item[2] >= min && item[2] <= max)
+      wed++;
+    else if (item[0] == 'Thu' && item[2] >= min && item[2] <= max)
+      thu++;
+    else if (item[0] == 'Fri' && item[2] >= min && item[2] <= max)
+      fri++;
+    else if (item[0] == 'Sat' && item[2] >= min && item[2] <= max)
+      sat++;
+    else if (item[0] == 'Sun' && item[2] >= min && item[2] <= max)
+      sun++;
+  });
+  document.getElementById("Mon").innerHTML = mon;
+  document.getElementById("Tue").innerHTML = tue;
+  document.getElementById("Wed").innerHTML = wed;
+  document.getElementById("Thu").innerHTML = thu;
+  document.getElementById("Fri").innerHTML = fri;
+  document.getElementById("Sat").innerHTML = sat;
+  document.getElementById("Sun").innerHTML = sun;
+  DataChart.push(mon);
+  DataChart.push(tue);
+  DataChart.push(wed);
+  DataChart.push(thu);
+  DataChart.push(fri);
+  DataChart.push(sat);
+  DataChart.push(sun);
+
   let massPopChart = new Chart(myChart, {
     type: 'bar',
     data: {
@@ -116,23 +202,17 @@
       datasets: [{
         label: 'Người dùng',
         data: [
-          10, 20, 30, 1, 0, 50, 3
+          mon, tue, wed, thu, fri, sat, sun
         ],
         backgroundColor: 'red'
       },
-      {
-        label: 'Khách',
-        data: [
-          3, 5, 25, 6, 5, 10, 12
-        ],
-        backgroundColor: 'blue'
-      }
+
       ]
     },
     options: {
       title: {
         display: true,
-        text: 'Thống kê lượt truy cập tuần qua'
+        text: 'Thống kê lượt mượn sách tuần này'
       }
     }
   });
