@@ -42,12 +42,76 @@
         <div class="row">
           <div class="col-lg-5">
             <p><b>Bảng số liệu</b></p>
-            <select name="" id="typeTable">
-              <option value="">Theo ngày</option>
-              <option value="">Theo tuần</option>
-              <option value="">Theo tháng</option>
+            <select name="" id="typeTable" onchange="ChangeFigure(this)">
+              <option value="date">Tuần qua</option>
+              <option value="month">Theo tháng</option>
+
             </select>
-            <table class="table">
+            <table class="table" id="borrow-month">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Số lượt mượn</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Tháng 1</th>
+                  <td id="Jan">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 2</th>
+                  <td id="Feb">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 3</th>
+                  <td id="Mar">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 4</th>
+                  <td id="Apr">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 5</th>
+                  <td id="May">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 6</th>
+                  <td id="Jun">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 7</th>
+                  <td id="Jul">15</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 8</th>
+                  <td id="Aug">15</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 9</th>
+                  <td id="Sep">15</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 10</th>
+                  <td id="Oct">15</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 11</th>
+                  <td id="Nov">15</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tháng 12</th>
+                  <td id="Dec">15</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table" id="borrow-date">
               <thead>
                 <tr>
                   <th scope="col"></th>
@@ -106,6 +170,9 @@
                 <canvas id="Chart"></canvas>
                 <canvas id="Chart2"></canvas>
                 <canvas id="Chart3"></canvas>
+                <canvas id="Chart4"></canvas>
+                <canvas id="Chart5"></canvas>
+                <canvas id="Chart6"></canvas>
               </div>
 
             </div>
@@ -123,7 +190,7 @@
   {{#each borrow}}
   <script>
     data.push("{{status}}")
-    date.push("{{dueDate}}");
+    date.push("{{borrowedDate}}");
   </script>
   {{/each}}
 
@@ -143,8 +210,6 @@
     info[index].push(item);
 
   });
-  console.log(info[1]);
-  let myChart = document.getElementById('Chart').getContext('2d');
 
   var DataChart = [];
   let mon = 0;
@@ -156,6 +221,18 @@
   let sun = 0;
 
   let Jan = 0;
+  let Feb = 0;
+  let Mar = 0;
+  let Apr = 0;
+  let May = 0;
+  let Jun = 0;
+  let Jul = 0;
+  let Aug = 0;
+  let Sep = 0;
+  let Oct = 0;
+  let Nov = 0;
+  let Dec = 0;
+
   var now = new Date();
   var min = 0, max = 0;
   if (now.getDate == "Mon")
@@ -194,6 +271,34 @@
     else if (item[0] == 'Sun' && item[2] >= min && item[2] <= max)
       sun++;
   });
+
+  info.forEach(function (item, index, array) {
+    if (item[1] == 'Jan')
+      Jan++;
+    else if (item[1] == 'Feb')
+      Feb++;
+    else if (item[1] == 'Mar')
+      Mar++;
+    else if (item[1] == 'Apr')
+      Apr++;
+    else if (item[1] == 'May')
+      May++;
+    else if (item[1] == 'Jun')
+      Jun++;
+    else if (item[1] == 'Jul')
+      Jul++;
+    else if (item[1] == 'Aug')
+      Aug++;
+    else if (item[1] == 'Sep')
+      Sep++;
+    else if (item[1] == 'Oct')
+      Oct++;
+    else if (item[1] == 'Nov')
+      Nov++;
+    else if (item[1] == 'Dec')
+      Dec++;
+  });
+
   document.getElementById("Mon").innerHTML = mon;
   document.getElementById("Tue").innerHTML = tue;
   document.getElementById("Wed").innerHTML = wed;
@@ -201,6 +306,19 @@
   document.getElementById("Fri").innerHTML = fri;
   document.getElementById("Sat").innerHTML = sat;
   document.getElementById("Sun").innerHTML = sun;
+
+  document.getElementById("Jan").innerHTML = Jan;
+  document.getElementById("Feb").innerHTML = Feb;
+  document.getElementById("Mar").innerHTML = Mar;
+  document.getElementById("Apr").innerHTML = Apr;
+  document.getElementById("May").innerHTML = May;
+  document.getElementById("Jun").innerHTML = Jun;
+  document.getElementById("Jul").innerHTML = Jul;
+  document.getElementById("Aug").innerHTML = Aug;
+  document.getElementById("Sep").innerHTML = Sep;
+  document.getElementById("Oct").innerHTML = Oct;
+  document.getElementById("Nov").innerHTML = Nov;
+  document.getElementById("Dec").innerHTML = Dec;
   DataChart.push(mon);
   DataChart.push(tue);
   DataChart.push(wed);
@@ -208,6 +326,7 @@
   DataChart.push(fri);
   DataChart.push(sat);
   DataChart.push(sun);
+  let myChart = document.getElementById('Chart').getContext('2d');
 
   var massPopChart = new Chart(myChart, {
     type: 'bar',
@@ -254,7 +373,6 @@
     }
   });
   let myChart3 = document.getElementById('Chart3').getContext('2d');
-
   let massPopChart3 = new Chart(myChart3, {
     type: 'line',
     data: {
@@ -266,7 +384,6 @@
         ],
         backgroundColor: ['red', 'blue', 'green', 'pink', 'yellow', 'orange', 'gray']
       },
-
       ]
     },
     options: {
@@ -276,25 +393,172 @@
       }
     }
   });
+  let myChart4 = document.getElementById('Chart4').getContext('2d');
+  let massPopChart4 = new Chart(myChart4, {
+    type: 'bar',
+    data: {
+      labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+      datasets: [{
+        label: 'Lượt mượn',
+        data: [
+          Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+        ],
+        backgroundColor: 'red'
+      },
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Thống kê lượt mượn sách theo tháng'
+      }
+    }
+  });
+  let myChart5 = document.getElementById('Chart5').getContext('2d');
+  let massPopChart5 = new Chart(myChart5, {
+    type: 'pie',
+    data: {
+      labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+      datasets: [{
+        label: 'Lượt mượn',
+        data: [
+          Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+        ],
+        backgroundColor: ['red', 'blue', 'green', 'pink', 'yellow', 'orange', 'gray', 'black', 'pink', 'brown', 'purple', 'Navy']
+      },
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Thống kê lượt mượn sách theo tháng'
+      }
+    }
+  });
+  let myChart6 = document.getElementById('Chart6').getContext('2d');
+  let massPopChart6 = new Chart(myChart6, {
+    type: 'line',
+    data: {
+      labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+      datasets: [{
+        label: 'Lượt mượn',
+        data: [
+          Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+        ],
+        backgroundColor: 'red'
+      },
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Thống kê lượt mượn sách theo tháng'
+      }
+    }
+  });
   document.getElementById('Chart2').style.display = 'none';
   document.getElementById('Chart3').style.display = 'none';
-  function ChangeTypeChart(type) {
+  document.getElementById('Chart4').style.display = 'none';
+  document.getElementById('Chart5').style.display = 'none';
+  document.getElementById('Chart6').style.display = 'none';
 
+  document.getElementById('borrow-month').style.display = 'none';
+
+  var fig = "date";
+  var typee = "bar";
+  function ChangeTypeChart(type) {
+    typee = type.value;
     //canvas = document.querySelector('#results-graph');
     if (type.value == "pie") {
-      document.getElementById('Chart').style.display = 'none';
-      document.getElementById('Chart3').style.display = 'none';
-      document.getElementById('Chart2').style.display = 'block';
+
+      if (fig == "date") {
+        document.getElementById('Chart').style.display = 'none';
+        document.getElementById('Chart2').style.display = 'block';
+        document.getElementById('Chart3').style.display = 'none';
+        document.getElementById('Chart4').style.display = 'none';
+        document.getElementById('Chart5').style.display = 'none';
+        document.getElementById('Chart6').style.display = 'none';
+      }
+      else {
+        document.getElementById('Chart').style.display = 'none';
+        document.getElementById('Chart2').style.display = 'none';
+        document.getElementById('Chart3').style.display = 'none';
+        document.getElementById('Chart4').style.display = 'none';
+        document.getElementById('Chart5').style.display = 'block';
+        document.getElementById('Chart6').style.display = 'none';
+      }
     }
     else if (type.value == "bar") {
-      document.getElementById('Chart2').style.display = 'none';
-      document.getElementById('Chart').style.display = 'block';
-      document.getElementById('Chart3').style.display = 'none';
+      if (fig == "date") {
+        document.getElementById('Chart').style.display = 'block';
+        document.getElementById('Chart2').style.display = 'none';
+        document.getElementById('Chart3').style.display = 'none';
+        document.getElementById('Chart4').style.display = 'none';
+        document.getElementById('Chart5').style.display = 'none';
+        document.getElementById('Chart6').style.display = 'none';
+      }
+      else {
+        document.getElementById('Chart').style.display = 'none';
+        document.getElementById('Chart2').style.display = 'none';
+        document.getElementById('Chart3').style.display = 'none';
+        document.getElementById('Chart4').style.display = 'block';
+        document.getElementById('Chart5').style.display = 'none';
+        document.getElementById('Chart6').style.display = 'none';
+      }
     }
     else {
-      document.getElementById('Chart').style.display = 'none';
-      document.getElementById('Chart2').style.display = 'none';
-      document.getElementById('Chart3').style.display = 'block';
+      if (fig == "date") {
+        document.getElementById('Chart').style.display = 'none';
+        document.getElementById('Chart2').style.display = 'none';
+        document.getElementById('Chart3').style.display = 'block';
+        document.getElementById('Chart4').style.display = 'none';
+        document.getElementById('Chart5').style.display = 'none';
+        document.getElementById('Chart6').style.display = 'none';
+      }
+      else {
+        document.getElementById('Chart').style.display = 'none';
+        document.getElementById('Chart2').style.display = 'none';
+        document.getElementById('Chart3').style.display = 'none';
+        document.getElementById('Chart4').style.display = 'none';
+        document.getElementById('Chart5').style.display = 'none';
+        document.getElementById('Chart6').style.display = 'block';
+      }
+    }
+  }
+  function ChangeFigure(figure) {
+    if (fig == "date") {
+      document.getElementById('borrow-date').style.display = 'none';
+      document.getElementById('borrow-month').style.display = 'block';
+      fig = "month";
+      if (typee == "bar") {
+        document.getElementById('Chart').style.display = 'none';
+        document.getElementById('Chart4').style.display = 'block';
+      }
+      else if (typee == "pie") {
+        document.getElementById('Chart2').style.display = 'none';
+        document.getElementById('Chart5').style.display = 'block';
+      }
+      else {
+        document.getElementById('Chart3').style.display = 'none';
+        document.getElementById('Chart6').style.display = 'block';
+      }
+    }
+    else {
+      document.getElementById('borrow-month').style.display = 'none';
+      document.getElementById('borrow-date').style.display = 'block';
+      fig = "date";
+      if (typee == "bar") {
+        document.getElementById('Chart4').style.display = 'none';
+        document.getElementById('Chart').style.display = 'block';
+      }
+      else if (typee == "pie") {
+        document.getElementById('Chart5').style.display = 'none';
+        document.getElementById('Chart2').style.display = 'block';
+      }
+      else {
+        document.getElementById('Chart6').style.display = 'none';
+        document.getElementById('Chart3').style.display = 'block';
+      }
     }
   }
 </script>
