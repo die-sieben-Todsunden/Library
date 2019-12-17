@@ -1,120 +1,133 @@
-<script src="jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<div class="row">
-  <div class="col-lg-2 col-md-2 menu" style="background-color: red;">
-    <div class="menuItem">
-      Trang chủ
-    </div>
-    <div class="menuItem">
-      Quản lí sách
-    </div>
-    <div class="menuItem">
-      Quản lí tài khoản
-    </div>
-    <div class="menuItem">
-      Danh mục tác giả
-    </div>
-    <div class="menuItem">
-      Yêu cầu
-    </div>
-    <div class="menuItem">
-      Thống kê
-    </div>
+<body>
 
-  </div>
-  <div class="col-lg-10 col-md-10">
-    <div class="row">
-      <div>Thống kê theo: </div>
-      <div class="form-group">
-        <select class="form-control" id="title">
-          <option>Lượng truy cập</option>
-          <option>Số sách cho mượn</option>
-          <option>Lượt yêu cầu</option>
-          <option></option>
-        </select>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <div class="row">
+    <div class="col-lg-2 col-md-2 menu" style="background-color: red;">
+      <div class="menuItem">
+        Trang chủ
       </div>
-    </div>
-    <section>
+      <div class="menuItem">
+        Quản lí sách
+      </div>
+      <div class="menuItem">
+        Quản lí tài khoản
+      </div>
+      <div class="menuItem">
+        Danh mục tác giả
+      </div>
+      <div class="menuItem">
+        Yêu cầu
+      </div>
+      <div class="menuItem">
+        Thống kê
+      </div>
 
+    </div>
+    <div class="col-lg-10 col-md-10">
       <div class="row">
-        <div class="col-lg-5">
-          <p><b>Bảng số liệu</b></p>
-          <select name="" id="typeTable">
-            <option value="">Theo ngày</option>
-            <option value="">Theo tuần</option>
-            <option value="">Theo tháng</option>
+        <div>Thống kê theo: </div>
+        <div class="form-group">
+          <select class="form-control" id="title">
+            <option>Lượt mượn sách</option>
+            <option>Lượt truy cập</option>
+            <option>Lượt yêu cầu</option>
+            <option></option>
           </select>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Số lượt mượn</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Thứ hai</th>
-                <td id="Mon">15</td>
-
-              </tr>
-              <tr>
-                <th scope="row">Thứ ba</th>
-                <td id="Tue">15</td>
-
-              </tr>
-              <tr>
-                <th scope="row">Thứ tư</th>
-                <td id="Wed">15</td>
-
-              </tr>
-              <tr>
-                <th scope="row">Thứ năm</th>
-                <td id="Thu">15</td>
-
-              </tr>
-              <tr>
-                <th scope="row">Thứ sáu</th>
-                <td id="Fri">15</td>
-
-              </tr>
-              <tr>
-                <th scope="row">Thứ bảy</th>
-                <td id="Sat">15</td>
-
-              </tr>
-              <tr>
-                <th scope="row">Chủ nhật</th>
-                <td id="Sun">15</td>
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-lg-7">
-          <p><b>Biểu đồ</b></p>
-          <select name="" id="typeChart">
-            <option value="">Biểu đồ cột</option>
-            <option value="">Biểu đồ tròn</option>
-          </select>
-          <canvas id="Chart"></canvas>
         </div>
       </div>
-    </section>
+      <section>
+
+        <div class="row">
+          <div class="col-lg-5">
+            <p><b>Bảng số liệu</b></p>
+            <select name="" id="typeTable">
+              <option value="">Theo ngày</option>
+              <option value="">Theo tuần</option>
+              <option value="">Theo tháng</option>
+            </select>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Số lượt mượn</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Thứ hai</th>
+                  <td id="Mon">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Thứ ba</th>
+                  <td id="Tue">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Thứ tư</th>
+                  <td id="Wed">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Thứ năm</th>
+                  <td id="Thu">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Thứ sáu</th>
+                  <td id="Fri">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Thứ bảy</th>
+                  <td id="Sat">15</td>
+
+                </tr>
+                <tr>
+                  <th scope="row">Chủ nhật</th>
+                  <td id="Sun">15</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-7">
+            <p><b>Biểu đồ</b></p>
+            <select name="" id="typeChart" onchange="ChangeTypeChart(this)">
+              <option value="bar">Biểu đồ cột</option>
+              <option value="pie">Biểu đồ tròn</option>
+              <option value="line">Biểu đồ đường</option>
+            </select>
+            <div id="ChartGrap">
+              <div id="Wrapper">
+                <canvas id="Chart"></canvas>
+                <canvas id="Chart2"></canvas>
+                <canvas id="Chart3"></canvas>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
   </div>
+  <script>
+    let data = [];
+    let date = [];
+  </script>
+  {{#each borrow}}
+  <script>
+    data.push("{{status}}")
+    date.push("{{dueDate}}");
+  </script>
+  {{/each}}
 
-</div>
-<script>
-  let data = [];
-  let date = [];
-</script>
-{{#each borrow}}
-<script>
-  data.push("{{status}}")
-  date.push("{{dueDate}}");
-</script>
-{{/each}}
-
+</body>
 <script>
 
   var info = new Array();
@@ -142,6 +155,7 @@
   let sat = 0;
   let sun = 0;
 
+  let Jan = 0;
   var now = new Date();
   var min = 0, max = 0;
   if (now.getDate == "Mon")
@@ -195,16 +209,16 @@
   DataChart.push(sat);
   DataChart.push(sun);
 
-  let massPopChart = new Chart(myChart, {
+  var massPopChart = new Chart(myChart, {
     type: 'bar',
     data: {
       labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
       datasets: [{
-        label: 'Người dùng',
+        label: 'Lượt mượn',
         data: [
           mon, tue, wed, thu, fri, sat, sun
         ],
-        backgroundColor: 'red'
+        backgroundColor: 'gray'
       },
 
       ]
@@ -212,8 +226,75 @@
     options: {
       title: {
         display: true,
-        text: 'Thống kê lượt mượn sách tuần này'
+        text: 'Thống kê lượt mượn sách tuần qua'
       }
     }
   });
+  let myChart2 = document.getElementById('Chart2').getContext('2d');
+
+  let massPopChart2 = new Chart(myChart2, {
+    type: 'pie',
+    data: {
+      labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
+      datasets: [{
+        label: 'Lượt mượn',
+        data: [
+          mon, tue, wed, thu, fri, sat, sun
+        ],
+        backgroundColor: ['red', 'blue', 'green', 'pink', 'yellow', 'orange', 'gray']
+      },
+
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Thống kê lượt mượn sách tuần qua'
+      }
+    }
+  });
+  let myChart3 = document.getElementById('Chart3').getContext('2d');
+
+  let massPopChart3 = new Chart(myChart3, {
+    type: 'line',
+    data: {
+      labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
+      datasets: [{
+        label: 'Lượt mượn',
+        data: [
+          mon, tue, wed, thu, fri, sat, sun
+        ],
+        backgroundColor: ['red', 'blue', 'green', 'pink', 'yellow', 'orange', 'gray']
+      },
+
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Thống kê lượt mượn sách tuần qua'
+      }
+    }
+  });
+  document.getElementById('Chart2').style.display = 'none';
+  document.getElementById('Chart3').style.display = 'none';
+  function ChangeTypeChart(type) {
+
+    //canvas = document.querySelector('#results-graph');
+    if (type.value == "pie") {
+      document.getElementById('Chart').style.display = 'none';
+      document.getElementById('Chart3').style.display = 'none';
+      document.getElementById('Chart2').style.display = 'block';
+    }
+    else if (type.value == "bar") {
+      document.getElementById('Chart2').style.display = 'none';
+      document.getElementById('Chart').style.display = 'block';
+      document.getElementById('Chart3').style.display = 'none';
+    }
+    else {
+      document.getElementById('Chart').style.display = 'none';
+      document.getElementById('Chart2').style.display = 'none';
+      document.getElementById('Chart3').style.display = 'block';
+    }
+  }
 </script>
