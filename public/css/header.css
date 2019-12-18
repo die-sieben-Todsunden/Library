@@ -1,7 +1,11 @@
 #header>* {
     align-items: center;
 }
-
+#header{
+    border: white;
+    border-bottom: #b0b0b0;
+    border-style: solid;
+}
 .dropdown-menu {
     margin: 20px;
 }
@@ -13,8 +17,6 @@
 .navbar {
     background-color: white !important;
     border: white;
-    border-bottom: #b0b0b0;
-    border-style: solid;
 }
 
 .quicksearch button {
