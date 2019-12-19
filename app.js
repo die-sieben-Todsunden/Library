@@ -52,42 +52,20 @@ app.use((req, res, next) => {
 
   let role = req.session.user?req.session.user.role:'';
   if (role == 'admin') res.locals.isAdmin = true;
+  res.locals.user = req.session.user;
   res.locals.username = req.session.user ? req.session.user.name : '';
   res.locals.isLoggedIn = req.session.user?true:false;
   next();
 });
 // Define route
 app.use("/admin", require("./routes/adminRouter"));
-app.get("/", function(req, res) {
-  res.render("index");
-});
+app.use('/', require('./routes/index'));
 
-app.get("/about", function(req, res) {
-  res.render("about");
-});
+app.use('/bookInfo', require('./routes/bookInfo'));
 
-app.get("/book_info", function(req, res) {
-  res.render("book_info");
-});
-
-app.get("/bookCatalog", function(req, res) {
-  res.render("bookCatalog");
-});
-
-app.get("/lookup", function(req, res) {
-  res.render("lookup");
-});
-
-app.get("/lookup_res1", function(req, res) {
-  res.render("lookup_res1");
-});
-
-app.get("/manage_books", function(req, res) {
-  res.render("manage_books");
-});
+app.use('/bookCatalog', require('./routes/bookCatalog'))
 
 app.use("/user", require("./routes/UserRouter"));
-
 //Set Server Port & Start Server
 
 app.set("port", process.env.PORT || 3000);

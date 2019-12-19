@@ -1,7 +1,7 @@
 'use strict';
 const fs = require('fs');
 
-let rawdata = fs.readFileSync('database_sample/demo-category.json');
+let rawdata = fs.readFileSync('database_sample/category.json');
 module.exports = {
   up: (queryInterface, Sequelize) => {
     let data = JSON.parse(rawdata);
@@ -10,7 +10,7 @@ module.exports = {
       item.updatedAt = Sequelize.literal('NOW()');
       return item;
     });
-    return queryInterface.bulkInsert('bookInfos', data, {});
+    return queryInterface.bulkInsert('BookCategories', data, {});
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('bookInfos', null, {});
+    return queryInterface.bulkDelete('BookCategories', null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.

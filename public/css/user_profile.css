@@ -30,6 +30,7 @@
 #body-content-left > button{
     margin: 30px;
     margin-bottom: 0px;
+    margin-left:0px;
     background-color: #5AB4F4;
     color: white;
 }

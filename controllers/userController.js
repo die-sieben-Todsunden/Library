@@ -8,14 +8,24 @@ controller.createUser = (user) =>{
   user.password = bcrypt.hashSync(user.password, salt);
   return User.create(user);
 };
-controller.getUserByEmail = (email) =>{
+controller.getUserByUserName = (name) =>{
   return User.findOne({
-    where: {userName: email}
+    where: {userName: name}
   });
 };
-
+controller.getUserByEmail = (email) =>{
+  return User.findOne({
+    where: {email: email}
+  });
+};
 controller.comparePassword= (password, hash)=>{
   return bcrypt.compareSync(password, hash);
+}
+controller.getUserByToken = (token)=>{
+  return User.findOne({
+    where:{passwordResetToken : token}
+    //resetPasswordTokenExpire: {$gt: Date.now()}}
+  });
 }
 
 module.exports = controller;

@@ -1,11 +1,18 @@
 let express = require("express");
 let userController = require('../controllers/userController');
 let router = express.Router();
+let jwt = require('jsonwebtoken');
+let bcrypt = require('bcryptjs');
+router.get("/books", function(req, res) {
+  res.render("manage_books");
+});
 
 router.get("/profile", function(req, res) {
   res.render("profile");
 });
-
+router.get("/resetPasswordRequest", function(req, res) {
+  res.render("resetPasswordRequest");
+});
 router.get("/login", function(req, res) {
   res.render("login");
 });
@@ -15,12 +22,12 @@ router.get("/signUp", function(req, res) {
 });
 
 router.post('/login', function(req, res, next){
-  let email = req.body.username;
+  let userName = req.body.username;
   let password = req.body.password;
   // console.log(email);
   // console.log(password);
   userController
-    .getUserByEmail(email)
+    .getUserByUserName(userName)
     .then(user=>{
       
       if(user){
@@ -49,10 +56,84 @@ router.post('/login', function(req, res, next){
       }
     });
 });
-
+router.post('/resetPasswordRequest', function(req,res,next){
+  let resetPasswordEmail = req.body.resetPasswordEmail;
+  userController
+    .getUserByEmail(resetPasswordEmail)
+    .then(user=>{
+      if(!user){
+        return res.render('resetPasswordRequest',{
+          message : 'Account with that Email not exist',
+          type: 'alert-danger'
+        })
+      }
+      let token = 'hex';
+      user.passwordResetToken = token;
+      user.passwordResetTokenExpire = Date.now() +360000 ;// after an hour
+      user.save(function (err) {
+        if (err) return handleError(err); // saved!
+      });
+      return res.render('resetPasswordRequest',{
+        message : `Password reset for ${resetPasswordEmail} has been send.`,
+        type: 'alert-primary'
+      })
+    })
+  console.log(resetPasswordEmail);
+  console.log('afsdgasd');
+});
+router.get('/resetPassword/:token',(req, res, next)=>{
+  // console.log(req.params.token);
+  userController
+    .getUserByToken(req.params.token)
+    .then(user=>{
+      if(user == undefined){
+        return res.render('resetPasswordRequest',{
+          message : 'Password reset token is invalid or has been expired. PLease re enter your email',
+          type: 'alert-danger'
+        })
+      }
+      res.render('resetPassword', {token: req.params.token});
+    })
+});
+router.post('/resetPassword/:token', (req,res,next)=>{
+  // console.log(res.params.token);
+  userController
+    .getUserByToken(req.params.token)
+    .then(user=>{
+      if(user == undefined){
+        return res.render('resetPasswordRequest',{
+          message : 'Password reset token is invalid or has been expired. PLease re enter your email',
+          type: 'alert-danger'
+        })
+      }
+      let reset = req.body.resetPassword;
+      let confirm = req.body.confirmResetPassword;
+      if(reset == confirm){
+        user.password = reset;
+        var salt = bcrypt.genSaltSync(10);
+        user.password = bcrypt.hashSync(user.password, salt);
+        user.passwordResetToken = undefined;
+        user.passwordResetTokenExpire = undefined;
+        user.save(function (err) {
+          if (err) return handleError(err); // saved!
+        });
+        
+        return res.redirect('/user/login');
+        // return res.render('login',{
+        //   message : `Reset password sucessfully`,
+        //   type: 'alert-primary'
+        // })
+      }else{
+        return res.render('resetPasswordRequest',{
+          message : 'Password reset token is invalid or has been expired. PLease re enter your email',
+          type: 'alert-danger'
+        })
+      }
+    })
+});
 router.post('/signUp', (req, res, next)=>{
   let name= req.body.fullname;
-  let email= req.body.username;
+  let userName= req.body.username;
   let password= req.body.password;
   let confirmPassword= req.body.confirmPassword;
   let keepLoggedIn = (req.body.keepLoggedIn!= undefined);
@@ -60,6 +141,19 @@ router.post('/signUp', (req, res, next)=>{
   // console.log(user.password);
   // console.log(confirmPassword);
   //Kiem tra confirmpassword va password
+  console.log(name);
+  if( name == undefined){
+    return res.render('signUp', {
+      message: 'Empty',
+      type:  'alert-danger'
+    });
+  };
+  if( password == undefined){
+    return res.render('signUp', {
+      message: 'Empty',
+      type:  'alert-danger'
+    });
+  };
   if( password != confirmPassword){
     return res.render('signUp', {
       message: 'Confirm password does not match',
@@ -68,7 +162,7 @@ router.post('/signUp', (req, res, next)=>{
   };
   //Kiem tra user name valid
   userController
-  .getUserByEmail(email)
+  .getUserByUserName(userName)
   .then(user=>{
       if(user){
         return res.render('signUp', {
@@ -78,7 +172,7 @@ router.post('/signUp', (req, res, next)=>{
       }
       user = {
         name,
-        userName: email,
+        userName: userName,
         password
       };
       return userController

@@ -1,55 +1,9 @@
 <link rel="stylesheet" href=" /public/css/Login.css">
 <!-- Modal -->
-<div class="modal fade" id="modalForgetPassForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true" style="margin-top: 30px;">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <img src="/public/img/icon_KHTN.png " alt="icon_KHTN " class="icon_KHTN ">
-        <label for="exampleInputEmail1 "
-          style="font-size: 20px;text-align: center; padding-top: 10px; padding-left: 40px;">Đại Học Khoa
-          Hoc Tự Nhiên <br> Khoa Công nghệ thông tin <br></label>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body mx-3">
-        <div class="md-form mb-3">
-          <label style="font-size: 30px; padding-left: 100px;">Lấy lại mật khẩu</label>
-        </div>
-
-        <div class="md-form mb-3">
-          <label for="exampleInputEmail1 ">Tên tài khoản</label>
-          <input type="email " class="form-control " id="exampleInputEmail1 " aria-describedby="emailHelp "
-            placeholder="Enter email ">
-          <small id="emailHelp " class="form-text text-muted ">VD:1753057@student.hcmus.edu.vn</small>
-        </div>
-
-        <div class="md-form mb-3">
-          <div class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"
-            data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback">
-          </div>
-          <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
-          <div class="help-block with-errors"></div>
-          <div>
-            <small style="color: grey;">Email tạo lại mật khẩu sẽ được gửi đến hộp thư của bạn trong
-              thời gian sớm nếu không thấy thông báo thư mới hãy kiểm tra trong mục Spam.</small>
-          </div>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="submit " class="btn btn-primary " style="float: right;" style="color:white;text-decoration:none;"
-          data-dismiss="modal" aria-label="Close">Gửi thông tin</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-
+{{!-- ---------------------------------------
+---------------------------------------------- --}}
 
 <div class="Login">
 
@@ -72,39 +26,33 @@
           {{/if}}
           <div class="form-group ">
             <label for="username ">Tên tài khoản</label>
-            <input type="email " class="form-control "name="username" id="username " 
-              placeholder="Nhập email ">
+            <input type="email " class="form-control " name="username" id="username "
+              placeholder="Nhập email / Tên tài khoản ">
             <small id="emailHelp " class="form-text text-muted ">Chúng tôi sẽ không bao giờ tiết lộ danh
               tính của bạn.</small>
           </div>
           <div class="form-group ">
             <label for="password ">Mật khẩu</label>
-            <input type="password" name="password" id="password" class="form-control validate" placeholder="Nhập mật khẩu">
+            <input type="password" name="password" id="password" class="form-control validate"
+              placeholder="Nhập mật khẩu">
           </div>
           <div class="row">
             <div class="col-5">
-              <div >
-                  <input type="checkbox" name ="keepLoggedIn"  id="keepLoggedIn" name="keepLoggedIn">
-                  <label for="keepLoggedIn">Keep me logged in</label>
-                </div>
-              <a href="/signUp">Chưa có tài khoản?</a>
-
-              <a href="" data-toggle="modal" data-target="#modalForgetPassForm">Quên mật khẩu</a>
+              <div>
+                <input type="checkbox" name="keepLoggedIn" id="keepLoggedIn" name="keepLoggedIn">
+                <label for="keepLoggedIn">Keep me logged in</label>
+              </div>
+              <a href="/user/signUp">Chưa có tài khoản?</a>
+              <a href="/user/resetPasswordRequest">Quên mật khẩu</a>
             </div>
             <div class="col-2"></div>
             <div class="col-5">
               <button type="submit " class="btn btn-primary " style="float: right;">Đăng nhập</button>
             </div>
           </div>
+        </form>
       </div>
-      </form>
+
     </div>
   </div>
 </div>
-
-
-</div>
-
-
-
-
