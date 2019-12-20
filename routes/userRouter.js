@@ -8,7 +8,14 @@ require("dotenv").config();
 router.get("/books", function(req, res) {
   res.render("manage_books");
 });
-
+router.get("/schedule", function(req, res) {
+  if(res.locals.isLoggedIn){
+    res.render("schedule");
+  }
+  else{
+    res.render("login");
+  }
+});
 router.get("/profile", function(req, res) {
   res.render("profile");
 });
