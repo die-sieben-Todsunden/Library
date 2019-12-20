@@ -133,7 +133,7 @@
           </p>
         </div>
         <div class="controlbtn">
-          <button id="moreinfo" onclick="Moreinfo();">Xem thêm</button>
+          <button id="moreinfo" onclick="Moreinfo({{id}});">Xem thêm</button>
           <button onclick="Borrow();">Mượn sách</button>
         </div>
       </div>
@@ -217,8 +217,8 @@
     window.location = "bookCatalog";
   };
 
-  function Moreinfo() {
+  function Moreinfo(id) {
 
-    window.location = "book_info";
+    window.location = `/book/${id}`;
   };
 </script>

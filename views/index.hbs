@@ -21,6 +21,7 @@
         </ol>
         <div class="contentWrapper">
           <div class=" carousel-inner col-lg-10" style="margin-left:50%; transform: translate(-50%)">
+          
           <div class="carousel-item active">
             <div class="container">
               <div class="row">
@@ -31,7 +32,7 @@
                 </div>
                 <div class="col-lg-9 bookinfo">
                   <div class="bookname">
-                    <h1>Computer Science</h1>
+                    <h1>Computer</h1>
                   </div>
                   <div class="bookauthor">
                     <p>Dr.Anandumuragon</p>
@@ -50,7 +51,38 @@
               </div>
             </div>
           </div>
-          <div class=" carousel-item">
+          {{#each books}}
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="content_img">
+                    <img src="/public/img/Book1.png" alt="">
+                  </div>
+                </div>
+                <div class="col-lg-9 bookinfo">
+                  <div class="bookname">
+                    <h1>{{bookName}}</h1>
+                  </div>
+                  <div class="bookauthor">
+                    <p>Dr.Anandumuragon</p>
+                  </div>
+                  <div class="booksummary">
+                    <p>Helo Hello Helo Hello Helo Hello Helo Hello Helo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                      Helo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo HelloHelo Hello
+                    </p>
+                  </div>
+                  <div class="controlbtn">
+                    <button id="moreinfo" onclick="Moreinfo(1);">Xem thêm</button>
+                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+          {{!-- <div class=" carousel-item">
             <div class="container">
               <div class="row">
                 <div class="col-lg-3">
@@ -111,7 +143,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
         <a class="carousel-control-prev col-lg-1" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -199,8 +231,8 @@
       window.location = "bookCatalog";
     };
 
-    function Moreinfo() {
-      window.location="book_info";
+    function Moreinfo(id) {
+      window.location=`book/${id}`;
     }
   </script>
   
