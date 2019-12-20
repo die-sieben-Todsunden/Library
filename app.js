@@ -53,7 +53,7 @@ app.use((req, res, next) => {
   let role = req.session.user?req.session.user.role:'';
   if (role == 'admin') res.locals.isAdmin = true;
   res.locals.user = req.session.user;
-  res.locals.username = req.session.user ? req.session.user.name : '';
+  res.locals.username = req.session.user ? req.session.user.userName : '';
   res.locals.isLoggedIn = req.session.user?true:false;
   next();
 });

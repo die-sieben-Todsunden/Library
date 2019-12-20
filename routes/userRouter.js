@@ -3,6 +3,8 @@ let userController = require('../controllers/userController');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
+require("dotenv").config();
+
 router.get("/books", function(req, res) {
   res.render("manage_books");
 });
@@ -67,14 +69,24 @@ router.post('/resetPasswordRequest', function(req,res,next){
           type: 'alert-danger'
         })
       }
-      let token = 'hex';
+      console.log(process.env.JWT_KEY);
+      let token = jwt.sign({
+        email: user.email,
+        fullName: user.name,
+        id: user.personalId
+      },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "1h"
+      }
+      );
       user.passwordResetToken = token;
-      user.passwordResetTokenExpire = Date.now() +360000 ;// after an hour
+      //user.passwordResetTokenExpire = Date.now() +360000 ;// after an hour
       user.save(function (err) {
         if (err) return handleError(err); // saved!
       });
       return res.render('resetPasswordRequest',{
-        message : `Password reset for ${resetPasswordEmail} has been send.`,
+        message : `Password reset for ${resetPasswordEmail} has been send. ${token}`,
         type: 'alert-primary'
       })
     })
@@ -92,6 +104,15 @@ router.get('/resetPassword/:token',(req, res, next)=>{
           type: 'alert-danger'
         })
       }
+      let decoded = jwt.decode(user.passwordResetToken, process.env.JWT_KEY, 'RS256');
+      if(decoded){
+        let currentTime = new Date().getTime()/1000
+        if(decoded.exp <= currentTime){
+            return res.status(403).json({
+                error: 'Token has expired'
+            }); 
+        }
+    }
       res.render('resetPassword', {token: req.params.token});
     })
 });
@@ -132,17 +153,23 @@ router.post('/resetPassword/:token', (req,res,next)=>{
     })
 });
 router.post('/signUp', (req, res, next)=>{
-  let name= req.body.fullname;
+  let email= req.body.email;
   let userName= req.body.username;
   let password= req.body.password;
   let confirmPassword= req.body.confirmPassword;
   let keepLoggedIn = (req.body.keepLoggedIn!= undefined);
-  // console.log(req.body);
+  console.log(req.body);
   // console.log(user.password);
   // console.log(confirmPassword);
   //Kiem tra confirmpassword va password
-  console.log(name);
-  if( name == undefined){
+  //console.log(name);
+  if( userName == undefined){
+    return res.render('signUp', {
+      message: 'Empty',
+      type:  'alert-danger'
+    });
+  };
+  if( email == undefined){
     return res.render('signUp', {
       message: 'Empty',
       type:  'alert-danger'
@@ -162,16 +189,16 @@ router.post('/signUp', (req, res, next)=>{
   };
   //Kiem tra user name valid
   userController
-  .getUserByUserName(userName)
+  .getUserByEmail(email)
   .then(user=>{
       if(user){
         return res.render('signUp', {
-          message: `Email ${user.username} exists`,
+          message: `Email ${user.email} exists`,
           type:  'alert-danger'
         });
       }
       user = {
-        name,
+        email,
         userName: userName,
         password
       };
