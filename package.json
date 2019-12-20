@@ -35,6 +35,7 @@
         "node-localstorage": "^2.1.5",
         "nodemailer": "^6.4.2",
         "nodemon": "^2.0.1",
+        "pagination.js": "^0.1.1",
         "pg": "^7.14.0",
         "pg-hstore": "^2.3.3",
         "sequelize": "^5.21.3",

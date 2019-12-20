@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const BookManagement = sequelize.define(
     "BookManagement",
     {
-      borrowedDate: DataTypes.DATEONLY,
-      dueDate: DataTypes.DATEONLY,
-      returnDate: DataTypes.DATEONLY,
+      borrowedDate: DataTypes.DATE,
+      dueDate: DataTypes.DATE,
+      returnDate: DataTypes.DATE,
       status: DataTypes.STRING,
       note: DataTypes.TEXT
       /*bookID: DataTypes.INTEGER,

@@ -1,8 +1,8 @@
 let express = require("express");
-let userController = require('../controllers/userController');
+let userController = require("../controllers/userController");
 let router = express.Router();
-let jwt = require('jsonwebtoken');
-let bcrypt = require('bcryptjs');
+let jwt = require("jsonwebtoken");
+let bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 router.get("/books", function(req, res, next) {
@@ -21,11 +21,19 @@ router.get("/books", function(req, res, next) {
 });
 
 router.get("/schedule", function(req, res) {
+<<<<<<< HEAD
+  if (res.locals.isLoggedIn) {
+    res.render("schedule");
+  } else {
+    res.render("login");
+  }
+=======
     if (res.locals.isLoggedIn) {
         res.render("schedule");
     } else {
         res.render("login");
     }
+>>>>>>> cef7e4ddee12d0c5fbca4154e2e6efeacc709157
 });
 router.get("/profile", function(req, res) {
     res.render("profile");
