@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="/public/css/resetAdmin.css">
+<link rel="stylesheet" href="/public/css/adminIndex.css">
+<link type="text/javascript" href="/public/js/adminIndex.js">
+
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center"><img
+        src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65"
+        class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h5 class="m-0">Phạm Khánh Duy</h5>
+        <p class="font-weight-light text-muted mb-0">Quản lí thư viện</p>
+      </div>
+    </div>
+    <div class="adminLogout" style="text-align: right">
+      <a href="/user/logout">Log out</a>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="" class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Trang chủ
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/book-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Quản lí sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-user mr-3 text-primary fa-fw"></i>
+        Quản lí tài khoản
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-pencil mr-3 text-primary fa-fw"></i>
+        Danh mục tác giả
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Thể loại sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-exclamation mr-3 text-primary fa-fw"></i>
+        Yêu cầu (0)
+
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Sách đang được mượn
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+        Thống kê
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+<!-- Page content holder -->
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+      class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+
+  <!-- Demo content -->
+  <h2 class="display-4 text-white">Quản lí thư viện</h2>
+  <hr>
+  <section class="statistic">
+    <h4>Thống kê nhanh</h4>
+    <div class="card-deck">
+      <div class="card text-white bg-primary mb-3 statistic-item">
+        <div class="card-body">
+          <h5 class="card-title">Lượt truy cập hôm nay</h5>
+          <p class="card-text" id="sta-num-1">
+            <i class="fa fa-arrow-up"></i>
+            50
+          </p>
+          <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card text-white bg-primary mb-3 statistic-item">
+        <div class="card-body">
+          <h5 class="card-title">Hẹn lịch đến thư viện</h5>
+          <p class="card-text" id="sta-num-2">
+            <i class="fa fa-arrow-up"></i>
+            2
+          </p>
+          <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card text-white bg-primary mb-3 statistic-item">
+        <div class="card-body">
+          <h5 class="card-title">Yêu cầu cấp tài khoản</h5>
+          <p class="card-text" id="sta-num-3">
+            <i class="fa fa-arrow-down  "></i>
+            0
+          </p>
+          <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+    <div class="statistic-more">
+      <a href="/admin/statistic"><b>Xem thêm thống kê</b></a>
+    </div>
+  </section>
+  <section class="quickSearch">
+    <hr>
+
+    <h4>Tìm kiếm nhanh thông tin</h4>
+
+    <div class="row">
+      <div class="form-group col-lg-4 col-md-4">
+        <label for="danhmuctimkiem">Danh mục tìm kiếm</label>
+        <select class="form-control" id="danhmuctimkiem" onchange="searchCatalogChange(this)">
+          <option>Tài khoản</option>
+          <option>Sách</option>
+          <option>Tác giả</option>
+        </select>
+      </div>
+      <div class="form-group col-lg-4 col-md-4">
+        <label for="tukhoatimkiem">Từ khóa tìm kiếm</label>
+        <select class="form-control" id="tukhoatimkiem">
+          <option>Tên tài khoản</option>
+          <option>Tên người dùng</option>
+          <option>Mã số</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="searchBanner">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Nhập để tìm kiếm" aria-label="Recipient's username"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="message">
+    <hr>
+    <h4>Gửi thông báo / Đăng bài</h4>
+    <form>
+      <div class="form-group">
+        <label for="subject">Chủ đề</label>
+        <input type="subject" class="form-control" id="subject" placeholder="Nhập chủ đề">
+      </div>
+      <div class="form-group">
+        <label for="receiver">Người nhận</label>
+        <input class="form-control" id="receiver" placeholder="Nhập mã số người nhận">
+      </div>
+      <div class="form-group">
+        <label for="content">Nội dung</label>
+        <textarea class="form-control" id="content">
+          </textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Gửi </button>
+    </form>
+  </section>
+  <script>
+    function searchCatalogChange(option) {
+      if (option.value == "Tác giả") {
+        document.getElementById("tukhoatimkiem").innerHTML =
+          "<option>Tên tác giả</option> <option>Năm sinh tác giả</option>"
+      } else if (option.value == "Sách") {
+        document.getElementById("tukhoatimkiem").innerHTML =
+          "<option>Tên sách</option> <option>Thể loại sách</option> <option>Năm xuất bản</option>"
+      } else {
+        document.getElementById("tukhoatimkiem").innerHTML =
+          "<option>Tên tài khoản</option> <option>Tên người dùng</option> <option>Mã số</option>"
+      }
+    };
+    $(function () {
+      // Sidebar toggle behavior
+      $("#sidebarCollapse").on("click", function () {
+        $("#sidebar, #content").toggleClass("active");
+      });
+    });
+
+
+  </script>
+  <!-- End demo content -->

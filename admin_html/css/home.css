@@ -1,19 +1,22 @@
-.menu .menuItem {
-  height: 50px;
+.dtHorizontalExampleWrapper {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.user-item-img {
-  width: 50px;
-  height: 50px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  -ms-border-radius: 25px;
-  -o-border-radius: 25px;
+#dtHorizontalExample th,
+td {
+  white-space: nowrap;
 }
 
-.user-item {
-  border: 1px solid black;
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: .5em;
 }

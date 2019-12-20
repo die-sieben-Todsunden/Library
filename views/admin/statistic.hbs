@@ -192,6 +192,7 @@
   <script>
     data.push("{{status}}")
     date.push("{{borrowedDate}}");
+    //console.log(data);
   </script>
   {{/each}}
 
@@ -234,29 +235,34 @@
   let Nov = 0;
   let Dec = 0;
 
-  var now = new Date();
+  let now = new Date();
+
   var min = 0, max = 0;
-  if (now.getDate == "Mon")
-    min = now.getDay() - 7;
-  else if (now.getDate == "Tue")
-    min = now.getDay() - 8;
-  else if (now.getDate == "Wed")
-    min = now.getDay() - 9;
-  else if (now.getDate == "Thu")
-    min = now.getDay() - 10;
-  else if (now.getDate == "Fri")
-    min = now.getDay() - 11;
-  else if (now.getDate == "Sat")
-    min = now.getDay() - 12;
-  else if (now.getDate == "Sun")
-    min = now.getDay() - 6;
+  console.log(now.getDay());
+  if (now.getDay() == 1)
+    min = now.getDate() - 7;
+  else if (now.getDay() == 2)
+    min = now.getDate() - 8;
+  else if (now.getDay() == 3)
+    min = now.getDate() - 9;
+  else if (now.getDay() == 4)
+    min = now.getDate() - 10;
+  else if (now.getDay() == 5) {
+    min = now.getDate() - 11;
+
+  }
+  else if (now.getDay() == 6)
+    min = now.getDate() - 12;
+  else if (now.getDay() == 0)
+    min = now.getDate() - 6;
   max = min + 6;
-
+  console.log(min);
   var check = false;
-  if (min <= 0)
 
-    console.log(min);
+  console.log(info[1][0]);
+  //console.log(min);
   info.forEach(function (item, index, array) {
+    console.log(item);
     if (item[0] == 'Mon' && item[2] >= min && item[2] <= max)
       mon++;
     else if (item[0] == 'Tue' && item[2] >= min && item[2] <= max)
@@ -272,7 +278,7 @@
     else if (item[0] == 'Sun' && item[2] >= min && item[2] <= max)
       sun++;
   });
-
+  console.log(mon);
   info.forEach(function (item, index, array) {
     if (item[1] == 'Jan')
       Jan++;
@@ -327,6 +333,7 @@
   DataChart.push(fri);
   DataChart.push(sat);
   DataChart.push(sun);
+  console.log(DataChart);
   let myChart = document.getElementById('Chart').getContext('2d');
 
   var massPopChart = new Chart(myChart, {

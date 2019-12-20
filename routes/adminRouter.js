@@ -5,10 +5,14 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   localStorage = new LocalStorage("./scratch");
 }
 
-localStorage.setItem("role", "admin");
-console.log(localStorage.getItem("myFirstKey"));
+//localStorage.setItem("role", "admin");
+//console.log(localStorage.getItem("myFirstKey"));
 router.get("/", (req, res, next) => {
-  //.catch(error => next(error));
+  res.render("admin/index");
+});
+
+router.get("/book-management", (req, res, next) => {
+  res.render("admin/bookmanagement");
 });
 
 router.get("/statistic", (req, res) => {
