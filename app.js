@@ -64,7 +64,7 @@ app.use('/', require('./routes/index'));
 app.use('/bookInfo', require('./routes/bookInfo'));
 
 app.use('/bookCatalog', require('./routes/bookCatalog'))
-
+app.use("/book", require("./routes/bookRouter"));
 app.use("/user", require("./routes/UserRouter"));
 //Set Server Port & Start Server
 
