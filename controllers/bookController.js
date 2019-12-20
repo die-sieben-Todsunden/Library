@@ -73,35 +73,37 @@ controller.getAllBookName = (query) => {
         }
         if (query.sort) {
             switch (query.sort) {
-                case 'name':
-                    options.sort = [
-                        ['name', 'ASC']
+                case 'bookNameASC':
+                    options.order = [
+                        ['bookName', 'ASC']
                     ];
                     break;
-                case 'category':
-                    options.sort = [
-                        ['category', 'ASC']
+                case 'year':
+                    options.order = [
+                        ['year', 'ASC']
                     ];
                     break;
-                case 'author':
-                    options.sort = [
-                        ['author', 'ASC']
+                case 'bookNameDES':
+                    options.order = [
+                        ['author', 'DES']
                     ];
                     break;
                 default:
-                    options.sort = [
-                        ['name', 'ASC']
+                    options.order = [
+                        ['bookName', 'ASC']
                     ];
                     break;
             }
         }
+        console.log(query.sort);
+        console.log(query.search);
         if (query.search) {
             options.where.bookName = {
                 [Op.iLike]: `%${query.search}%`
             }
         }
         bookInfo
-            .findAll(options)
+            .findAndCountAll(options)
             .then(data => resovle(data))
             .catch(error => reject(new Error(error)));
     });

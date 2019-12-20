@@ -9,6 +9,9 @@ app.use(bodyParser.json())
 //Use Cookie-parser
 let cookieParser = require('cookie-parser');
 app.use(cookieParser());
+// Use Paginate
+
+let paginateHelper = require('express-handlebars-paginate'); 
 //Use session
 let session = require('express-session');
 app.use(session({
@@ -43,7 +46,10 @@ var hbs = expressHbs.create({
   extname: "hbs",
   defaultLayout: "layout",
   layoutsDir: __dirname + "/views/layouts/",
-  partialsDir: __dirname + "/views/partials/"
+  partialsDir: __dirname + "/views/partials/",
+  helpers:{
+    createPagination: paginateHelper.createPagination
+  }
 });
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
