@@ -8,17 +8,20 @@
     </div>
     <div class="content">
         <div class="row">
+            {{#each books}}
             <div class="col-lg-3 col-md-4" style="padding-top:30px;">
                 <img class="books" src="./img/Book1.png" alt="Book1">
             </div>
             <div class="col-lg-3 col-md-8 book-info" style="padding-top:30px;">
-                <h3 class="book-name">Dictionary of Computer Science</h3>
-                <p class="author">Dr. S. Anadamurugan</p>
+                <h3 class="book-name">{{Book.bookInfo.bookName}}</h3>
+               
+                <p class="author">{{Book.bookInfo.bookName}}</p>
+                
                 <br></br>
-                <p class="borrow-day">Ngày mượn: 21-10-2019</p>
-                <p class="Deadlind">Ngày trả: 21-11-2019</p>
+                <p class="borrow-day">Ngày mượn: {{borrowedDate}}</p>
+                <p class="Deadlind">Ngày trả: {{dueDate}}</p>
                 <br></br>
-                <p class="note">{Còn 3 ngày trước khi đến hạn trả sách</p>
+                <p class="note">Còn 3 ngày trước khi đến hạn trả sách</p>
                 <div class="row">
                     <div class="col-lg-5 col-md-4">
                         <button type="submit " class="btn btn-primary ">Gia Hạn</button>
@@ -28,10 +31,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4" style="padding-top:30px;">
+            {{/each}}
+            {{!-- <div class="col-lg-3 col-md-4" style="padding-top:30px;">
                 <img class="books" src="./img/Book2.jpg" alt="Book2">
             </div>
-            <div class="col-lg-3 col-md-7 book-info" style="padding-top:30px;">
+            <div class="col-lg-3 col-md-8 book-info" style="padding-top:30px;">
                 <h3 class="book-name">Computer Programming</h3>
                 <p class="author">Alexander Bell</p>
                 <br></br>
@@ -47,7 +51,7 @@
                         <button type="submit " class="btn btn-primary ">Hạn trả sách</button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
