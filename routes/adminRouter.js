@@ -17,5 +17,6 @@ router.get("/statistic", (req, res) => {
     res.locals.borrow = data;
     res.render("admin/statistic");
   });
+  console.log();
 });
 module.exports = router;
