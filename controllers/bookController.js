@@ -48,7 +48,7 @@ controller.getAllIndex = () => {
   return new Promise((resovle, reject) => {
     bookInfo
       .findAll({
-        limit: "3"
+        limit: "4"
       })
       .then(data => resovle(data))
       .catch(error => reject(new Error(error)));

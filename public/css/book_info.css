@@ -50,15 +50,15 @@
 }
 
 #body-content-bottom img {
-    height: 320px;
-    width: 240px;
+    height: 300px;
+    width: 220px;
 }
 
 #body-content-bottom {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
     /* height: 80px; */
     /* white-space:nowrap; */
 }
@@ -67,8 +67,8 @@
     flex: 0 0 auto;
 }
 
-#description p {
-    height: 180px;
+#description {
+    max-height: 180px;
     word-wrap: break-word;
     display: block;
     overflow: auto;
