@@ -1,40 +1,47 @@
-.usericon > div button {
+.usericon>div button {
     background-color: #F6C89F !important;
     color: black !important;
 }
+
 #body-content-top button {
     background-color: #F6C89F !important;
     color: black !important;
     border: 3px !important;
     width: inherit;
 }
-#body{
+
+#body {
     background-color: #F6F6F6;
     padding: 40px;
 }
-#body-content-top{
-    margin:40px;
+
+#body-content-top {
+    margin: 40px;
     align-items: center;
     border: #b0b0b0;
     border-style: solid;
     border-radius: 13px;
     background-color: white;
 }
-#body-content-left{
+
+#body-content-left {
     margin: 40px;
 }
-#body-content-left img{
+
+#body-content-left img {
     width: 120%;
     height: auto;
-  /* Magic! */
+    /* Magic! */
     max-width: 50vw;
 }
-#body-content-right{
+
+#body-content-right {
     margin: 40px;
 }
-#body-content-bottom{
+
+#body-content-bottom {
     height: 400px;
-    margin:40px;
+    margin: 40px;
     align-items: center;
     border: #b0b0b0;
     border-style: solid;
@@ -42,24 +49,25 @@
     background-color: white;
 }
 
-
-
-#body-content-bottom img{
-    height: 320px ;
+#body-content-bottom img {
+    height: 320px;
     width: 240px;
 }
+
 #body-content-bottom {
-    display:flex;
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     /* overflow-y: hidden; */
     /* height: 80px; */
     /* white-space:nowrap; */
 }
-#body-content-bottom div{
+
+#body-content-bottom div {
     flex: 0 0 auto;
 }
-#description{
+
+#description p {
     height: 180px;
     word-wrap: break-word;
     display: block;
