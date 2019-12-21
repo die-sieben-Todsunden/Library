@@ -21,19 +21,12 @@ router.get("/books", function(req, res, next) {
 });
 
 router.get("/schedule", function(req, res) {
-<<<<<<< HEAD
-  if (res.locals.isLoggedIn) {
-    res.render("schedule");
-  } else {
-    res.render("login");
-  }
-=======
     if (res.locals.isLoggedIn) {
         res.render("schedule");
     } else {
         res.render("login");
     }
->>>>>>> cef7e4ddee12d0c5fbca4154e2e6efeacc709157
+    cef7e4ddee12d0c5fbca4154e2e6efeacc709157
 });
 router.get("/profile", function(req, res) {
     res.render("profile");
