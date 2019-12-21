@@ -26,7 +26,7 @@ router.get("/schedule", function(req, res) {
     } else {
         res.render("login");
     }
-    cef7e4ddee12d0c5fbca4154e2e6efeacc709157
+
 });
 router.get("/profile", function(req, res) {
     res.render("profile");
