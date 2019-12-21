@@ -12,11 +12,19 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/book-management", (req, res, next) => {
-  res.render("admin/bookmanagement");
+  let bookController = require("../controllers/bookController");
+  bookController.getAll().then(data => {
+    res.locals.bookInfo = data;
+    res.render("admin/bookmanagement");
+  });
 });
 
 router.get("/account-management", (req, res, next) => {
-  res.render("admin/accountmanagement");
+  let accountController = require("../controllers/accountController");
+  accountController.getAll().then(data => {
+    res.locals.User = data;
+    res.render("admin/accountmanagement");
+  });
 });
 router.get("/statistic", (req, res) => {
   let bookManagementController = require("../controllers/bookManagementController");

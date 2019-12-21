@@ -133,14 +133,16 @@
           </tr>
         </thead>
         <tbody>
+          {{#each User}}
+          <script>console.log("a");</script>
           <tr>
-            <td>1</td>
-            <td>nguyenphamquangdinh99</td>
-            <td>1753003</td>
-            <td>Nguyễn Phạm Quang Định</td>
-            <td>Bình Thạnh, HCM</td>
-            <td>0123332112</td>
-            <td>1753003@student.hcmus.edu.vn</td>
+            <td>{{id}}</td>
+            <td>{{userName}}</td>
+            <td>{{personalID}}</td>
+            <td>{{name}}</td>
+            <td>{{address}}</td>
+            <td>{{phone}}</td>
+            <td>{{email}}</td>
             <td>2</td>
             <td>0</td>
             <td>Chưa có</td>
@@ -148,6 +150,7 @@
               <input type="checkbox" aria-label="Checkbox for following text input">
             </td>
           </tr>
+          {{/each}}
 
         </tbody>
       </table>

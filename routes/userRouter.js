@@ -20,12 +20,11 @@ router.get("/books", function(req, res, next) {
 });
 
 router.get("/schedule", function(req, res) {
-    if (res.locals.isLoggedIn) {
-        res.render("schedule");
-    } else {
-        res.render("login");
-    }
-
+  if (res.locals.isLoggedIn) {
+    res.render("schedule");
+  } else {
+    res.render("login");
+  }
 });
 router.get("/profile", function(req, res) {
   res.render("profile");
@@ -56,7 +55,7 @@ router.post("/login", function(req, res, next) {
         // console.log('success');
         if (user.role == "admin") {
           req.session.user.role = "admin";
-          res.redirect("/admin/statistic");
+          res.redirect("/admin");
         } else res.redirect("/");
       } else {
         res.render("login", {
