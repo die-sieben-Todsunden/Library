@@ -2,6 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
     const bookInfo = sequelize.define('bookInfo', {
         ISBN_API: DataTypes.STRING,
+        author: DataTypes.STRING,
+        category: DataTypes.STRING,
+        description: DataTypes.TEXT,
         year: DataTypes.INTEGER,
         language: DataTypes.STRING,
         bookName: DataTypes.STRING,

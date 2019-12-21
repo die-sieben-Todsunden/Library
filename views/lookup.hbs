@@ -18,20 +18,19 @@
       </div>
     </div>
 
-    <div class="row">
+    <form action="/book" method="GET" class="row">
       <div class="col-lg-1"></div>
       <div class="col-lg-8">
         <div class="form-group">
-          <input type="search" class="form-control" id="search" placeholder="Nhập vào để tìm kiếm">
+          <input type="search" class="form-control" name="search" id="search" placeholder="Nhập vào để tìm kiếm">
         </div>
       </div>
 
       <div class="col-lg-2">
-        <button class="btn"
-          style="height: 38px; border-radius: 10px; margin-left: 100%; transform: translate(-100%)">Tìm kiếm</button>
+        <button  value="submit" class="btn" style="height: 38px; border-radius: 10px; margin-left: 100%; transform: translate(-100%)">Tìm kiếm</button>
       </div>
       <div class="col-lg-1"></div>
-    </div>
+    </form>
 
   </div>
 </div>
@@ -44,32 +43,16 @@
     <h1> Kết quả</h1>
   </div>
   <div class="filter" style="display: flex">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="Filter" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Sắp xếp kết quả
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <div id="pupulationRate">
-          <a class="dropdown-item" href="#">Sắp xếp theo độ phổ biến</a>
-        </div>
-        <a class="dropdown-item" href="#" id="establishYear">Sắp xếp theo năm xuất bản</a>
-        <a class="dropdown-item" href="#" id="sameKeyword">Sắp xếp theo số từ khóa trùng khớp</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="Filter" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Số kết quả hiển thị
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <div id="top10">
-          <a class="dropdown-item" href="#">Hiển thị top 10 kết quả</a>
-        </div>
-        <a class="dropdown-item" href="#" id="top50">Hiển thị top 50 kết quả</a>
-        <a class="dropdown-item" href="#" id="all">Hiển thị tất cả kết quả</a>
-      </div>
-    </div>
+      <select id="sort" onchange="selectParam('sort', this.value)" >
+        <option value ="bookNameASC">Sắp xếp theo tên tang dan</option>
+        <option  value = "bookNameDES" >Sắp xếp ten giam dan</option>
+        <option  value ="year" >Sắp xếp theo năm xuất bản</option>
+      </select>
+      <select id ="limit" onchange="selectParam('limit' , this.value)">
+        <option value="3">Hiển thị 3 kết quả</option>
+        <option value="6">Hiển thị 6 kết quả</option>
+        <option value="9">Hiển thị 9 kết quả</option>
+      </select>
   </div>
   <div class="resFilter" style="display: flex">
     <p><i id="resFilter1">Sắp xếp theo số từ khóa trùng khớp</i></p>
@@ -133,13 +116,18 @@
           </p>
         </div>
         <div class="controlbtn">
-          <button id="moreinfo" onclick="Moreinfo();">Xem thêm</button>
+          <button id="moreinfo" onclick="Moreinfo({{id}});">Xem thêm</button>
           <button onclick="Borrow();">Mượn sách</button>
         </div>
       </div>
     </div>
     {{/each}}
-    <nav aria-label="Page navigation example">
+    <nav class="nav justify-content-center" aria-label="Page navigation example">
+      {{{createPagination pagination paginationClass = "pagination"}}}
+    </nav>
+    
+    
+    {{!-- <nav aria-label="Page navigation example">
       <ul class="pagination" style="margin-left: 50%; transform: translate(-50%);">
         <div style="margin-left: 50%; transform: translate(-50%); display: flex">
           <li class="page-item">
@@ -158,7 +146,7 @@
         </div>
 
       </ul>
-    </nav>
+    </nav> --}}
   </div>
 
 </div>
@@ -174,9 +162,35 @@
 <script>
   AOS.init();
 </script>
-
-<script language="javascript">
-  document.getElementById("top10").onclick = function () {
+<script>
+  let URLParams = new URLSearchParams(location.search)
+  let params = {
+    search:'',
+    type : 'bookName',
+    sort: 'bookNameASC',
+    limit: 3,
+    page: 1
+  }
+  for(let key in params){
+    if(!URLParams.has(key)){
+      URLParams.append(key, params[key]);
+    }
+  }
+  $("#sort").val(URLParams.get('sort'));
+  $("#limit").val(URLParams.get('limit'));
+  function selectParam(key, value, reset = false){
+    console.log(location.href);
+    if(reset){
+      for( let key in params){
+        URLParams.set(key, params[key]);
+      }
+      URLParams.set(key, value);
+      let url = `/book?${URLParams.toString()}`;
+      location.href = url;
+    }
+  }
+</script>
+  {{!-- document.getElementById("top10").onclick = function () {
     console.log("a");
     document.getElementById("resFilter2").innerHTML = ", Hiển thị top 10 kết quả";
   };
@@ -210,15 +224,17 @@
 
   document.getElementById("booktopic").onclick = function () {
     document.getElementById("Keyword").innerHTML = "Chủ đề";
-  };
+  }; --}}
+
+<script language="javascript">
 
   function Borrow() {
     localStorage.setItem("isbn", "053av55");
     window.location = "bookCatalog";
   };
 
-  function Moreinfo() {
+  function Moreinfo(id) {
 
-    window.location = "book_info";
+    window.location = `/book/${id}`;
   };
 </script>

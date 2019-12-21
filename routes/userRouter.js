@@ -20,11 +20,11 @@ router.get("/books", function(req, res, next) {
 });
 
 router.get("/schedule", function(req, res) {
-  if (res.locals.isLoggedIn) {
-    res.render("schedule");
-  } else {
-    res.render("login");
-  }
+    if (res.locals.isLoggedIn) {
+        res.render("schedule");
+    } else {
+        res.render("login");
+    }
 });
 router.get("/profile", function(req, res) {
   res.render("profile");
