@@ -15,6 +15,9 @@ router.get("/book-management", (req, res, next) => {
   res.render("admin/bookmanagement");
 });
 
+router.get("/account-management", (req, res, next) => {
+  res.render("admin/accountmanagement");
+});
 router.get("/statistic", (req, res) => {
   let bookManagementController = require("../controllers/bookManagementController");
   bookManagementController.getAll().then(data => {

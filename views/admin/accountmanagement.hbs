@@ -1,0 +1,157 @@
+<link rel="stylesheet" href="/public/css/resetAdmin.css">
+<script type="text/javascript" src="/public/js/menuAdmin.js"></script>
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center"><img
+        src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65"
+        class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h5 class="m-0">Phạm Khánh Duy</h5>
+        <p class="font-weight-light text-muted mb-0">Quản lí thư viện</p>
+      </div>
+    </div>
+    <div class="adminLogout" style="text-align: right">
+      <a href="/user/logout">Log out</a>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="/admin" class="nav-link text-dark font-italic">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Trang chủ
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/book-management " class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Quản lí sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-user mr-3 text-primary fa-fw"></i>
+        Quản lí tài khoản
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-pencil mr-3 text-primary fa-fw"></i>
+        Danh mục tác giả
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Thể loại sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-exclamation mr-3 text-primary fa-fw"></i>
+        Yêu cầu (0)
+
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Sách đang được mượn
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-dark font-italic">
+        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+        Thống kê
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+<!-- Page content holder -->
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+      class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+
+  <!-- Content -->
+  <h2 class="display-4 text-white">Quản lí tài khoản</h2>
+  <hr>
+  <div class="search">
+    <form>
+      <div class="form-group">
+        <label for="keysearch">Tìm kiếm tài khoản theo: </label>
+        <select name="" id="keysearch">
+          <option value="">Tên tài khoản</option>
+          <option value="">Tên người dùng</option>
+          <option value="">Mã số người dùng</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="" class="form-control" id="search" placeholder="ví dụ: admin123">
+      </div>
+      <div class="btnSearch" style="text-align: right">
+        <button type="button" class="btn btn-primary" onclick="searchFunction()">Tìm kiếm</button>
+      </div>
+    </form>
+  </div>
+  <section class="result">
+    <hr>
+    <div class="controlButton">
+      <button type="button" class="btn btn-primary" onclick="searchFunction()">Thêm tài khoản</button>
+      <button type="button" class="btn btn-primary" onclick="searchFunction()">Sửa tài khoản</button>
+      <button type="button" class="btn btn-primary" onclick="searchFunction()">Xóa tài khoản</button>
+      <div class="sortWrapper">
+        <select name="" id="sort">
+          <option value="">Sắp xếp kết quả</option>
+          <option value="">Sắp xếp tăng dần theo tên người dùng</option>
+          <option value="">Sắp xếp giảm dần theo tên người dùng</option>
+          <option value="">Sắp xếp tăng dần theo mã số người dùng</option>
+          <option value="">Sắp xếp giảm dần theo mã số người dùng</option>
+        </select>
+      </div>
+    </div>
+    <div id="showRes">Hiển thị 20 / 30 kết quả</div>
+    <div style="overflow-x:auto;">
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên tài khoản</th>
+            <th>Mã số sinh viên</th>
+            <th>Tên người dùng</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Số sách đang mượn</th>
+            <th>Số sách hết hạn</th>
+            <th>Ghi chú</th>
+            <th>Ẩn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>nguyenphamquangdinh99</td>
+            <td>1753003</td>
+            <td>Nguyễn Phạm Quang Định</td>
+            <td>Bình Thạnh, HCM</td>
+            <td>0123332112</td>
+            <td>1753003@student.hcmus.edu.vn</td>
+            <td>2</td>
+            <td>0</td>
+            <td>Chưa có</td>
+            <td>
+              <input type="checkbox" aria-label="Checkbox for following text input">
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+</div>
