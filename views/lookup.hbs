@@ -122,8 +122,10 @@
       </div>
     </div>
     {{/each}}
-
-    {{createPagination pagination paginationClass = "pagination"}} 
+    <nav class="nav justify-content-center" aria-label="Page navigation example">
+      {{{createPagination pagination paginationClass = "pagination"}}}
+    </nav>
+    
     
     {{!-- <nav aria-label="Page navigation example">
       <ul class="pagination" style="margin-left: 50%; transform: translate(-50%);">

@@ -118,28 +118,28 @@ controller.getAllCategory = (query) => {
             options.offset = query.limit * (query.page - 1);
         }
         if (query.sort) {
-            switch (query.sort) {
-                case 'name':
-                    options.sort = [
-                        ['name', 'ASC']
-                    ];
-                    break;
-                case 'category':
-                    options.sort = [
-                        ['category', 'ASC']
-                    ];
-                    break;
-                case 'author':
-                    options.sort = [
-                        ['author', 'ASC']
-                    ];
-                    break;
-                default:
-                    options.sort = [
-                        ['name', 'ASC']
-                    ];
-                    break;
-            }
+          switch (query.sort) {
+              case 'bookNameASC':
+                  options.order = [
+                      ['bookName', 'ASC']
+                  ];
+                  break;
+              case 'year':
+                  options.order = [
+                      ['year', 'ASC']
+                  ];
+                  break;
+              case 'bookNameDES':
+                  options.order = [
+                      ['author', 'DES']
+                  ];
+                  break;
+              default:
+                  options.order = [
+                      ['bookName', 'ASC']
+                  ];
+                  break;
+          }
         }
         if (query.search) {
             options.where.bookName = {
@@ -162,28 +162,28 @@ controller.getAllAuthor = (query) => {
             options.offset = query.limit * (query.page - 1);
         }
         if (query.sort) {
-            switch (query.sort) {
-                case 'name':
-                    options.sort = [
-                        ['name', 'ASC']
-                    ];
-                    break;
-                case 'category':
-                    options.sort = [
-                        ['category', 'ASC']
-                    ];
-                    break;
-                case 'author':
-                    options.sort = [
-                        ['author', 'ASC']
-                    ];
-                    break;
-                default:
-                    options.sort = [
-                        ['name', 'ASC']
-                    ];
-                    break;
-            }
+          switch (query.sort) {
+              case 'bookNameASC':
+                  options.order = [
+                      ['bookName', 'ASC']
+                  ];
+                  break;
+              case 'year':
+                  options.order = [
+                      ['year', 'ASC']
+                  ];
+                  break;
+              case 'bookNameDES':
+                  options.order = [
+                      ['author', 'DES']
+                  ];
+                  break;
+              default:
+                  options.order = [
+                      ['bookName', 'ASC']
+                  ];
+                  break;
+          }
         }
         if (query.search) {
             options.where.bookName = {

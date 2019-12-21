@@ -22,6 +22,7 @@ router.get("/", (req, res, next) => {
     res.locals.books = null;
     res.render('lookup');
   } else{
+    console.log(req.query.type);
       if(req.query.type == 'bookName'){
         bookController
         .getAllBookName(req.query)
