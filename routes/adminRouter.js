@@ -26,6 +26,43 @@ router.get("/account-management", (req, res, next) => {
     res.render("admin/accountmanagement");
   });
 });
+
+router.get("/author-management", (req, res, next) => {
+  /* let accountController = require("../controllers/accountController");
+  accountController.getAll().then(data => {
+    res.locals.User = data;
+    res.render("admin/accountmanagement");
+  });*/
+  res.render("admin/authormanagement");
+});
+
+router.get("/catagory-management", (req, res, next) => {
+  /* let accountController = require("../controllers/accountController");
+   accountController.getAll().then(data => {
+     res.locals.User = data;
+     res.render("admin/accountmanagement");
+   });*/
+  res.render("admin/catagorymanagement");
+});
+
+router.get("/request", (req, res, next) => {
+  /* let accountController = require("../controllers/accountController");
+   accountController.getAll().then(data => {
+     res.locals.User = data;
+     res.render("admin/accountmanagement");
+   });*/
+  res.render("admin/request");
+});
+
+router.get("/borrow-management", (req, res, next) => {
+  /* let accountController = require("../controllers/accountController");
+   accountController.getAll().then(data => {
+     res.locals.User = data;
+     res.render("admin/accountmanagement");
+   });*/
+  res.render("admin/borrowmanagement");
+});
+
 router.get("/statistic", (req, res) => {
   let bookManagementController = require("../controllers/bookManagementController");
   bookManagementController.getAll().then(data => {

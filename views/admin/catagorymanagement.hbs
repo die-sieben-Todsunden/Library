@@ -32,7 +32,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="" class="nav-link text-dark font-italic bg-light">
+      <a href="/admin/account-management" class="nav-link text-dark font-italic">
         <i class="fa fa-user mr-3 text-primary fa-fw"></i>
         Quản lí tài khoản
       </a>
@@ -44,7 +44,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/admin/catagory-management" class="nav-link text-dark font-italic">
+      <a href="" class="nav-link text-dark font-italic bg-light">
         <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
         Thể loại sách
       </a>
@@ -53,7 +53,6 @@
       <a href="/admin/request" class="nav-link text-dark font-italic">
         <i class="fa fa-exclamation mr-3 text-primary fa-fw"></i>
         Yêu cầu (0)
-
       </a>
     </li>
     <li class="nav-item">
@@ -78,41 +77,26 @@
       class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
 
   <!-- Content -->
-  <h2 class="display-4 text-white">Quản lí tài khoản</h2>
+  <h2 class="display-4 text-white">Danh mục tác giả</h2>
   <hr>
   <div class="search">
     <form>
       <div class="form-group">
-        <label for="keysearch">Tìm kiếm tài khoản theo: </label>
-        <select name="" id="keysearch">
-          <option value="">Tên tài khoản</option>
-          <option value="">Tên người dùng</option>
-          <option value="">Mã số người dùng</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <input type="" class="form-control" id="search" placeholder="ví dụ: admin123">
-      </div>
-      <div class="btnSearch" style="text-align: right">
-        <button type="button" class="btn btn-primary" onclick="searchFunction()">Tìm kiếm</button>
+        <label for="search">Nhập thể loại sách: </label>
+        <input class="form-control" id="search" placeholder="ví dụ: Machine Learning">
       </div>
     </form>
   </div>
-  <section class="result">
+  <div style="text-align: right">
+    <button type="button" class="btn btn-primary" onclick="searchFunction()">Tìm kiếm</button>
+  </div>
+
+  <section class="tableContent">
     <hr>
     <div class="controlButton">
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Thêm tài khoản</button>
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Sửa tài khoản</button>
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Xóa tài khoản</button>
-      <div class="sortWrapper">
-        <select name="" id="sort">
-          <option value="">Sắp xếp kết quả</option>
-          <option value="">Sắp xếp tăng dần theo tên người dùng</option>
-          <option value="">Sắp xếp giảm dần theo tên người dùng</option>
-          <option value="">Sắp xếp tăng dần theo mã số người dùng</option>
-          <option value="">Sắp xếp giảm dần theo mã số người dùng</option>
-        </select>
-      </div>
+      <button type="button" class="btn btn-primary" onclick="addFunction()">Thêm thể loại</button>
+      <button type="button" class="btn btn-primary" onclick="editFunction()">Sửa thể loại</button>
+      <button type="button" class="btn btn-primary" onclick="removeFunction()">Xóa thể loại</button>
     </div>
     <div id="showRes">Hiển thị 20 / 30 kết quả</div>
     <div style="overflow-x:auto;">
@@ -120,41 +104,14 @@
         <thead>
           <tr>
             <th>STT</th>
-            <th>Tên tài khoản</th>
-            <th>Mã số sinh viên</th>
-            <th>Tên người dùng</th>
-            <th>Địa chỉ</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th>Số sách đang mượn</th>
-            <th>Số sách hết hạn</th>
-            <th>Ghi chú</th>
-            <th>Ẩn</th>
+            <th>Tên thể loại</th>
+            <th>Tổng số sách</th>
           </tr>
         </thead>
         <tbody>
-          {{#each User}}
-          <script>console.log("a");</script>
-          <tr>
-            <td>{{id}}</td>
-            <td>{{userName}}</td>
-            <td>{{personalID}}</td>
-            <td>{{name}}</td>
-            <td>{{address}}</td>
-            <td>{{phone}}</td>
-            <td>{{email}}</td>
-            <td>2</td>
-            <td>0</td>
-            <td>Chưa có</td>
-            <td>
-              <input type="checkbox" aria-label="Checkbox for following text input">
-            </td>
-          </tr>
-          {{/each}}
 
         </tbody>
       </table>
-
     </div>
   </section>
 </div>

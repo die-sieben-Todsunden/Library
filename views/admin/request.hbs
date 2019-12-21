@@ -1,0 +1,131 @@
+<link rel="stylesheet" href="/public/css/resetAdmin.css">
+<link rel="stylesheet" href="/public/css/adminRequest.css">
+<script type="text/javascript" src="/public/js/menuAdmin.js"></script>
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center"><img
+        src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65"
+        class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h5 class="m-0">Phạm Khánh Duy</h5>
+        <p class="font-weight-light text-muted mb-0">Quản lí thư viện</p>
+      </div>
+    </div>
+    <div class="adminLogout" style="text-align: right">
+      <a href="/user/logout">Log out</a>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="/admin" class="nav-link text-dark font-italic">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Trang chủ
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/book-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Quản lí sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/account-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-user mr-3 text-primary fa-fw"></i>
+        Quản lí tài khoản
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/author-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-pencil mr-3 text-primary fa-fw"></i>
+        Danh mục tác giả
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/catagory-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Thể loại sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/request" class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-exclamation mr-3 text-primary fa-fw"></i>
+        Yêu cầu (0)
+
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/borrow-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Sách đang được mượn
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/statistic" class="nav-link text-dark font-italic">
+        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+        Thống kê
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+<!-- Page content holder -->
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+      class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+
+  <!-- Content -->
+  <h2 class="display-4 text-white">Yêu cầu mới</h2>
+  <hr>
+  <form>
+    <select name="cars" class="custom-select col-lg-6">
+      <option selected>Yêu cầu mượn sách</option>
+      <option value="">Yêu cầu gia hạn</option>
+      <option value="">Yêu cầu mua sách</option>
+      <option value="">Yêu cầu cấp tài khoản</option>
+    </select>
+  </form>
+  <section>
+    <div class="card tagRequest">
+      <div class="card-header">
+        Yêu cầu mượn sách
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Nhập môn lập trình</h5>
+        <p class="card-text"><b>Mã thông tin sách: </b>NM0201 <a href="">Xem thêm thông tin cuốn sách này</a></p>
+        <p class="card-text"><b>Số lượng sách còn lại: </b>20 (cuốn)</p>
+        <p class="card-text"><b>Người yêu cầu: </b>Phạm Khánh Duy | <b>Mã số: </b>1753048 | <a href="">Xem thông tin
+            người dùng này</a> </p>
+        <p class="card-text"><b>Ngày hẹn đến thư viện: </b> 10/01/2020</p>
+        <p class="card-text"><b>Nội dung khác: </b></p>
+        <div style="text-align: right">
+          <button class="btn btn-success"><i class="fa fa-check"></i> Xác nhận</button>
+          <button href="#" class="btn btn-danger"><i class="fa fa-times"></i> Từ chối</button>
+          <br>
+          <a data-toggle="collapse" href="#collapseNote">Ghi chú thêm cho người dùng này</a>
+          <div class="collapse" id="collapseNote">
+            <div class="card card-body">
+              <form>
+                <div class="form-group">
+                  <label for="content">Nội dung: </label>
+                  <textarea class="form-control" id="content">
+                    Hãy đến đúng lịch hẹn, không quá 3 ngày kể từ ngày hẹn (Không tính T7, CN)
+                  </textarea>
+
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
