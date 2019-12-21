@@ -11,16 +11,13 @@
                 {{#with book}}
                 <div>
                     <h5>Thông tin chi tiết</h5>
-                    <p>- Tên: {{bookName}} <br> - Tác giả: Sikander Sultan<br> - ISBN: {{ISBN_API}}<br> - Tags: computer, science, ai, robot<br> - Tái bản lần thứ 7</p>
+                    <p>- Tên: {{bookName}} <br> - Tác giả: {{author}}<br> - ISBN: {{ISBN_API}}<br> - Tags: computer, science, ai, robot<br> - Tái bản lần thứ 7</p>
                 </div>
                 <div>
                     <h5>Giới thiệu</h5>
-                    <p id = "description">For a beginner, programming can seem like something scary or hard to do. With all the technical terms and concepts out there, as well as the numerous programming languages available at your disposal, it is so important - now more than
-                        ever before - to build a strong foundation. When you understand the fundamentals of programming, learning any programming language is a piece of cake as well as the numerous programming languages available at your disposal, it
-                        is so important - now more than ever before - to build a strong foundation. When you understand the fundamentals of programming, learning any programming language is a piece of cake 
-                        For a beginner, programming can seem like something scary or hard to do. With all the technical terms and concepts out there, as well as the numerous programming languages available at your disposal, it is so important - now more than
-                        ever before - to build a strong foundation. When you understand the fundamentals of programming, learning any programming language is a piece of cake as well as the numerous programming languages available at your disposal, it
-                        is so important - now more than ever before - to build a strong foundation. When you understand the fundamentals of programming, learning any programming language is a piece of cake </p>
+                    <p id = "description">
+                        {{{description}}}
+                    </p>
                 </div>
                 {{/with}}
                 <button class="btn">Mượn sách</button>
