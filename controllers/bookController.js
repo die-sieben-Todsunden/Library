@@ -85,7 +85,7 @@ controller.getAllBookName = (query) => {
                     break;
                 case 'bookNameDES':
                     options.order = [
-                        ['author', 'DES']
+                        ['bookName', 'DESC']
                     ];
                     break;
                 default:
@@ -118,28 +118,28 @@ controller.getAllCategory = (query) => {
             options.offset = query.limit * (query.page - 1);
         }
         if (query.sort) {
-          switch (query.sort) {
-              case 'bookNameASC':
-                  options.order = [
-                      ['bookName', 'ASC']
-                  ];
-                  break;
-              case 'year':
-                  options.order = [
-                      ['year', 'ASC']
-                  ];
-                  break;
-              case 'bookNameDES':
-                  options.order = [
-                      ['author', 'DES']
-                  ];
-                  break;
-              default:
-                  options.order = [
-                      ['bookName', 'ASC']
-                  ];
-                  break;
-          }
+            switch (query.sort) {
+                case 'bookNameASC':
+                    options.order = [
+                        ['bookName', 'ASC']
+                    ];
+                    break;
+                case 'year':
+                    options.order = [
+                        ['year', 'ASC']
+                    ];
+                    break;
+                case 'bookNameDES':
+                    options.order = [
+                        ['author', 'DES']
+                    ];
+                    break;
+                default:
+                    options.order = [
+                        ['bookName', 'ASC']
+                    ];
+                    break;
+            }
         }
         if (query.search) {
             options.where.bookName = {
@@ -162,28 +162,28 @@ controller.getAllAuthor = (query) => {
             options.offset = query.limit * (query.page - 1);
         }
         if (query.sort) {
-          switch (query.sort) {
-              case 'bookNameASC':
-                  options.order = [
-                      ['bookName', 'ASC']
-                  ];
-                  break;
-              case 'year':
-                  options.order = [
-                      ['year', 'ASC']
-                  ];
-                  break;
-              case 'bookNameDES':
-                  options.order = [
-                      ['author', 'DES']
-                  ];
-                  break;
-              default:
-                  options.order = [
-                      ['bookName', 'ASC']
-                  ];
-                  break;
-          }
+            switch (query.sort) {
+                case 'bookNameASC':
+                    options.order = [
+                        ['bookName', 'ASC']
+                    ];
+                    break;
+                case 'year':
+                    options.order = [
+                        ['year', 'ASC']
+                    ];
+                    break;
+                case 'bookNameDES':
+                    options.order = [
+                        ['author', 'DES']
+                    ];
+                    break;
+                default:
+                    options.order = [
+                        ['bookName', 'ASC']
+                    ];
+                    break;
+            }
         }
         if (query.search) {
             options.where.bookName = {

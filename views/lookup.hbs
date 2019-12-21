@@ -5,7 +5,7 @@
       <div class="col-lg-1"></div>
       <div class="col-lg-11">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="Keyword" data-toggle="dropdown"
+          {{!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="Keyword" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">Từ khóa</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div id="bookname">
@@ -13,7 +13,12 @@
             </div>
             <a class="dropdown-item" href="#" id="booktopic">Chủ đề sách</a>
             <a class="dropdown-item" href="#" id="authername">Tác giả</a>
-          </div>
+          </div> --}}
+          <select id="keyWord" onchange="selectParam('type', this.value,true)" >
+            <option value ="keyWord">Từ khóa</option>
+            <option  value = "bookName" >Tên sách</option>
+            <option  value ="authorName" >Sắp xếp theo năm xuất bản</option>
+          </select>
         </div>
       </div>
     </div>
@@ -122,7 +127,7 @@
       </div>
     </div>
     {{/each}}
-    <nav class="nav justify-content-center" aria-label="Page navigation example">
+    <nav class="nav justify-content-center" aria-label="Page navigation example" id="pagination">
       {{{createPagination pagination paginationClass = "pagination"}}}
     </nav>
     
@@ -171,24 +176,48 @@
     limit: 3,
     page: 1
   }
+  
   for(let key in params){
     if(!URLParams.has(key)){
       URLParams.append(key, params[key]);
     }
   }
-  $("#sort").val(URLParams.get('sort'));
-  $("#limit").val(URLParams.get('limit'));
+  $(document).ready(function() {
+    $("#sort").val(URLParams.get('sort'));
+    $("#limit").val(URLParams.get('limit'));
+    $("#keyWord").val(URLParams.get('type'));
+
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    let savePage = URLParams.get('page');
+    $('#pagination li a').each((index, item)=>{
+      let page = $(item).attr('href').split('=')[1];
+      URLParams.set('page', page);
+      let href = `/book?${URLParams.toString()}`;
+      $(item).attr('href', href);
+      
+    });
+  URLParams.set('page', savePage);  
+  });
+  
   function selectParam(key, value, reset = false){
     console.log(location.href);
     if(reset){
       for( let key in params){
         URLParams.set(key, params[key]);
       }
+    }
       URLParams.set(key, value);
       let url = `/book?${URLParams.toString()}`;
       location.href = url;
-    }
+    
   }
+  /*function selectParam(key, value, reset=false){
+
+    URLParams.set(key,value);
+    let url=`/book?${URLParams.toString()}`;
+    location.href=url;
+  }*/
 </script>
   {{!-- document.getElementById("top10").onclick = function () {
     console.log("a");
@@ -233,7 +262,7 @@
     window.location = "bookCatalog";
   };
 
-  function Moreinfo(id) {
+  function Moreinfo(id, name) {
 
     window.location = `/book/${id}`;
   };
