@@ -230,7 +230,7 @@ router.get("/borrow-management", (req, res, next) => {
 
 router.get("/statistic", (req, res) => {
   let bookManagementController = require("../controllers/bookManagementController");
-  bookManagementController.getAll().then(data => {
+  bookManagementController.getAlls().then(data => {
     res.locals.borrow = data;
     res.render("admin/statistic");
   });

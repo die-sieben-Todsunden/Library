@@ -129,9 +129,9 @@
       <div class="form-group col-lg-4 col-md-4">
         <label for="danhmuctimkiem">Danh mục tìm kiếm</label>
         <select class="form-control" id="danhmuctimkiem" onchange="searchCatalogChange(this)">
-          <option>Tài khoản</option>
-          <option>Sách</option>
-          <option>Tác giả</option>
+          <option value="account">Tài khoản</option>
+          <option value="book">Sách</option>
+          <option value="author">Tác giả</option>
         </select>
       </div>
       <div class="form-group col-lg-4 col-md-4">
@@ -146,10 +146,9 @@
 
     <div class="searchBanner">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Nhập để tìm kiếm" aria-label="Recipient's username"
-          aria-describedby="basic-addon2">
+        <input class="form-control" placeholder="Nhập để tìm kiếm" id="searchInput">
         <div class="input-group-append">
-          <button class="btn btn-outline-primary" type="button">
+          <button class="btn btn-outline-primary" type="button" onclick="searchFunction()">
             <i class="fa fa-search"></i>
           </button>
         </div>
@@ -162,7 +161,7 @@
     <form>
       <div class="form-group">
         <label for="subject">Chủ đề</label>
-        <input type="subject" class="form-control" id="subject" placeholder="Nhập chủ đề">
+        <input class="form-control" id="subject" placeholder="Nhập chủ đề">
       </div>
       <div class="form-group">
         <label for="receiver">Người nhận</label>
@@ -179,10 +178,10 @@
   </section>
   <script>
     function searchCatalogChange(option) {
-      if (option.value == "Tác giả") {
+      if (option.value == "author") {
         document.getElementById("tukhoatimkiem").innerHTML =
           "<option>Tên tác giả</option> <option>Năm sinh tác giả</option>"
-      } else if (option.value == "Sách") {
+      } else if (option.value == "book") {
         document.getElementById("tukhoatimkiem").innerHTML =
           "<option>Tên sách</option> <option>Thể loại sách</option> <option>Năm xuất bản</option>"
       } else {
@@ -197,6 +196,33 @@
       });
     });
 
+    function searchFunction() {
+      let url = "/admin/";
+      let search = "search=";
+      let type = "type=";
+      var keys = tukhoatimkiem.value;
 
+
+      if (danhmuctimkiem.value == "account") {
+        url += "account-management?";
+        if (keys == "Tên tài khoản")
+          type += "userName";
+        else if (keys == "Tên người dùng")
+          type += "name";
+        else
+          type += "personalID"
+      }
+      else if (danhmuctimkiem.value == "book") {
+        url += "book-management?";
+        type += "bookName";
+      }
+      else {
+        url += "author-management?";
+      }
+      search += $('#searchInput').val();
+
+      url += search + "&" + type;
+      location.href = url;
+    }
   </script>
   <!-- End demo content -->
