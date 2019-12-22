@@ -9,7 +9,7 @@ let Op = Sequelize.Op;
 
 controller.getAll = query => {
   return new Promise((resovle, reject) => {
-    /*let options = {
+    let options = {
       where: {}
     };
     if (query.limit > 0) {
@@ -36,7 +36,7 @@ controller.getAll = query => {
       options.where.bookName = {
         [Op.iLike]: `%${query.search}%`
       };
-    }*/
+    }
     bookInfo
       .findAll()
       .then(data => resovle(data))
