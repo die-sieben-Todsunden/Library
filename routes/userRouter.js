@@ -45,6 +45,18 @@ router.post("/login", function(req, res, next) {
   let password = req.body.password;
   // console.log(email);
   // console.log(password);
+  if (userName == undefined || userName =='') {
+    return res.render("login", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
+  if (password == undefined|| password =='') {
+    return res.render("login", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
   userController.getUserByUserName(userName).then(user => {
     if (user) {
       if (userController.comparePassword(password, user.password)) {
@@ -65,7 +77,7 @@ router.post("/login", function(req, res, next) {
       }
     } else {
       res.render("login", {
-        message: "password is incorect",
+        message: `no account with ${userName}`,
         type: "alert-danger"
       });
     }
