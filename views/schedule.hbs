@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="row" style="margin-top: 12  px;">
-        <div class="col-lg-2">Mã ISBN của sách: </div>
+        <div class="col-lg-2">Mã sách: </div>
         <div class="col-lg-8">
             <div class="form-group">
                 <input type="text" class="form-control" id="inputISBN"
@@ -38,7 +38,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="row">
-                                <h5 style="margin-bottom: 0">--Mã sách: </h5>
+                                <h5 style="margin-bottom: 0">--Mã sách: &nbsp</h5>
                                 <h5 class="modal-title" id="inputvalue_isbn_modal_title" style="margin: none!important">
                             </div>
                             </h5>
@@ -50,7 +50,9 @@
                         </div>
                         <div class="modal-body">
                             <p><i>Chắc chắn rằng bạn đã nhập đúng mã sách</i></p>
-                            <img src="/public/img/book1.png" style="height:200px"> ...
+                            <img src="/public/img/book1.png" style="height:200px"> 
+                            <p id="bookName">Tên sách: </p>
+                            <p id="authorName">Tác giả </p>
                         </div>
                     </div>
                 </div>
@@ -122,47 +124,61 @@
 
     </div>
 </div>
-    <script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4',
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    var id = [];
+    var nameAr = [];
+    var authorAr = [];
 </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js " integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1 " crossorigin="anonymous ">
-    <!-- aos-->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+{{#each books}}
+<script>
+    id.push("{{id}}");
+    nameAr.push("{{bookName}}");
+    authorAr.push("{{author}}");
+</script>
+{{/each}}
 
-    <script language="javascript">
+<script>
+    document.getElementById("inputISBN").value = id[0];
+    document.getElementById("bookName").innerHTML = "Tên sách: "+nameAr[0];
+    document.getElementById("authorName").innerHTML = "Tác giả: "+authorAr[0];
+</script>
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4',
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js "
+    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1 " crossorigin="anonymous ">
+    < !--aos-->
+            <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<script>
         document.getElementById("search").onclick = function () {
-            document.getElementById("quicksearch-hidden").hidden = false;
+                document.getElementById("quicksearch-hidden").hidden = false;
             document.getElementById("search").hidden = true;
         };
 
         document.getElementById("searchClose").onclick = function () {
-            document.getElementById("quicksearch-hidden").hidden = true;
+                document.getElementById("quicksearch-hidden").hidden = true;
             document.getElementById("search").hidden = false;
         };
 
-        window.onload = function () {
-            document.getElementById("inputvalue_isbn").innerHTML = sessionStorage.getItem("isbn");
-        };
-
+       
         backhome = function () {
-            window.location = "/";
-        }
-
+                window.location = "/";
+            }
+    
         /*$('#datepicker').change(function (event) {
         var date = $('#datepicker').val();
-
-        $('#inputvalue_date').html(date);
-        });*/
-
+    
+            $('#inputvalue_date').html(date);
+            });*/
+    
         $('#inputISBN').change(function (event) {
             var isbn = $('#inputISBN').val();
 
@@ -174,4 +190,4 @@
             console.log($('#inputISBN').val());
             $('#inputvalue_isbn_modal_title').html(date2);
         });
-    </script>
+</script>

@@ -1,27 +1,27 @@
 <link rel="stylesheet" href="/public/css/style.css">
 <!-- Body ---------------------------------------------------------------------------------------------->
 <div class="banner">
-    <div class="bannerText">
-      <h1>THƯ VIỆN</h1>
-      <p>Đại học khoa học tự nhiên</p>
-      <p>Khoa công nghệ thông tin</p>
-    </div>
+  <div class="bannerText">
+    <h1>THƯ VIỆN</h1>
+    <p>Đại học khoa học tự nhiên</p>
+    <p>Khoa công nghệ thông tin</p>
   </div>
-  <div class="newbook container">
-    <div class="title">
-      <h1>Sách mới</h1>
-      <h5>Sách mới nhập về, sách mới tái bản, sách mới cập nhật phiên bản mới</h5>
-    </div>
-    <div class="content" style="width:100%">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="contentWrapper">
-          <div class=" carousel-inner col-lg-10" style="margin-left:50%; transform: translate(-50%)">
-          
+</div>
+<div class="newbook container">
+  <div class="title">
+    <h1>Sách mới</h1>
+    <h5>Sách mới nhập về, sách mới tái bản, sách mới cập nhật phiên bản mới</h5>
+  </div>
+  <div class="content" style="width:100%">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="contentWrapper" style="height: 300px;">
+        <div class=" carousel-inner col-lg-10" style="margin-left:50%; transform: translate(-50%)">
+
           <div class="carousel-item active">
             <div class="container">
               <div class="row">
@@ -32,13 +32,16 @@
                 </div>
                 <div class="col-lg-9 bookinfo">
                   <div class="bookname">
-                    <h1>The Oxford Book of American Short Stories</h1>
+                    <h3>The Oxford Book of American Short Stories</h3>
                   </div>
                   <div class="bookauthor">
                     <p>Joyce Carol Oates</p>
                   </div>
                   <div class="booksummary">
-                    <p><p>Edited by award-winning poet and essayist Mary Oliver, the latest edition of this "rich and thoughtful collection" (<i>Publishers Weekly</i>) offers the finest essays "judiciously selected from countless publications" (<i>Chicago Tribune</i>).</p>
+                    <p>
+                      <p>Edited by award-winning poet and essayist Mary Oliver, the latest edition of this "rich and
+                        thoughtful collection" (<i>Publishers Weekly</i>) offers the finest essays "judiciously selected
+                        from countless publications" (<i>Chicago Tribune</i>).</p>
                     </p>
                   </div>
                   <div class="controlbtn">
@@ -60,7 +63,7 @@
                 </div>
                 <div class="col-lg-9 bookinfo">
                   <div class="bookname">
-                    <h1>{{bookName}}</h1>
+                    <h3>{{bookName}}</h3>
                   </div>
                   <div class="bookauthor">
                     <p>{{author}}</p>
@@ -153,83 +156,87 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 
-  <!--Sách theo chủ đề ------------------------------------------------------------------ -->
-  <div class="catalog" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
-    <div class="title">
-      <h1>Sách theo chủ đề</h1>
-      <h5>Tuyển tập sách theo những chủ đề phổ biến</h5>
-    </div>
-    <div class="content">
-      <div class="subcontentflex">
+<!--Sách theo chủ đề ------------------------------------------------------------------ -->
+<div class="catalog" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+  <div class="title">
+    <h1>Sách theo chủ đề</h1>
+    <h5>Tuyển tập sách theo những chủ đề phổ biến</h5>
+  </div>
+  <div class="content">
+    <div class="subcontentflex">
+      <a href="" style="color: black">
         <div class="subcontentwrapprer">
           <div class="subcontent" style="background-image:url(/public/img/getting-started.jpg);"></div>
-          <p>Nhập môn</p>
+          <h4>Nhập môn</h4>
         </div>
+      </a>
+      <a href="" style="color: black">
         <div class="subcontentwrapprer">
           <div class="subcontent" style="background-image:url(/public/img/machinelearning.jpg);"></div>
-          <p>Machine learning</p>
+          <h4>Machine learning</h4>
         </div>
+      </a>
+      <a href="" style="color: black">
         <div class="subcontentwrapprer">
           <div class="subcontent" style="background-image:url(/public/img/newtech.jpg);"></div>
-          <p>Công nghệ mới</p>
+          <h4>Công nghệ mới</h4>
         </div>
+      </a>
+    </div>
+  </div>
+</div>
+<!-- Lịch làm việc -->
+<div class="container" style="padding: 30px;" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+  <div class="row worktime" style="background-color:beige">
+    <div class="col-lg-6 worktime_img"
+      style="background-image: url(/public/img/worktime.jpg); width: 500px; height: 500px">
+    </div>
+    <div class="col-lg-6 worktime_content" style="text-align: center; margin-top: 20%; transform: translate(-0%,-20%)">
+      <h1>Lịch làm việc</h1>
+      <div class="worktime_content_time">
+        <p>Thứ 2 - Thứ 6: 9h00 - 16h00</p>
+        <p>Hẹn lịch trước khi đến thư viện <a href="/user/schedule">(Hẹn lịch ngay)</a></p>
+      </div>
+      <div class="worktime_content_notification">
+        <p><b>Thông báo: </b>Ngày 2-12-2019 thư viện tạm không làm việc</p>
+        <p> </p>
       </div>
     </div>
   </div>
-  <!-- Lịch làm việc -->
-  <div class="container" style="padding: 30px;" data-aos="fade-left" data-aos-offset="300"
-    data-aos-easing="ease-in-sine">
-    <div class="row worktime" style="background-color:beige">
-      <div class="col-lg-6 worktime_img" style="background-image: url(/public/img/worktime.jpg); width: 500px; height: 500px">
-      </div>
-      <div class="col-lg-6 worktime_content"
-        style="text-align: center; margin-top: 20%; transform: translate(-0%,-20%)">
-        <h1>Lịch làm việc</h1>
-        <div class="worktime_content_time">
-          <p>Thứ 2 - Thứ 6: 9h00 - 16h00</p>
-          <p>Hẹn lịch trước khi đến thư viện <a href="/user/schedule">(Hẹn lịch ngay)</a></p>
-        </div>
-        <div class="worktime_content_notification">
-          <p><b>Thông báo: </b>Ngày 2-12-2019 thư viện tạm không làm việc</p>
-          <p> </p>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
-  
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <!-- aos-->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <script language="javascript">
-    document.getElementById("search").onclick = function () {
-      document.getElementById("quicksearch-hidden").hidden = false;
-      document.getElementById("search").hidden = true;
-    };
+<!-- aos-->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
-    document.getElementById("searchClose").onclick = function () {
-      document.getElementById("quicksearch-hidden").hidden = true;
-      document.getElementById("search").hidden = false;
-    };
+<script language="javascript">
+  document.getElementById("search").onclick = function () {
+    document.getElementById("quicksearch-hidden").hidden = false;
+    document.getElementById("search").hidden = true;
+  };
 
-    function Borrow() {
-      localStorage.setItem("isbn", "053av55");
-      window.location = "/user/schedule";
-    };
+  document.getElementById("searchClose").onclick = function () {
+    document.getElementById("quicksearch-hidden").hidden = true;
+    document.getElementById("search").hidden = false;
+  };
 
-    function Moreinfo(id) {
-      window.location=`book/${id}`;
-    }
-  </script>
-  
+  function Borrow() {
+    localStorage.setItem("isbn", "053av55");
+    window.location = "/user/schedule";
+  };
+
+  function Moreinfo(id) {
+    window.location = `book/${id}`;
+  }
+</script>

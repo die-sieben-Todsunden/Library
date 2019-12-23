@@ -84,10 +84,10 @@
     <form>
       <div class="form-group">
         <label for="keysearch">Tìm kiếm tài khoản theo: </label>
-        <select name="" id="keysearch">
-          <option value="">Tên tài khoản</option>
-          <option value="">Tên người dùng</option>
-          <option value="">Mã số người dùng</option>
+        <select name="" id="keysearch" onchange="typeChange(this)">
+          <option value="userName">Tên tài khoản</option>
+          <option value="name">Tên người dùng</option>
+          <option value="personalID">Mã số người dùng</option>
         </select>
       </div>
       <div class="form-group">
@@ -101,20 +101,19 @@
   <section class="result">
     <hr>
     <div class="controlButton">
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Thêm tài khoản</button>
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Sửa tài khoản</button>
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Xóa tài khoản</button>
-      <div class="sortWrapper">
-        <select name="" id="sort">
-          <option value="">Sắp xếp kết quả</option>
-          <option value="">Sắp xếp tăng dần theo tên người dùng</option>
-          <option value="">Sắp xếp giảm dần theo tên người dùng</option>
-          <option value="">Sắp xếp tăng dần theo mã số người dùng</option>
-          <option value="">Sắp xếp giảm dần theo mã số người dùng</option>
-        </select>
-      </div>
+      <button type="button" class="btn btn-primary" onclick="">Thêm tài khoản</button>
+      <button type="button" class="btn btn-primary" onclick="">Sửa tài khoản</button>
+      <button type="button" class="btn btn-primary" onclick="">Xóa tài khoản</button>
+
     </div>
-    <div id="showRes">Hiển thị 20 / 30 kết quả</div>
+    <div class="form-group" style="margin-top: 20px">
+      <label for="sort">Sắp xếp kết quả theo: </label>
+      <select name="" id="sort" onchange="sortChange(this)">
+        <option value="userName">Tên tài khoản</option>
+        <option value="name">Tên người dùng</option>
+        <option value="personalID">Mã số người dùng</option>
+      </select>
+    </div>
     <div style="overflow-x:auto;">
       <table class="table table-bordered table-dark">
         <thead>
@@ -134,7 +133,7 @@
         </thead>
         <tbody>
           {{#each User}}
-          <script>console.log("a");</script>
+
           <tr>
             <td>{{id}}</td>
             <td>{{userName}}</td>
@@ -156,5 +155,66 @@
       </table>
 
     </div>
+    <nav class="nav justify-content-center" aria-label="Page navigation example" id="pagination">
+      {{{createPagination pagination paginationClass = "pagination"}}}
+    </nav>
   </section>
 </div>
+<script>
+  let URLParams = new URLSearchParams(location.search)
+  let params = {
+    search: '',
+    type: 'userName',
+    sort: 'userNameASC',
+    limit: 3,
+    page: 1
+  }
+
+  for (let key in params) {
+    if (!URLParams.has(key)) {
+      URLParams.append(key, params[key]);
+    }
+  }
+  $(document).ready(function () {
+    $("#sort").val(URLParams.get('sort'));
+    $("#limit").val(URLParams.get('limit'));
+    $("#keyWord").val(URLParams.get('type'));
+
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    let savePage = URLParams.get('page');
+    $('#pagination li a').each((index, item) => {
+      let page = $(item).attr('href').split('=')[1];
+      URLParams.set('page', page);
+      let href = `/admin/account-management?${URLParams.toString()}`;
+      $(item).attr('href', href);
+
+    });
+    URLParams.set('page', savePage);
+  });
+
+  function selectParam(key, value, reset = false) {
+
+    if (reset) {
+      for (let key in params) {
+        URLParams.set(key, params[key]);
+      }
+    }
+    URLParams.set(key, value);
+    let url = `/admin/account-management?${URLParams.toString()}`;
+    location.href = url;
+
+  }
+  function searchFunction() {
+    selectParam('search', $('#search').val());
+  }
+
+  function typeChange(keys) {
+    URLParams.set('type', keys.value);
+    let url = `/admin/account-management?${URLParams.toString()}`;
+  }
+
+  function sortChange(keys) {
+    selectParam('sort', keys.value);
+  }
+</script>

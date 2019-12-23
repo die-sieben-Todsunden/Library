@@ -137,3 +137,8 @@ td {
   text-align: left;
   padding: 8px;
 }
+
+table {
+  table-layout: auto;
+  width: 180px;
+}

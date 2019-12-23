@@ -31,7 +31,7 @@ controller.getAll = user => {
       .catch(error => reject(new Error(error)));
   });
 };
-controller.getAll = () => {
+controller.getAlls = () => {
   return new Promise((resolve, reject) => {
     borrow
       .findAll()
