@@ -1,10 +1,13 @@
 {
     "development": {
-        "username": "erudi",
-        "password": "",
-        "database": "LibraryDB",
-        "host": "127.0.0.1",
-        "dialect": "postgres"
+        "username": "zzwbwyzmojlphj",
+        "password": "75f27134056cb5316a2e8b4f82e5c36ee50a69d8e2903643dbd7eff22996e902",
+        "database": "d3gb9a8u32e5cl",
+        "host": "ec2-174-129-33-186.compute-1.amazonaws.com",
+        "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": true
+            }
     },
     "test": {
         "username": "root",
