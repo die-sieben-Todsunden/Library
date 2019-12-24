@@ -32,6 +32,7 @@ app.get("/sync", function(req, res) {
     res.send("database sync completed!");
   });
 });
+models.sequelize.sync();
 //Setting for app here
 
 var expressHbs = require("express-handlebars");
