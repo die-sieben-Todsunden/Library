@@ -4,6 +4,7 @@ let router = express.Router();
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcryptjs");
 require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 router.get("/books", function(req, res, next) {
   let booksController = require("../controllers/bookManagementController");
@@ -108,7 +109,7 @@ router.post("/resetPasswordRequest", function(req, res, next) {
         type: "alert-danger"
       });
     }
-    console.log(process.env.JWT_KEY);
+    // console.log(process.env.JWT_KEY);
     let token = jwt.sign(
       {
         email: user.email,
@@ -125,8 +126,24 @@ router.post("/resetPasswordRequest", function(req, res, next) {
     user.save(function(err) {
       if (err) return handleError(err); // saved!
     });
+    let transporter = nodemailer.createTransport({
+        host: "smtp.mailtrap.io",
+        port: 25,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "e6026b842e6d96", // generated ethereal user
+          pass: "c6e7d292d11d34" // generated ethereal password
+        }
+      });
+    transporter.sendMail({
+      from: 'chromevi123@gmail.com', // sender address
+      to: "chromevi123@gmail.com", // list of receivers
+      subject: "Reset password library", // Subject line
+      html: `<a href="http://localhost:3000/user/resetPassword/${token}">Link Locahost</a>
+      <a href="https://ptudw-17clc-07-library.herokuapp.com/user/resetPassword/${token}">Link heroku</a>` // html body
+    });
     return res.render("resetPasswordRequest", {
-      message: `Password reset for ${resetPasswordEmail} has been send. ${token}`,
+      message: `Password reset for ${resetPasswordEmail} has been send.`,
       type: "alert-primary"
     });
   });
