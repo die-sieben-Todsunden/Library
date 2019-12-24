@@ -1,5 +1,5 @@
 {
-    "development": {
+    "production": {
         "username": "zzwbwyzmojlphj",
         "password": "75f27134056cb5316a2e8b4f82e5c36ee50a69d8e2903643dbd7eff22996e902",
         "database": "d3gb9a8u32e5cl",
@@ -17,7 +17,7 @@
         "dialect": "mysql",
         "operatorsAliases": false
     },
-    "production": {
+    "dev": {
         "username": "root",
         "password": null,
         "database": "database_production",
