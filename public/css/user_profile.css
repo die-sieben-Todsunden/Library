@@ -12,12 +12,22 @@
 }
 #body-content-left{
     margin: 50px;
-    margin-right: 0px;
+    margin-right: 10px;
+    margin-left: 40px;
 }
-#body-content-right{
+#body-content-center{
     margin:50px;
     margin-left: 0px;
+    margin-right: 10px;
     font-weight: bold;
+}
+#body-content-center div p{
+    font-weight: 300;
+    margin-left: 10px;
+}
+#body-content-center div h6{
+    height: 30px;
+    line-height: 30px;
 }
 #body-content-right div p{
     font-weight: 300;
@@ -30,7 +40,7 @@
 #body-content-left > button{
     margin: 30px;
     margin-bottom: 0px;
-    margin-left:0px;
+    
     background-color: #5AB4F4;
     color: white;
 }

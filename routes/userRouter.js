@@ -1,5 +1,7 @@
 let express = require("express");
 let userController = require("../controllers/userController");
+
+let requestController = require("../controllers/requestController");
 let router = express.Router();
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcryptjs");
@@ -56,7 +58,37 @@ router.get("/login", function(req, res) {
 router.get("/signUp", function(req, res) {
   res.render("SignUp");
 });
-
+router.post("/profile",(req, res, next)=>{
+  tmp = req.session.user;
+  let fullName = req.body.name==''?tmp.name:req.body.name;
+  let id = req.body.id==''?tmp.personalID:req.body.id;
+  let dob = req.body.dob==''?tmp.birth:req.body.dob;
+  let address = req.body.address==''?tmp.address:req.body.address;
+  let phone = req.body.phone==''?tmp.phone:req.body.phone;
+  // console.log(req.session.user);
+  // console.log(req.body);
+  
+  // console.log(tmp.email)
+  userController.getUserByEmail(tmp.email)
+    .then(user=>{
+      if(user){
+        user.update({
+          name:fullName,
+          personalID:id,
+          address,
+          birth:dob,
+          phone
+        })
+        req.session.user = user;
+        res.locals.user = user;
+        return res.render("profile", {
+          message: "Update User Info Success",
+          type: "alert-primary"
+        });
+      }
+    })
+    .catch(error => next(error));
+})
 router.post("/login", function(req, res, next) {
   let userName = req.body.username;
   let password = req.body.password;
@@ -134,10 +166,15 @@ router.post("/resetPasswordRequest", function(req, res, next) {
           user: "e6026b842e6d96", // generated ethereal user
           pass: "c6e7d292d11d34" // generated ethereal password
         }
+        // service: 'gmail',
+        // auth:{
+        //   user:'chromevi123@gmail.com',
+        //   pass:''
+        // }
       });
     transporter.sendMail({
-      from: 'chromevi123@gmail.com', // sender address
-      to: "chromevi123@gmail.com", // list of receivers
+      from: 'admin.library@library.hcmus.edu.vn', // sender address
+      to: `${user.email}`, // list of receivers
       subject: "Reset password library", // Subject line
       html: `<a href="http://localhost:3000/user/resetPassword/${token}">Link Locahost</a>
       <a href="https://ptudw-17clc-07-library.herokuapp.com/user/resetPassword/${token}">Link heroku</a>` // html body
@@ -264,16 +301,10 @@ router.post("/signUp", (req, res, next) => {
       .createUser(user)
       .then(user => {
         // console.log(user)
-        if (keepLoggedIn) {
-          req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
-          req.session.user = user;
-          res.render("/");
-        } else {
-          return res.render("login", {
-            message: "sign up completed, pls login",
-            type: "alert-primary"
-          });
-        }
+        return res.render("login", {
+          message: "sign up completed, pls wait the admin activated your account. We'll email you soon.",
+          type: "alert-primary"
+        });
       })
       .catch(error => next(error));
   });
