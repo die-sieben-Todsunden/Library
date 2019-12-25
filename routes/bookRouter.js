@@ -30,10 +30,15 @@ router.get("/", (req, res, next) => {
                     //console.log(data.length);
                     res.locals.books = data.rows;
                     res.locals.pagination = {
-                        page: parseInt(req.query.page),
-                        limit: parseInt(req.query.limit),
-                        totalRows: data.count
-                    }
+                            page: parseInt(req.query.page),
+                            limit: parseInt(req.query.limit),
+                            totalRows: data.count
+                        }
+                        //res.render('lookup');
+                    return bookController.getAllAuthorSearch();
+                })
+                .then(result => {
+                    res.locals.same = result;
                     res.render('lookup');
                 })
                 .catch(error => {
