@@ -130,20 +130,92 @@
   <div class="searchbtnWrapper">
     <button type="button" class="btn btn-primary" onclick="searchFunction()">Tìm kiếm</button>
   </div>
-
+  {{#if message}}
+  <div class="form-group alert {{type}}">
+    <strong>{{message}}</strong>
+  </div>
+  {{/if}}
   <section id="tableContent">
     <div class="controlButton">
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Thêm sách</button>
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Sửa sách</button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdd"
+        aria-expanded="false" aria-controls="collapseAdd">
+        Thêm sách
+      </button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEdit"
+        aria-expanded="false" aria-controls="collapseEdit">
+        Sửa sách
+      </button>
       <button type="button" class="btn btn-primary" onclick="searchFunction()">Xóa sách</button>
     </div>
-    <div class="form-group">
+    <div class="collapse" id="collapseAdd">
+      <div class="card card-body">
+        <form action="book-management" method="POST">
+          <h6>Thêm sách mới</h6>
+          <div class="form-group">
+            <label for="newName">Nhập tên sách mới: </label>
+            <input class="form-control" name="newName" id="newName">
+            </input>
+          </div>
+          <div class="form-group">
+            <label for="newISBN">Nhập mã ISBN: </label>
+            <input class="form-control" name="newISBN" id="newISBN"></input>
+          </div>
+          <div class="form-group">
+            <label for="newAuthor">Nhập tên tác giả: </label>
+            <input class="form-control" name="newAuthor" id="newAuthor"></input>
+          </div>
+          <div class="form-group">
+            <label for="newCategory">Nhập thể loại sách </label>
+            <input class="form-control" name="newCategory" id="newCategory"></input>
+          </div>
+          <div class="form-group">
+            <label for="newDes">Mô tả: </label>
+            <textarea class="form-control" name="newDes" id="newDes"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="newYear">Năm xuất bản: </label>
+            <input class="form-control" name="newYear" id="newYear"></input>
+          </div>
+          <div class="form-group">
+            <label for="newLanguage">Ngôn ngữ: </label>
+            <select class="form-control" name="newLanguage" id="newLanguage">
+              <option>Tiếng Việt</option>
+              <option>Tiếng Anh</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="newTotal">Tổng số sách: </label>
+            <input class="form-control" name="newTotal" id="newTotal"></input>
+          </div>
+          <div class="form-group">
+            <label for="newImg">Link hình ảnh: </label>
+            <input class="form-control" name="newImg" id="newImg"></input>
+          </div>
+          <button type="submit" value="Submit" class="btn btn-primary">Thêm sách</button>
+        </form>
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseEdit">
+      <div class="card card-body">
+        <form action="book-management" method="POST">
+          <h6>Sửa sách</h6>
+          <div class="form-group">
+            <label for="idEdit">Nhập ID cuốn sách bạn muốn sửa: </label>
+            <input class="form-control" name="idEdit" id="idEdit"></input>
+            <button type="button" class="btn btn-primary" onclick="find()">Tìm sách</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class=" form-group">
       <label for="pageLimit">Số kết quả hiển thị / trang: </label>
       <select class="form-control" id="pageLimit" onchange="selectParam('limit' , this.value)">
         <option>3</option>
         <option>6</option>
         <option>9</option>
-
       </select>
     </div>
 
@@ -168,29 +240,11 @@
           </tr>
         </thead>
         <tbody>
-          <script>data = []; count = 0; let check1 = "true";</script>
           {{#each books}}
-          <script>
-            var authorName = $('searchAdv_Authername').val();
-            data.push("{{ author }}");
-            temp = [];
-            if (authorName != "") {
-              temp = data[count].split(", ");
-              temp.forEach(function (item, index, array) {
-                //if (authorName == item)
-                console.log(item);
-
-              });
-            }
-            count++;
-            var idd = "authorTab" + count;
-          </script>
-
           <tr>
-
             <td>{{id}}</td>
             <td>{{bookName}}</td>
-            <td>{{catagory}}</td>
+            <td>{{category}}</td>
             <td>{{author}}</td>
             <td>Chưa cập nhật</td>
             <td>{{year}}</td>
@@ -207,9 +261,7 @@
             <td></td>
             {{/if}}
           </tr>
-          <script>
-            console.log(document.getElementById(idd));
-          </script>
+
           {{/each}}
 
         </tbody>
@@ -237,10 +289,7 @@
     limit: 3,
     page: 1
   }
-  function limitChange(li) {
-    params.limit = li.value;
-    console.log(params.limit);
-  }
+
   for (let key in params) {
     if (!URLParams.has(key)) {
       URLParams.append(key, params[key]);
@@ -277,7 +326,11 @@
 
   }
   function searchFunction() {
-    console.log($('#search').val());
     selectParam('search', $('#search').val());
+  }
+  let idFind = 0;
+  function find() {
+    idFind = $('#idEdit').val();
+    console.log(idFind);
   }
 </script>

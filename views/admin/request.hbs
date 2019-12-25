@@ -142,8 +142,8 @@
           <button class="btn btn-success"><i class="fa fa-check"></i> Xác nhận</button>
           <button href="#" class="btn btn-danger"><i class="fa fa-times"></i> Từ chối</button>
           <br>
-          <a data-toggle="collapse" href="#collapseNote">Ghi chú thêm cho người dùng này</a>
-          <div class="collapse" id="collapseNote">
+          <a data-toggle="collapse" href="#collapseNote2">Ghi chú thêm cho người dùng này</a>
+          <div class="collapse" id="collapseNote2">
             <div class="card card-body">
               <form>
                 <div class="form-group">
@@ -165,3 +165,57 @@
   </section>
 
 </div>
+<script>
+  let URLParams = new URLSearchParams(location.search)
+  let params = {
+    search: '',
+
+    limit: 3,
+    page: 1
+  }
+
+  for (let key in params) {
+    if (!URLParams.has(key)) {
+      URLParams.append(key, params[key]);
+    }
+  }
+  $(document).ready(function () {
+
+    $("#li").val(URLParams.get('limit'));
+
+
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    let savePage = URLParams.get('page');
+    $('#pagination li a').each((index, item) => {
+      let page = $(item).attr('href').split('=')[1];
+      URLParams.set('page', page);
+      let href = `/admin/author-management?${URLParams.toString()}`;
+      $(item).attr('href', href);
+
+    });
+    URLParams.set('page', savePage);
+  });
+
+  function selectParam(key, value, reset = false) {
+
+    if (reset) {
+      for (let key in params) {
+        URLParams.set(key, params[key]);
+      }
+    }
+    URLParams.set(key, value);
+    let url = `/admin/author-management?${URLParams.toString()}`;
+    location.href = url;
+
+  }
+  function searchFunction() {
+    selectParam('search', $('#search').val());
+  }
+
+  function limitChange(li) {
+    selectParam('limit', li.value);
+  }
+
+
+</script>

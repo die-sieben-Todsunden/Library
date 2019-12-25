@@ -179,4 +179,29 @@ controller.getById = id => {
   });
 };
 
+controller.createBookInfo = bookInfos => {
+  return bookInfo.create(bookInfos);
+};
+
+controller.getBookByISBN = isbn => {
+  return bookInfo.findOne({
+    where: { ISBN_API: isbn }
+  });
+};
+controller.getAllId = query => {
+  return new Promise((resovle, reject) => {
+    let options = {
+      where: {}
+    };
+
+    options.where.id = {
+      [Op.iLike]: `%${query}%`
+    };
+
+    bookInfo
+      .findAll(options)
+      .then(data => resovle(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
 module.exports = controller;
