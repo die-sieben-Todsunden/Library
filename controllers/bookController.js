@@ -230,7 +230,6 @@ controller.getById = id => {
     });
 };
 
-<<<<<<< HEAD
 controller.createBookInfo = bookInfos => {
   return bookInfo.create(bookInfos);
 };
@@ -257,6 +256,3 @@ controller.getAllId = query => {
   });
 };
 module.exports = controller;
-=======
-module.exports = controller;
->>>>>>> 46257b7b34649052976857a1db17e13ead871d3a
