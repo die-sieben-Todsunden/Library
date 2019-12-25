@@ -46,7 +46,7 @@
                   </div>
                   <div class="controlbtn">
                     <button id="moreinfo" onclick="Moreinfo(1);">Xem thêm</button>
-                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
+                    <button id="borrow" onclick="Borrow(1);">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -74,8 +74,8 @@
                     </p>
                   </div>
                   <div class="controlbtn">
-                    <button id="moreinfo" onclick="Moreinfo(1);">Xem thêm</button>
-                    <button id="borrow" onclick="Borrow();">Mượn sách</button>
+                    <button id="moreinfo" onclick="Moreinfo({{id}});">Xem thêm</button>
+                    <button id="borrow" onclick="Borrow({{id}});">Mượn sách</button>
                   </div>
                 </div>
               </div>
@@ -231,9 +231,9 @@
     document.getElementById("search").hidden = false;
   };
 
-  function Borrow() {
+  function Borrow(id) {
     localStorage.setItem("isbn", "053av55");
-    window.location = "/user/schedule";
+    window.location = `user/schedule/${id}`;
   };
 
   function Moreinfo(id) {

@@ -19,22 +19,38 @@
                         {{{description}}}
                     </div>
                 </div>
+                
+                <button class="btn" onclick="borrow({{id}})">Mượn sách</button>
                 {{/with}}
-                <button class="btn">Mượn sách</button>
             </div>
         </div>
         <h5 style="margin-left:40px;">Dành riêng cho bạn:</h5>
         <div class="row " id="body-content-bottom">
             {{#each same}}
+            
             <div class="col-md-4 " style="text-align: center;">
-                <img src="/public/img/Book2.jpg" alt="">
+                <a href="./{{id}}">
+                    <img src="/public/img/Book2.jpg" alt="">
+                </a>
                 <p>{{bookName}}</p>
             </div>
+            
             {{/each}}
         </div>
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script language="javascript">
+
+        function borrow(id){
+            location.href=`../user/schedule/${id}`;
+        }
+        function moreInfo(id){
+
+            window.location=`/${id}`;
+        }
+    </script>
+    {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> --}}
 

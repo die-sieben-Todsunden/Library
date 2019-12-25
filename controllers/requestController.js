@@ -1,10 +1,10 @@
 let controller = {};
 let models = require("../models");
 let Request = models.Request;
-let Sequelize = require("sequelize");
-let Op = Sequelize.Op;
+let bcrypt = require("bcryptjs");
 
 controller.createRequest = request => {
-  return Request.create(request);
+    return Request.create(request);
 };
+
 module.exports = controller;

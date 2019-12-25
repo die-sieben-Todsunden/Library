@@ -1,128 +1,129 @@
 <link rel="stylesheet" href="/public/css/schedule.css">
 <!-- Body ---------------------------------------------------------------------------------------------->
 <h3 style="text-align: center; margin-top: 40px;">Hẹn lịch</h3>
+
 <div class="container">
-    <div class="row">
-        <div class="col-lg-2">Hẹn lịch: </div>
-        <div class="col-lg-9">
-            <div class="dropdown" style="margin-bottom: 20px;">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="Keyword" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Mượn sách
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div id="bookname">
-                        <a class="dropdown-item" href="#">Mượn sách</a>
-                    </div>
-                    <a class="dropdown-item" href="#" id="booktopic">Xem sách</a>
-                    <a class="dropdown-item" href="#" id="authername">Trả sách</a>
+    <form action="{{id}}" method="POST">
+        {{#if message}}
+              <div class="form-group alert {{type}}">
+                <strong>{{message}}</strong>
+              </div>
+        {{/if}}
+        <div class="row">
+            <div class="col-lg-2">Hẹn lịch: </div>
+            <div class="col-lg-9">
+                <div class="dropdown" style="margin-bottom: 20px;">
+                    
+                    <select name="type" id="type">
+                        <option value="Borrow book" >Mượn sách</option>
+                        <option value="View book"  id="booktopic">Xem sách</option>
+                        <option value="Return book"  id="authername">Trả sách</option>
+                    </select>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row" style="margin-top: 12  px;">
-        <div class="col-lg-2">Mã sách: </div>
-        <div class="col-lg-8">
-            <div class="form-group">
-                <input type="text" class="form-control" id="inputISBN"
-                    placeholder="Nhập mã isbn của sách mà bạn muốn mượn/xem/trả ">
+        <div class="row" style="margin-top: 12  px;">
+            <div class="col-lg-2">Mã sách: </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="inputISBN" id="inputISBN"
+                        placeholder="Nhập mã isbn của sách mà bạn muốn mượn/xem/trả " readonly>
+                </div>
+            </div>
+            <div class="col-lg-2 row">
+                <a id="inputvalue_isbn_moreinfo" data-toggle="modal" data-target="#inputvalue_isbn_modal"
+                    disable="true"><i>Kiểm
+                        tra thông tin</i></a>
+                <div class="modal fade" id="inputvalue_isbn_modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="row">
+                                    <h5 style="margin-bottom: 0">--Mã sách: &nbsp</h5>
+                                    <h5 class="modal-title" id="inputvalue_isbn_modal_title" style="margin: none!important">
+                                </div>
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p><i>Chắc chắn rằng bạn đã nhập đúng mã sách</i></p>
+                                <img src="/public/img/book1.png" style="height:200px"> 
+                                <p id="bookName">Tên sách: </p>
+                                <p id="authorName">Tác giả </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-2 row">
-            <a id="inputvalue_isbn_moreinfo" data-toggle="modal" data-target="#inputvalue_isbn_modal"
-                disable="true"><i>Kiểm
-                    tra thông tin</i></a>
-            <div class="modal fade" id="inputvalue_isbn_modal" tabindex="-1" role="dialog"
+        <div class="row">
+            <div class="col-lg-2">Ngày hẹn: </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <input id="datepicker" />
+                </div>
+            </div>
+            <a class="col-lg-2" id="inputvalue_date" data-toggle="modal" data-target="#inputvalue_date_modal"></a>
+            <div class="modal fade" id="inputvalue_date_modal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="row">
-                                <h5 style="margin-bottom: 0">--Mã sách: &nbsp</h5>
-                                <h5 class="modal-title" id="inputvalue_isbn_modal_title" style="margin: none!important">
-                            </div>
-                            </h5>
+                            <h5 class="modal-title" id="inputvalue_date_modal_title">
 
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-
                         </div>
                         <div class="modal-body">
-                            <p><i>Chắc chắn rằng bạn đã nhập đúng mã sách</i></p>
-                            <img src="/public/img/book1.png" style="height:200px"> 
-                            <p id="bookName">Tên sách: </p>
-                            <p id="authorName">Tác giả </p>
+                            ...
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2">Ngày hẹn: </div>
-        <div class="col-lg-8">
-            <div class="form-group">
-                <input id="datepicker" />
-            </div>
-        </div>
-        <a class="col-lg-2" id="inputvalue_date" data-toggle="modal" data-target="#inputvalue_date_modal"></a>
-        <div class="modal fade" id="inputvalue_date_modal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="inputvalue_date_modal_title">
-
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
+        <div class="row">
+            <div class="col-lg-2">Nội dung khác: </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <textarea class="form-control" name="note" id="note" rows="3"></textarea>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2">Nội dung khác: </div>
-        <div class="col-lg-8">
-            <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </div>
-    </div>
-    <div style="display: flex; justify-content: flex-end" class="container">
+        <div style="display: flex; justify-content: flex-end" class="container">
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm">
-            Hẹn lịch
-        </button>
+            <button type="submit" value="Submit" class="btn btn-primary" data-toggle="modal" data-target="#confirm">
+                Hẹn lịch
+            </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Xác nhận hẹn lịch thành công</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Yêu cầu hẹn lịch của bạn đã được thực hiện thành công. Xin chờ phản hồi từ thủ thư.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tiếp tục</button>
-                        <button type="button" class="btn btn-primary" onclick="backhome()">Về trang chủ</button>
+            <!-- Modal -->
+            <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xác nhận hẹn lịch thành công</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Yêu cầu hẹn lịch của bạn đã được thực hiện thành công. Xin chờ phản hồi từ thủ thư.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tiếp tục</button>
+                            <button type="button" class="btn btn-primary" onclick="backhome()">Về trang chủ</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </form>
 </div>
 <script>
     var id = [];
@@ -173,11 +174,12 @@
                 window.location = "/";
             }
     
-        /*$('#datepicker').change(function (event) {
+        $(document).ready(function () {
+        $('#datepicker').change(function (event) {
         var date = $('#datepicker').val();
     
             $('#inputvalue_date').html(date);
-            });*/
+            });
     
         $('#inputISBN').change(function (event) {
             var isbn = $('#inputISBN').val();
@@ -189,5 +191,6 @@
             var date2 = $('#inputISBN').val();
             console.log($('#inputISBN').val());
             $('#inputvalue_isbn_modal_title').html(date2);
+        });
         });
 </script>
