@@ -8,7 +8,7 @@ require("dotenv").config();
 router.get("/books", function(req, res, next) {
   let booksController = require("../controllers/bookManagementController");
   let user = res.locals.user;
-  console.log(user);
+
   booksController
     .getAll(user.id)
     .then(data => {
@@ -18,7 +18,22 @@ router.get("/books", function(req, res, next) {
     })
     .catch(error => next(error));
 });
-
+router.get("/schedule/:id", function(req, res) {
+  if (res.locals.isLoggedIn) {
+    let booksController = require("../controllers/bookController");
+    console.log(req.params.id);
+    booksController
+      .getById(req.params.id)
+      .then(data => {
+        console.log(data);
+        res.locals.books = data;
+        res.render("schedule");
+      })
+      .catch(error => next(error));
+  } else {
+    res.render("login");
+  }
+});
 router.get("/schedule", function(req, res) {
   if (res.locals.isLoggedIn) {
     res.render("schedule");
@@ -26,6 +41,7 @@ router.get("/schedule", function(req, res) {
     res.render("login");
   }
 });
+
 router.get("/profile", function(req, res) {
   res.render("profile");
 });
@@ -45,6 +61,18 @@ router.post("/login", function(req, res, next) {
   let password = req.body.password;
   // console.log(email);
   // console.log(password);
+  if (userName == undefined || userName =='') {
+    return res.render("login", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
+  if (password == undefined|| password =='') {
+    return res.render("login", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
   userController.getUserByUserName(userName).then(user => {
     if (user) {
       if (userController.comparePassword(password, user.password)) {
@@ -65,7 +93,7 @@ router.post("/login", function(req, res, next) {
       }
     } else {
       res.render("login", {
-        message: "password is incorect",
+        message: `no account with ${userName}`,
         type: "alert-danger"
       });
     }

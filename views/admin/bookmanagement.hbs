@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="/public/css/resetAdmin.css">
 <link rel="stylesheet" href="/public/css/adminBook.css">
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script type="text/javascript" src="/public/js/menuAdmin.js"></script>
-
+<script type="text/javascript" src="/public/js/helper.js"></script>
 
 <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
@@ -87,7 +88,7 @@
     <form>
       <div class="form-group">
         <label for="search">Nhập tên sách: </label>
-        <input type="email" class="form-control" id="search" placeholder="ví dụ: Nhập môn">
+        <input class="form-control" id="search" placeholder="ví dụ: Nhập môn">
       </div>
     </form>
   </div>
@@ -101,8 +102,8 @@
             <input type="email" class="form-control" id="searchAdv_Authername" placeholder="Nhập tên của tác giả">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Thể loại</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <label for="searchAdv_Catagory">Thể loại</label>
+            <select class="form-control" id="searchAdv_Catagory">
               <option>Tất cả</option>
               <option>Lập trình web</option>
               <option>Java</option>
@@ -136,9 +137,18 @@
       <button type="button" class="btn btn-primary" onclick="searchFunction()">Sửa sách</button>
       <button type="button" class="btn btn-primary" onclick="searchFunction()">Xóa sách</button>
     </div>
-    <div id="showRes">Hiển thị 20 / 30 kết quả</div>
-    <div style="overflow-x:auto;">
-      <table class="table table-bordered table-dark">
+    <div class="form-group">
+      <label for="pageLimit">Số kết quả hiển thị / trang: </label>
+      <select class="form-control" id="pageLimit" onchange="selectParam('limit' , this.value)">
+        <option>3</option>
+        <option>6</option>
+        <option>9</option>
+
+      </select>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-dark fixed">
         <thead>
           <tr>
             <th>STT</th>
@@ -158,102 +168,116 @@
           </tr>
         </thead>
         <tbody>
+          <script>data = []; count = 0; let check1 = "true";</script>
+          {{#each books}}
+          <script>
+            var authorName = $('searchAdv_Authername').val();
+            data.push("{{ author }}");
+            temp = [];
+            if (authorName != "") {
+              temp = data[count].split(", ");
+              temp.forEach(function (item, index, array) {
+                //if (authorName == item)
+                console.log(item);
+
+              });
+            }
+            count++;
+            var idd = "authorTab" + count;
+          </script>
+
           <tr>
-            <td>1</td>
-            <td>Nhập môn lập trình</td>
-            <td>
-              <ul>
-                <li>Nhập môn</li>
-                <li>C/C++</li>
-              </ul>
-            </td>
+
+            <td>{{id}}</td>
+            <td>{{bookName}}</td>
+            <td>{{catagory}}</td>
+            <td>{{author}}</td>
             <td>Chưa cập nhật</td>
-            <td>Nhà xuất bản thanh niên</td>
-            <td>2013</td>
-            <td>1</td>
-            <td>4</td>
-            <td>123AFG00</td>
-            <td>28</td>
-            <td>12</td>
-            <td>15</td>
-            <td>img/book1.png</td>
-            <td>
-              <input type="checkbox" aria-label="Checkbox for following text input">
-            </td>
+            <td>{{year}}</td>
+            <td></td>
+            <td></td>
+            <td>{{ISBN_API}}</td>
+            <td>{{total}}</td>
+            <td>{{borrowed}}</td>
+            <td>{{remain}}</td>
+            <td>{{imgPath}}</td>
+            {{#if isHidden}}
+            <td>x</td>
+            {{else}}
+            <td></td>
+            {{/if}}
           </tr>
-          <tr>
-            <td>1</td>
-            <td>Nhập môn lập trình</td>
-            <td>
-              <ul>
-                <li>Nhập môn</li>
-                <li>C/C++</li>
-              </ul>
-            </td>
-            <td>Chưa cập nhật</td>
-            <td>Nhà xuất bản thanh niên</td>
-            <td>2013</td>
-            <td>1</td>
-            <td>4</td>
-            <td>123AFG00</td>
-            <td>28</td>
-            <td>12</td>
-            <td>15</td>
-            <td>img/book1.png</td>
-            <td>
-              <input type="checkbox" aria-label="Checkbox for following text input">
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Nhập môn lập trình</td>
-            <td>
-              <ul>
-                <li>Nhập môn</li>
-                <li>C/C++</li>
-              </ul>
-            </td>
-            <td>Chưa cập nhật</td>
-            <td>Nhà xuất bản thanh niên</td>
-            <td>2013</td>
-            <td>1</td>
-            <td>4</td>
-            <td>123AFG00</td>
-            <td>28</td>
-            <td>12</td>
-            <td>15</td>
-            <td>img/book1.png</td>
-            <td>
-              <input type="checkbox" aria-label="Checkbox for following text input">
-            </td>
-          </tr>
+          <script>
+            console.log(document.getElementById(idd));
+          </script>
+          {{/each}}
+
         </tbody>
       </table>
 
     </div>
+    <nav class="nav justify-content-center" aria-label="Page navigation example" id="pagination">
+      {{{createPagination pagination paginationClass = "pagination"}}}
+    </nav>
+
+
   </section>
 
 </div>
 
+
 <script>
-  data = [{
 
-  }]
 
-  data = [];
-  document.getElementById('tableContent').style.display = 'none';
-  var hide = true;
-  function searchFunction() {
-    hide = false;
-    document.getElementById('tableContent').style.display = 'block';
+  let URLParams = new URLSearchParams(location.search)
+  let params = {
+    search: '',
+    type: 'bookName',
+    sort: 'bookNameASC',
+    limit: 3,
+    page: 1
   }
-
+  function limitChange(li) {
+    params.limit = li.value;
+    console.log(params.limit);
+  }
+  for (let key in params) {
+    if (!URLParams.has(key)) {
+      URLParams.append(key, params[key]);
+    }
+  }
   $(document).ready(function () {
-    $('#dtHorizontalExample').DataTable({
-      "scrollX": true
+    $("#sort").val(URLParams.get('sort'));
+    $("#limit").val(URLParams.get('limit'));
+    $("#keyWord").val(URLParams.get('type'));
+
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    let savePage = URLParams.get('page');
+    $('#pagination li a').each((index, item) => {
+      let page = $(item).attr('href').split('=')[1];
+      URLParams.set('page', page);
+      let href = `/admin/book-management?${URLParams.toString()}`;
+      $(item).attr('href', href);
+
     });
-    $('.dataTables_length').addClass('bs-select');
+    URLParams.set('page', savePage);
   });
 
+  function selectParam(key, value, reset = false) {
+    console.log(location.href);
+    if (reset) {
+      for (let key in params) {
+        URLParams.set(key, params[key]);
+      }
+    }
+    URLParams.set(key, value);
+    let url = `/admin/book-management?${URLParams.toString()}`;
+    location.href = url;
 
+  }
+  function searchFunction() {
+    console.log($('#search').val());
+    selectParam('search', $('#search').val());
+  }
 </script>
