@@ -29,10 +29,12 @@ router.post("/schedule/:id",
         let bookId = req.body.inputISBN;
         let note = req.body.note;
         let userId = res.locals.user.id;
+        let appointmentDate = req.body.datepicker;
 
         request = {
             type,
             note,
+            appointmentDate,
             status: 'Not Checked',
             bookInfoId: bookId,
             UserId: userId
@@ -93,36 +95,36 @@ router.get("/login", function(req, res) {
 router.get("/signUp", function(req, res) {
     res.render("SignUp");
 });
-router.post("/profile",(req, res, next)=>{
-  tmp = req.session.user;
-  let fullName = req.body.name==''?tmp.name:req.body.name;
-  let id = req.body.id==''?tmp.personalID:req.body.id;
-  let dob = req.body.dob==''?tmp.birth:req.body.dob;
-  let address = req.body.address==''?tmp.address:req.body.address;
-  let phone = req.body.phone==''?tmp.phone:req.body.phone;
-  // console.log(req.session.user);
-  // console.log(req.body);
-  
-  // console.log(tmp.email)
-  userController.getUserByEmail(tmp.email)
-    .then(user=>{
-      if(user){
-        user.update({
-          name:fullName,
-          personalID:id,
-          address,
-          birth:dob,
-          phone
+router.post("/profile", (req, res, next) => {
+    tmp = req.session.user;
+    let fullName = req.body.name == '' ? tmp.name : req.body.name;
+    let id = req.body.id == '' ? tmp.personalID : req.body.id;
+    let dob = req.body.dob == '' ? tmp.birth : req.body.dob;
+    let address = req.body.address == '' ? tmp.address : req.body.address;
+    let phone = req.body.phone == '' ? tmp.phone : req.body.phone;
+    // console.log(req.session.user);
+    // console.log(req.body);
+
+    // console.log(tmp.email)
+    userController.getUserByEmail(tmp.email)
+        .then(user => {
+            if (user) {
+                user.update({
+                    name: fullName,
+                    personalID: id,
+                    address,
+                    birth: dob,
+                    phone
+                })
+                req.session.user = user;
+                res.locals.user = user;
+                return res.render("profile", {
+                    message: "Update User Info Success",
+                    type: "alert-primary"
+                });
+            }
         })
-        req.session.user = user;
-        res.locals.user = user;
-        return res.render("profile", {
-          message: "Update User Info Success",
-          type: "alert-primary"
-        });
-      }
-    })
-    .catch(error => next(error));
+        .catch(error => next(error));
 })
 router.post("/login", function(req, res, next) {
     let userName = req.body.username;
@@ -196,25 +198,25 @@ router.post("/resetPasswordRequest", function(req, res, next) {
             port: 25,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: "e6026b842e6d96", // generated ethereal user
-              pass: "c6e7d292d11d34" // generated ethereal password
+                user: "e6026b842e6d96", // generated ethereal user
+                pass: "c6e7d292d11d34" // generated ethereal password
             }
             // service: 'gmail',
             // auth:{
             //   user:'chromevi123@gmail.com',
             //   pass:''
             // }
-          });
+        });
         transporter.sendMail({
-          from: 'admin.library@library.hcmus.edu.vn', // sender address
-          to: `${user.email}`, // list of receivers
-          subject: "Reset password library", // Subject line
-          html: `<a href="http://localhost:3000/user/resetPassword/${token}">Link Locahost</a>
+            from: 'admin.library@library.hcmus.edu.vn', // sender address
+            to: `${user.email}`, // list of receivers
+            subject: "Reset password library", // Subject line
+            html: `<a href="http://localhost:3000/user/resetPassword/${token}">Link Locahost</a>
           <a href="https://ptudw-17clc-07-library.herokuapp.com/user/resetPassword/${token}">Link heroku</a>` // html body
         });
         return res.render("resetPasswordRequest", {
-          message: `Password reset for ${resetPasswordEmail} has been send.`,
-          type: "alert-primary"
+            message: `Password reset for ${resetPasswordEmail} has been send.`,
+            type: "alert-primary"
         });
     });
     console.log(resetPasswordEmail);
