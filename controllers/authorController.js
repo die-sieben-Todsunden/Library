@@ -15,9 +15,10 @@ controller.getAll = query => {
     }
     console.log(query.search);
     if (query.search) {
-      options.where.name = {
-        [Op.iLike]: `%${query.search}%`
-      };
+      if (query.search != "")
+        options.where.name = {
+          [Op.iLike]: `%${query.search}%`
+        };
     }
     Author.findAndCountAll(options)
       .then(data => resovle(data))

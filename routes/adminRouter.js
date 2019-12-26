@@ -123,65 +123,60 @@ router.get("/account-management", (req, res, next) => {
   }
 
   let accountController = require("../controllers/accountController");
-  if (req.query.search == "") {
-    res.locals.User = null;
-    console.log("!");
-    res.render("admin/accountmanagement");
-  } else {
-    console.log(req.query.type);
-    if (req.query.type == "userName") {
-      console.log("sss");
-      accountController
-        .getAllUserName(req.query)
-        .then(data => {
-          //console.log(data.length);
-          res.locals.User = data.rows;
-          res.locals.pagination = {
-            page: parseInt(req.query.page),
-            limit: parseInt(req.query.limit),
-            totalRows: data.count
-          };
-          //console.log(res.locals.books);
-          res.render("admin/accountmanagement");
-        })
-        .catch(error => {
-          next(error);
-        });
-    }
-    if (req.query.type == "name") {
-      accountController
-        .getAllName(req.query)
-        .then(data => {
-          //console.log(data.length);
-          res.locals.User = data.rows;
-          res.locals.pagination = {
-            page: parseInt(req.query.page),
-            limit: parseInt(req.query.limit),
-            totalRows: data.count
-          };
-          res.render("admin/accountmanagement");
-        })
-        .catch(error => {
-          next(error);
-        });
-    }
-    if (req.query.type == "personalID") {
-      accountController
-        .getAllPersonalID(req.query)
-        .then(data => {
-          //console.log(data.length);
-          res.locals.User = data.rows;
-          res.locals.pagination = {
-            page: parseInt(req.query.page),
-            limit: parseInt(req.query.limit),
-            totalRows: data.count
-          };
-          res.render("admin/accountmanagement");
-        })
-        .catch(error => {
-          next(error);
-        });
-    }
+
+  console.log(req.query.type);
+  if (req.query.type == "userName") {
+    console.log("sss");
+    accountController
+      .getAllUserName(req.query)
+      .then(data => {
+        //console.log(data.length);
+        res.locals.User = data.rows;
+        res.locals.pagination = {
+          page: parseInt(req.query.page),
+          limit: parseInt(req.query.limit),
+          totalRows: data.count
+        };
+        //console.log(res.locals.books);
+        res.render("admin/accountmanagement");
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+  if (req.query.type == "name") {
+    accountController
+      .getAllName(req.query)
+      .then(data => {
+        //console.log(data.length);
+        res.locals.User = data.rows;
+        res.locals.pagination = {
+          page: parseInt(req.query.page),
+          limit: parseInt(req.query.limit),
+          totalRows: data.count
+        };
+        res.render("admin/accountmanagement");
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+  if (req.query.type == "personalID") {
+    accountController
+      .getAllPersonalID(req.query)
+      .then(data => {
+        //console.log(data.length);
+        res.locals.User = data.rows;
+        res.locals.pagination = {
+          page: parseInt(req.query.page),
+          limit: parseInt(req.query.limit),
+          totalRows: data.count
+        };
+        res.render("admin/accountmanagement");
+      })
+      .catch(error => {
+        next(error);
+      });
   }
 });
 
@@ -193,7 +188,7 @@ router.get("/author-management", (req, res, next) => {
     req.query.page = 1;
   }
   if (req.query.search == null || req.query.search.trim() == "") {
-    req.query.search = " ";
+    req.query.search = "";
   }
   let authorController = require("../controllers/authorController");
 
