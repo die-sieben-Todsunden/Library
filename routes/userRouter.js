@@ -58,9 +58,9 @@ router.post("/schedule/:id",
             })
             .catch(error => next(error))
     });
+
 router.get("/schedule/:id", function(req, res) {
     if (res.locals.isLoggedIn) {
-
         console.log(req.params.id);
         booksController
             .getById(req.params.id)
@@ -71,14 +71,14 @@ router.get("/schedule/:id", function(req, res) {
             })
             .catch(error => next(error));
     } else {
-        res.render("/user/login");
+        res.redirect("/user/login");
     }
 });
 router.get("/schedule", function(req, res) {
     if (res.locals.isLoggedIn) {
         res.render("schedule");
     } else {
-        res.render("login");
+        res.redirect("/user/login");
     }
 });
 

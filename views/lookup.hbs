@@ -68,7 +68,7 @@
         <form>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Tac gia</label>
-             <select class="form-control" id="exampleFormControlSelect1" onchange="selectParam('author' , this.value)">
+            <select class="form-control" id="selectAuthor" onchange="selectParam('author' , this.value)">
               {{#each same}}
               <option>{{author}}</option>
               {{/each}}
@@ -172,6 +172,7 @@
     search: '',
     type: 'bookName',
     author:'',
+    category:'',
     sort: 'bookNameASC',
     limit: 3,
     page: 1
@@ -186,6 +187,8 @@
     $("#sort").val(URLParams.get('sort'));
     $("#limit").val(URLParams.get('limit'));
     $("#keyWord").val(URLParams.get('type'));
+    $("#selectAuthor").val(URLParams.get('author'));
+    $("selectCategory").val(URLParams.get('category'));
 
     $('#pagination li').addClass('page-item');
     $('#pagination li a').addClass('page-link');

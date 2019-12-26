@@ -22,38 +22,13 @@
       <div class="contentWrapper" style="height: 300px;">
         <div class=" carousel-inner col-lg-10" style="margin-left:50%; transform: translate(-50%)">
 
-          <div class="carousel-item active">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-3">
-                  <div class="content_img">
-                    <img src="/public/img/Book1.png" alt="">
-                  </div>
-                </div>
-                <div class="col-lg-9 bookinfo">
-                  <div class="bookname">
-                    <h3>The Oxford Book of American Short Stories</h3>
-                  </div>
-                  <div class="bookauthor">
-                    <p>Joyce Carol Oates</p>
-                  </div>
-                  <div class="booksummary">
-                    <p>
-                      <p>Edited by award-winning poet and essayist Mary Oliver, the latest edition of this "rich and
-                        thoughtful collection" (<i>Publishers Weekly</i>) offers the finest essays "judiciously selected
-                        from countless publications" (<i>Chicago Tribune</i>).</p>
-                    </p>
-                  </div>
-                  <div class="controlbtn">
-                    <button id="moreinfo" onclick="Moreinfo(1);">Xem thêm</button>
-                    <button id="borrow" onclick="Borrow(1);">Mượn sách</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           {{#each books}}
+          {{#if @first}}
+          <div class="carousel-item active">
+            {{else}}
           <div class="carousel-item">
+            {{/if}}
             <div class="container">
               <div class="row">
                 <div class="col-lg-3">
