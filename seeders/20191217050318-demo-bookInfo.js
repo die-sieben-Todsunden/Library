@@ -24,14 +24,17 @@ module.exports = {
       //
       //
       // console.log(httpGet(url));
-      // var response = httpGet(url);
-      // var results = JSON.parse(response);
-      // if (results.totalItems) {
-      //   var book = results.items[0];
-      //   item.language = (book["volumeInfo"]["language"]);
+      var response = httpGet(url);
+      var results = JSON.parse(response);
+      if (results.totalItems) {
+        var book = results.items[0];
+        item.category = (book["volumeInfo"]["categories"][0]);
+        item.imgPath = (book["volumeInfo"]["imageLinks"][1]);
+        item.edition = (book["volumeInfo"]["averageRating"][0]);
+      }
       //   // console.log(book["volumeInfo"]["language"]);
       // }
-      item.language = "en";
+      // item.language = "en";
       //
       //
       item.year = item.year.slice(item.year.length - 4, item.year.length);

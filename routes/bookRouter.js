@@ -5,6 +5,9 @@ router.get("/", (req, res, next) => {
     if (req.query.sort == null) {
         req.query.sort = 'null';
     }
+    if (req.query.author == null) {
+        req.query.author = '';
+    }
     if (req.query.limit == null || isNaN(req.query.limit)) {
         req.query.limit = 3;
     }
