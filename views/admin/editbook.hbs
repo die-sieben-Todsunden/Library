@@ -1,0 +1,468 @@
+<link rel="stylesheet" href="/public/css/resetAdmin.css">
+<link rel="stylesheet" href="/public/css/adminBook.css">
+<link rel="stylesheet" href="/public/css/adminEdit.css">
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script type="text/javascript" src="/public/js/menuAdmin.js"></script>
+<script type="text/javascript" src="/public/js/helper.js"></script>
+
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center"><img
+        src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65"
+        class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h5 class="m-0">Phạm Khánh Duy</h5>
+        <p class="font-weight-light text-muted mb-0">Quản lí thư viện</p>
+      </div>
+    </div>
+    <div class="adminLogout" style="text-align: right">
+      <a href="/user/logout">Log out</a>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="/admin" class="nav-link text-dark font-italic">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Trang chủ
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/book-management" class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Quản lí sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/account-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-user mr-3 text-primary fa-fw"></i>
+        Quản lí tài khoản
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/author-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-pencil mr-3 text-primary fa-fw"></i>
+        Danh mục tác giả
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/catagory-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Thể loại sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/request" class="nav-link text-dark font-italic">
+        <i class="fa fa-exclamation mr-3 text-primary fa-fw"></i>
+        Yêu cầu (0)
+
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/borrow-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Sách đang được mượn
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/statistic" class="nav-link text-dark font-italic">
+        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+        Thống kê
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+<!-- Page content holder -->
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+      class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+
+  <!-- Demo content -->
+  <h2 class="display-4 text-white">Quản lí sách / Sửa thông tin sách</h2>
+  <hr>
+  <section>
+    <div class="table-responsive">
+      <table class=" table table-bordered table-dark fixed">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên sách</th>
+            <th>Thể loại sách</th>
+            <th>Tác giả</th>
+            <th>Nhà xuất bản</th>
+            <th>Năm xuất bản</th>
+            <th>Version</th>
+            <th>Tái bản</th>
+            <th>ISBN</th>
+            <th>Số lượng</th>
+            <th>Đã cho mượn</th>
+            <th>Còn lại</th>
+            <th>Link hình ảnh</th>
+            <th>Ẩn</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each books}}
+          <tr>
+            <td id="info1">{{id}}</td>
+            <td id="info2">{{bookName}}</td>
+            <td id="info3">{{category}}</td>
+            <td id="info4">{{author}}</td>
+            <td id="info5">Chưa cập nhật</td>
+            <td id="info6">{{year}}</td>
+            <td id="info7"></td>
+            <td id="info8"></td>
+            <td id="info9">{{ISBN_API}}</td>
+            <td id="info10">{{total}}</td>
+            <td id="info11">{{borrowed}}</td>
+            <td id="info12">{{remain}}</td>
+            <td id="info13">{{imgPath}}</td>
+            {{#if isHidden}}
+            <td id="info14">x</td>
+            {{else}}
+            <td id="info14"></td>
+            {{/if}}
+          </tr>
+
+          {{/each}}
+          <tr class="edit">
+            <td></td>
+            <td id="1">----> Edit info
+            </td>
+            <td id="2">----> Edit info</td>
+            <td id="3">----> Edit info</td>
+            <td id="4">----> Edit info</td>
+            <td id="5">----> Edit info</td>
+            <td id="6">----> Edit info</td>
+            <td id="7">----> Edit info</td>
+            <td id="8">----> Edit info</td>
+            <td id="9">----> Edit info</td>
+            <td id="10">----> Edit info</td>
+            <td id="11">----> Edit info</td>
+            <td id="12">----> Edit info</td>
+            <td id="13">----> Edit info</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <nav class="nav justify-content-center" aria-label="Page navigation example" id="pagination">
+      {{{createPagination pagination paginationClass = "pagination"}}}
+    </nav>
+
+  </section>
+  <form action="edit" method="POST">
+    <input name="nID" id="nID"></input>
+    <div class="card card-body" id="Expand1">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newName">Nhập thông tin mới: </label>
+        <input class="form-control" name="newName" id="newName"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand2">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newCategory">Nhập thông tin mới: </label>
+        <input class="form-control" name="newCategory" id="newCategory"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand3">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newAuthor">Nhập thông tin mới: </label>
+        <input class="form-control" name="newAuthor" id="newAuthor"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand4">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newEstablishment">Nhập thông tin mới: </label>
+        <input class="form-control" name="newEstablishment" id="newEstablishment"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand5">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newYear">Nhập thông tin mới: </label>
+        <input class="form-control" name="newỶear" id="newYear"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand8">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newISBN">Nhập thông tin mới: </label>
+        <input class="form-control" name="newISBN" id="newISBN"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand9">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newTotal">Nhập thông tin mới: </label>
+        <input class="form-control" name="newTotal" id="newTotal"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand10">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newBorrowed">Nhập thông tin mới: </label>
+        <input class="form-control" name="newBorrowed" id="newBorrowed"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand11">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newRemain">Nhập thông tin mới: </label>
+        <input class="form-control" name="newRemain" id="newRemain"></input>
+      </div>
+    </div>
+    <div class="card card-body" id="Expand12">
+      <h6>Sửa sách</h6>
+      <div class="form-group">
+        <label for="newImgPath">Nhập thông tin mới: </label>
+        <input class="form-control" name="newImgPath" id="newImgPath"></input>
+      </div>
+    </div>
+    <button type="submit" value="Submit" class="btn btn-primary" style="margin-top:30px">Sửa thông tin</button>
+  </form>
+</div>
+
+{{#each books}}
+<script>
+  $('#nID').val("{{id}}");
+  $('#newName').val("{{bookName}}");
+  $('#newCategory').val("{{category}}");
+  $('#newAuthor').val("{{author}}");
+  $('#newYear').val("{{year}}");
+  $('#newName').val("{{bookName}}");
+  $('#newISBN').val("{{ISBN_API}}");
+  $('#newTotal').val("{{total}}");
+  $('#newBorrowed').val("{{borrowed}}");
+  $('#newRemain').val("{{remain}}");
+  $('#newImgPath').val("{{imgPath}}");
+</script>
+{{/each}}
+
+<script>
+  let URLParams = new URLSearchParams(location.search)
+  let params = {
+    search: '',
+    type: 'bookName',
+    sort: 'bookNameASC',
+    limit: 3,
+    page: 1
+  }
+
+  for (let key in params) {
+    if (!URLParams.has(key)) {
+      URLParams.append(key, params[key]);
+    }
+  }
+  $(document).ready(function () {
+    $("#sort").val(URLParams.get('sort'));
+    $("#limit").val(URLParams.get('limit'));
+    $("#keyWord").val(URLParams.get('type'));
+
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    let savePage = URLParams.get('page');
+    $('#pagination li a').each((index, item) => {
+      let page = $(item).attr('href').split('=')[1];
+      URLParams.set('page', page);
+      let href = `/admin/book-management?${URLParams.toString()}`;
+      $(item).attr('href', href);
+
+    });
+    URLParams.set('page', savePage);
+  });
+
+  function selectParam(key, value, reset = false) {
+    console.log(location.href);
+    if (reset) {
+      for (let key in params) {
+        URLParams.set(key, params[key]);
+      }
+    }
+    URLParams.set(key, value);
+    let url = `/admin/book-management?${URLParams.toString()}`;
+    location.href = url;
+
+  }
+  $('#Expand1').hide();
+  $('#Expand2').hide();
+  $('#Expand3').hide();
+  $('#Expand4').hide();
+  $('#Expand5').hide();
+  $('#Expand6').hide();
+  $('#Expand7').hide();
+  $('#Expand8').hide();
+  $('#Expand9').hide();
+  $('#Expand10').hide();
+  $('#Expand11').hide();
+  $('#Expand12').hide();
+  $('#Expand13').hide();
+
+
+  var active = "";
+
+  $("#1").click(function () {
+    $('#Expand1').show();
+    if (active == "#Expand1") {
+      active = "";
+      $('#Expand1').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand1';
+    }
+  });
+
+  $("#2").click(function () {
+    $('#Expand2').show();
+    if (active == "#Expand2") {
+      active = "";
+      $('#Expand2').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand2';
+    }
+  });
+
+  $("#3").click(function () {
+    $('#Expand3').show();
+    if (active == "#Expand3") {
+      active = "";
+      $('#Expand3').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand3';
+    }
+  });
+
+  $("#4").click(function () {
+    $('#Expand4').show();
+    if (active == "#Expand4") {
+      active = "";
+      $('#Expand4').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand4';
+    }
+  });
+
+  $("#5").click(function () {
+    $('#Expand5').show();
+    if (active == "#Expand5") {
+      active = "";
+      $('#Expand5').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand5';
+    }
+  });
+
+  $("#6").click(function () {
+    $('#Expand6').show();
+    if (active == "#Expand6") {
+      active = "";
+      $('#Expand6').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand6';
+    }
+  });
+
+  $("#7").click(function () {
+    $('#Expand7').show();
+    if (active == "#Expand7") {
+      active = "";
+      $('#Expand7').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand7';
+    }
+  });
+
+  $("#8").click(function () {
+    $('#Expand8').show();
+    if (active == "#Expand8") {
+      active = "";
+      $('#Expand8').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand8';
+    }
+  });
+
+  $("#9").click(function () {
+    $('#Expand9').show();
+    if (active == "#Expand9") {
+      active = "";
+      $('#Expand9').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand9';
+    }
+  });
+
+  $("#10").click(function () {
+    $('#Expand10').show();
+    if (active == "#Expand10") {
+      active = "";
+      $('#Expand10').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand10';
+    }
+  });
+
+  $("#11").click(function () {
+    $('#Expand11').show();
+    if (active == "#Expand11") {
+      active = "";
+      $('#Expand11').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand11';
+    }
+  });
+
+  $("#12").click(function () {
+    $('#Expand12').show();
+    if (active == "#Expand12") {
+      active = "";
+      $('#Expand12').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand12';
+    }
+  });
+
+  $("#13").click(function () {
+    $('#Expand13').show();
+    if (active == "#Expand13") {
+      active = "";
+      $('#Expand13').hide();
+    }
+    else {
+      $(active).hide();
+      active = '#Expand13';
+    }
+  });
+</script>

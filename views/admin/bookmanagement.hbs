@@ -145,7 +145,8 @@
         aria-expanded="false" aria-controls="collapseEdit">
         Sửa sách
       </button>
-      <button type="button" class="btn btn-primary" onclick="searchFunction()">Xóa sách</button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRemove"
+        aria-expanded="false" aria-controls="collapseEdit">Xóa sách</button>
     </div>
     <div class="collapse" id="collapseAdd">
       <div class="card card-body">
@@ -199,7 +200,7 @@
     </div>
     <div class="collapse" id="collapseEdit">
       <div class="card card-body">
-        <form action="book-management" method="POST">
+        <form>
           <h6>Sửa sách</h6>
           <div class="form-group">
             <label for="idEdit">Nhập ID cuốn sách bạn muốn sửa: </label>
@@ -207,6 +208,19 @@
             <button type="button" class="btn btn-primary" onclick="find()">Tìm sách</button>
 
           </div>
+        </form>
+      </div>
+    </div>
+    <div class="collapse" id="collapseRemove">
+      <div class="card card-body">
+        <form action="book-management-remove" method="POST">
+          <h6>Xóa sách</h6>
+          <div class="form-group">
+            <label for="idEdit">Nhập ID cuốn sách bạn muốn xóa: </label>
+            <input class="form-control" name="idRemove" id="idRemove"></input>
+
+          </div>
+          <button type="submit" value="Submit" class="btn btn-primary">Xóa sách</button>
         </form>
       </div>
     </div>
@@ -331,6 +345,7 @@
   let idFind = 0;
   function find() {
     idFind = $('#idEdit').val();
-    console.log(idFind);
+    let url = "/admin/book-management/edit?search=" + idFind;
+    location.href = url;
   }
 </script>

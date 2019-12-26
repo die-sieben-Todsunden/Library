@@ -89,7 +89,7 @@ router.get("/book-management", (req, res, next) => {
     }
     if (req.query.type == "id") {
       return bookController
-        .getAllId(req.query.search)
+        .getAllId(req.query)
         .then(data => {
           //console.log(data.length);
           res.locals.books = data;
@@ -123,65 +123,60 @@ router.get("/account-management", (req, res, next) => {
   }
 
   let accountController = require("../controllers/accountController");
-  if (req.query.search == "") {
-    res.locals.User = null;
-    console.log("!");
-    res.render("admin/accountmanagement");
-  } else {
-    console.log(req.query.type);
-    if (req.query.type == "userName") {
-      console.log("sss");
-      accountController
-        .getAllUserName(req.query)
-        .then(data => {
-          //console.log(data.length);
-          res.locals.User = data.rows;
-          res.locals.pagination = {
-            page: parseInt(req.query.page),
-            limit: parseInt(req.query.limit),
-            totalRows: data.count
-          };
-          //console.log(res.locals.books);
-          res.render("admin/accountmanagement");
-        })
-        .catch(error => {
-          next(error);
-        });
-    }
-    if (req.query.type == "name") {
-      accountController
-        .getAllName(req.query)
-        .then(data => {
-          //console.log(data.length);
-          res.locals.User = data.rows;
-          res.locals.pagination = {
-            page: parseInt(req.query.page),
-            limit: parseInt(req.query.limit),
-            totalRows: data.count
-          };
-          res.render("admin/accountmanagement");
-        })
-        .catch(error => {
-          next(error);
-        });
-    }
-    if (req.query.type == "personalID") {
-      accountController
-        .getAllPersonalID(req.query)
-        .then(data => {
-          //console.log(data.length);
-          res.locals.User = data.rows;
-          res.locals.pagination = {
-            page: parseInt(req.query.page),
-            limit: parseInt(req.query.limit),
-            totalRows: data.count
-          };
-          res.render("admin/accountmanagement");
-        })
-        .catch(error => {
-          next(error);
-        });
-    }
+
+  console.log(req.query.type);
+  if (req.query.type == "userName") {
+    console.log("sss");
+    accountController
+      .getAllUserName(req.query)
+      .then(data => {
+        //console.log(data.length);
+        res.locals.User = data.rows;
+        res.locals.pagination = {
+          page: parseInt(req.query.page),
+          limit: parseInt(req.query.limit),
+          totalRows: data.count
+        };
+        //console.log(res.locals.books);
+        res.render("admin/accountmanagement");
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+  if (req.query.type == "name") {
+    accountController
+      .getAllName(req.query)
+      .then(data => {
+        //console.log(data.length);
+        res.locals.User = data.rows;
+        res.locals.pagination = {
+          page: parseInt(req.query.page),
+          limit: parseInt(req.query.limit),
+          totalRows: data.count
+        };
+        res.render("admin/accountmanagement");
+      })
+      .catch(error => {
+        next(error);
+      });
+  }
+  if (req.query.type == "personalID") {
+    accountController
+      .getAllPersonalID(req.query)
+      .then(data => {
+        //console.log(data.length);
+        res.locals.User = data.rows;
+        res.locals.pagination = {
+          page: parseInt(req.query.page),
+          limit: parseInt(req.query.limit),
+          totalRows: data.count
+        };
+        res.render("admin/accountmanagement");
+      })
+      .catch(error => {
+        next(error);
+      });
   }
 });
 
@@ -193,7 +188,7 @@ router.get("/author-management", (req, res, next) => {
     req.query.page = 1;
   }
   if (req.query.search == null || req.query.search.trim() == "") {
-    req.query.search = " ";
+    req.query.search = "";
   }
   let authorController = require("../controllers/authorController");
 
@@ -335,6 +330,7 @@ router.post("/book-management", function(req, res, next) {
       imgPath: img,
       borrowTimes: 0
     };
+
     return bookController
       .createBookInfo(book)
       .then(user => {
@@ -347,5 +343,115 @@ router.post("/book-management", function(req, res, next) {
       .catch(error => next(error));
   });
   console.log(req.body);
+});
+
+router.get("/book-management/edit", (req, res, next) => {
+  let bookController = require("../controllers/bookController");
+  return bookController
+    .getAllId(req.query)
+    .then(data => {
+      //console.log(data.length);
+      res.locals.books = data;
+      let temp = req.params.index;
+      res.render("admin/editbook");
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/book-management/edit", function(req, res, next) {
+  let name = req.body.newName;
+  let isbn = req.body.newISBN;
+  let author = req.body.newAuthor;
+  let category = req.body.newCategory;
+  let year = req.body.newYear;
+  let remain = req.body.newRemain;
+  let borrowed = req.body.newBorrowed;
+  let total = req.body.newTotal;
+  let img = req.body.newImg;
+  let id = req.body.nID;
+
+  if (isNaN(total))
+    return res.render("admin/bookmanagement/edit?search=" + id, {
+      message: "Số lượng sách phải là số.",
+      type: "alert-danger"
+    });
+
+  if (isNaN(remain))
+    return res.render("admin/bookmanagement/edit?search=" + id, {
+      message: "Số lượng sách phải là số.",
+      type: "alert-danger"
+    });
+
+  if (isNaN(borrowed))
+    return res.render("admin/bookmanagement/edit?search=" + id, {
+      message: "Số lượng sách phải là số.",
+      type: "alert-danger"
+    });
+  let bookController = require("../controllers/bookController");
+  console.log(req.body);
+  bookController.getById(id).then(book => {
+    if (book) {
+      book
+        .update({
+          ISBN_API: isbn,
+          author: author,
+          category: category,
+          year: year,
+          bookName: name,
+          total: total,
+          borrowed: borrowed,
+          remain: remain,
+          imgPath: img
+        })
+        .then(user => {
+          // console.log(user)
+          return res.render("admin/bookmanagement", {
+            message: "Cập nhật thành công!",
+            type: "alert-primary"
+          });
+        })
+        .catch(error => next(error));
+    }
+  });
+});
+
+router.post("/book-management-remove", function(req, res, next) {
+  let id = req.body.idRemove;
+
+  if (isNaN(id))
+    return res.render("admin/bookmanagement", {
+      message: "ID phải là số.",
+      type: "alert-danger"
+    });
+
+  if (id == "")
+    return res.render("admin/bookmanagement" + id, {
+      message: "ID trống.",
+      type: "alert-danger"
+    });
+
+  let bookController = require("../controllers/bookController");
+  console.log(req.body);
+  bookController.getById(id).then(book => {
+    if (book) {
+      book
+        .destroy()
+        .then(user => {
+          // console.log(user)
+          return res.render("admin/bookmanagement", {
+            message: "Xóa thành công!",
+            type: "alert-primary"
+          });
+        })
+        .catch(error => next(error));
+    } else {
+      return res.render("admin/bookmanagement", {
+        message: "Không tìm thấy ID đã nhập!",
+        type: "alert-danger"
+      });
+    }
+  });
 });
 module.exports = router;

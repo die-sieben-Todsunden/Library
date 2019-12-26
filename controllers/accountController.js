@@ -26,10 +26,12 @@ controller.getAll = query => {
           break;
       }
     }
+    console.log(query.search);
     if (query.search) {
-      options.where.userName = {
-        [Op.iLike]: `%${query.search}%`
-      };
+      if (!(query.search == ""))
+        options.where.userName = {
+          [Op.iLike]: `%${query.search}%`
+        };
     }
     User.findAll()
       .then(data => resovle(data))

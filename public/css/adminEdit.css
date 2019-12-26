@@ -1,0 +1,4 @@
+.edit td:hover {
+  color: blue;
+  cursor: pointer;
+}
