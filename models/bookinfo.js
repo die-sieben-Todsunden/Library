@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         category: DataTypes.STRING,
         description: DataTypes.TEXT,
         year: DataTypes.INTEGER,
-        language: DataTypes.STRING,
+        rate: DataTypes.STRING,
         bookName: DataTypes.STRING,
         total: DataTypes.INTEGER,
         borrowed: DataTypes.INTEGER,
