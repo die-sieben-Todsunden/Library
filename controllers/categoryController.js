@@ -25,5 +25,34 @@ controller.getAll = query => {
       .catch(error => reject(new Error(error)));
   });
 };
+controller.createCategory = category => {
+  return Category.create(category);
+};
+
+controller.getById = id => {
+  return new Promise((resovle, reject) => {
+    let options = {
+      where: {
+        id: id
+      }
+    };
+    Category.findOne(options)
+      .then(data => resovle(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
+
+controller.getByName = name => {
+  return new Promise((resovle, reject) => {
+    let options = {
+      where: {
+        name: name
+      }
+    };
+    Category.findOne(options)
+      .then(data => resovle(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
 
 module.exports = controller;

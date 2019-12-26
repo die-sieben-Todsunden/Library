@@ -90,7 +90,73 @@
   <div style="text-align: right">
     <button type="button" class="btn btn-primary" onclick="searchFunction()">Tìm kiếm</button>
   </div>
-
+  <hr>
+  {{#if message}}
+  <div class="form-group alert {{type}}">
+    <strong>{{message}}</strong>
+  </div>
+  {{/if}}
+  <div class="controlButton">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdd"
+      aria-expanded="false" aria-controls="collapseAdd">
+      Thêm thể loại
+    </button>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEdit"
+      aria-expanded="false" aria-controls="collapseEdit">
+      Sửa thể loại
+    </button>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRemove"
+      aria-expanded="false" aria-controls="collapseRemove">Xóa thể loại</button>
+  </div>
+  <!-- Collapse -->
+  <div class="collapse" id="collapseAdd">
+    <div class="card card-body">
+      <form action="category-management-add" method="POST">
+        <h6>Thêm thể loại</h6>
+        <div class="form-group">
+          <label for="newName">Tên thể loại mới: </label>
+          <input class="form-control" name="newName" id="newName"></input>
+        </div>
+        <div class="form-group">
+          <label for="newTotal">Số lượng sách: </label>
+          <input class="form-control" name="newTotal" id="newTotal"></input>
+        </div>
+        <button type="submit" value="Submit" class="btn btn-primary">Xác nhận</button>
+      </form>
+    </div>
+  </div>
+  <div class="collapse" id="collapseEdit">
+    <div class="card card-body">
+      <form action="category-management-edit" method="POST">
+        <h6>Sửa thông tin thể loại sách</h6>
+        <div class="form-group">
+          <label for="idEdit">Nhập ID thể loại sách bạn muốn sửa: </label>
+          <input class="form-control" name="idEdit" id="idEdit"></input>
+        </div>
+        <div class="form-group">
+          <label for="editName">Tên thể loại: </label>
+          <input class="form-control" name="editName" id="editName"></input>
+        </div>
+        <div class="form-group">
+          <label for="editTotal">Số lượng: </label>
+          <input class="form-control" name="editTotal" id="editTotal"></input>
+        </div>
+        <button type="submit" value="Submit" class="btn btn-primary">Xác nhận sửa</button>
+      </form>
+    </div>
+  </div>
+  <div class="collapse" id="collapseRemove">
+    <div class="card card-body">
+      <form action="category-management-remove" method="POST">
+        <h6>Xóa thể loại sách</h6>
+        <div class="form-group">
+          <label for="idEdit">Nhập ID thể loại sách bạn muốn xóa: </label>
+          <input class="form-control" name="idRemove" id="idRemove"></input>
+        </div>
+        <button type="submit" value="Submit" class="btn btn-primary">Xác nhận xóa</button>
+      </form>
+    </div>
+  </div>
   <div class=" form-group">
     <label for="pageLimit">Số kết quả hiển thị / trang: </label>
     <select class="form-control" id="pageLimit" onchange="selectParam('limit' , this.value)">
@@ -100,12 +166,7 @@
     </select>
   </div>
   <section class="tableContent">
-    <hr>
-    <div class="controlButton">
-      <button type="button" class="btn btn-primary" onclick="addFunction()">Thêm thể loại</button>
-      <button type="button" class="btn btn-primary" onclick="editFunction()">Sửa thể loại</button>
-      <button type="button" class="btn btn-primary" onclick="removeFunction()">Xóa thể loại</button>
-    </div>
+
 
     <div style="overflow-x:auto;">
       <table class="table table-bordered table-dark">

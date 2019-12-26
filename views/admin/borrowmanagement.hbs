@@ -1,0 +1,317 @@
+<link rel="stylesheet" href="/public/css/resetAdmin.css">
+<link rel="stylesheet" href="/public/css/adminBook.css">
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script type="text/javascript" src="/public/js/menuAdmin.js"></script>
+<script type="text/javascript" src="/public/js/helper.js"></script>
+
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center"><img
+        src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65"
+        class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h5 class="m-0">Phạm Khánh Duy</h5>
+        <p class="font-weight-light text-muted mb-0">Quản lí thư viện</p>
+      </div>
+    </div>
+    <div class="adminLogout" style="text-align: right">
+      <a href="/user/logout">Log out</a>
+    </div>
+  </div>
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="/admin" class="nav-link text-dark font-italic">
+        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        Trang chủ
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="" class="nav-link text-dark font-italic bg-light">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Quản lí sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/account-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-user mr-3 text-primary fa-fw"></i>
+        Quản lí tài khoản
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/author-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-pencil mr-3 text-primary fa-fw"></i>
+        Danh mục tác giả
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/catagory-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+        Thể loại sách
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/request" class="nav-link text-dark font-italic">
+        <i class="fa fa-exclamation mr-3 text-primary fa-fw"></i>
+        Yêu cầu (0)
+
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/borrow-management" class="nav-link text-dark font-italic">
+        <i class="fa fa-book mr-3 text-primary fa-fw"></i>
+        Sách đang được mượn
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/statistic" class="nav-link text-dark font-italic">
+        <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+        Thống kê
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- End vertical navbar -->
+<!-- Page content holder -->
+<div class="page-content p-5" id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+      class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Menu</small></button>
+
+  <!-- Demo content -->
+  <h2 class="display-4 text-white">Quản lí mượn sách</h2>
+  <hr>
+  <div class="search">
+    <form>
+      <div class="form-group">
+        <label for="search">Nhập mã số (MSSV/MSGV) người dùng: </label>
+        <input class="form-control" id="search" placeholder="ví dụ: 1753048">
+      </div>
+    </form>
+  </div>
+
+  <div class="searchbtnWrapper">
+    <button type="button" class="btn btn-primary" onclick="searchFunction()">Tìm kiếm</button>
+  </div>
+  {{#if message}}
+  <div class="form-group alert {{type}}">
+    <strong>{{message}}</strong>
+  </div>
+  {{/if}}
+  <section id="tableContent">
+    <div class="controlButton">
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdd"
+        aria-expanded="false" aria-controls="collapseAdd">
+        Thêm sách
+      </button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEdit"
+        aria-expanded="false" aria-controls="collapseEdit">
+        Sửa sách
+      </button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRemove"
+        aria-expanded="false" aria-controls="collapseEdit">Xóa sách</button>
+    </div>
+    <div class="collapse" id="collapseAdd">
+      <div class="card card-body">
+        <form action="book-management" method="POST">
+          <h6>Thêm sách mới</h6>
+          <div class="form-group">
+            <label for="newName">Nhập tên sách mới: </label>
+            <input class="form-control" name="newName" id="newName">
+            </input>
+          </div>
+          <div class="form-group">
+            <label for="newISBN">Nhập mã ISBN: </label>
+            <input class="form-control" name="newISBN" id="newISBN"></input>
+          </div>
+          <div class="form-group">
+            <label for="newAuthor">Nhập tên tác giả: </label>
+            <input class="form-control" name="newAuthor" id="newAuthor"></input>
+          </div>
+          <div class="form-group">
+            <label for="newCategory">Nhập thể loại sách </label>
+            <input class="form-control" name="newCategory" id="newCategory"></input>
+          </div>
+          <div class="form-group">
+            <label for="newDes">Mô tả: </label>
+            <textarea class="form-control" name="newDes" id="newDes"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="newYear">Năm xuất bản: </label>
+            <input class="form-control" name="newYear" id="newYear"></input>
+          </div>
+          <div class="form-group">
+            <label for="newLanguage">Ngôn ngữ: </label>
+            <select class="form-control" name="newLanguage" id="newLanguage">
+              <option>Tiếng Việt</option>
+              <option>Tiếng Anh</option>
+              <option>Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="newTotal">Tổng số sách: </label>
+            <input class="form-control" name="newTotal" id="newTotal"></input>
+          </div>
+          <div class="form-group">
+            <label for="newImg">Link hình ảnh: </label>
+            <input class="form-control" name="newImg" id="newImg"></input>
+          </div>
+          <button type="submit" value="Submit" class="btn btn-primary">Thêm sách</button>
+        </form>
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseEdit">
+      <div class="card card-body">
+        <form>
+          <h6>Sửa sách</h6>
+          <div class="form-group">
+            <label for="idEdit">Nhập ID cuốn sách bạn muốn sửa: </label>
+            <input class="form-control" name="idEdit" id="idEdit"></input>
+            <button type="button" class="btn btn-primary" onclick="find()">Tìm sách</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="collapse" id="collapseRemove">
+      <div class="card card-body">
+        <form action="book-management-remove" method="POST">
+          <h6>Xóa sách</h6>
+          <div class="form-group">
+            <label for="idEdit">Nhập ID cuốn sách bạn muốn xóa: </label>
+            <input class="form-control" name="idRemove" id="idRemove"></input>
+
+          </div>
+          <button type="submit" value="Submit" class="btn btn-primary">Xóa sách</button>
+        </form>
+      </div>
+    </div>
+    <div class=" form-group">
+      <label for="pageLimit">Số kết quả hiển thị / trang: </label>
+      <select class="form-control" id="pageLimit" onchange="selectParam('limit' , this.value)">
+        <option>3</option>
+        <option>6</option>
+        <option>9</option>
+      </select>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-dark fixed">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên sách</th>
+            <th>Thể loại sách</th>
+            <th>Tác giả</th>
+            <th>Nhà xuất bản</th>
+            <th>Năm xuất bản</th>
+            <th>Version</th>
+            <th>Tái bản</th>
+            <th>ISBN</th>
+            <th>Số lượng</th>
+            <th>Đã cho mượn</th>
+            <th>Còn lại</th>
+            <th>Link hình ảnh</th>
+            <th>Ẩn</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each books}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{bookName}}</td>
+            <td>{{category}}</td>
+            <td>{{author}}</td>
+            <td>Chưa cập nhật</td>
+            <td>{{year}}</td>
+            <td></td>
+            <td></td>
+            <td>{{ISBN_API}}</td>
+            <td>{{total}}</td>
+            <td>{{borrowed}}</td>
+            <td>{{remain}}</td>
+            <td>{{imgPath}}</td>
+            {{#if isHidden}}
+            <td>x</td>
+            {{else}}
+            <td></td>
+            {{/if}}
+          </tr>
+
+          {{/each}}
+
+        </tbody>
+      </table>
+
+    </div>
+    <nav class="nav justify-content-center" aria-label="Page navigation example" id="pagination">
+      {{{createPagination pagination paginationClass = "pagination"}}}
+    </nav>
+
+
+  </section>
+
+</div>
+
+
+<script>
+
+
+  let URLParams = new URLSearchParams(location.search)
+  let params = {
+    search: '',
+    type: 'bookName',
+    sort: 'bookNameASC',
+    limit: 3,
+    page: 1
+  }
+
+  for (let key in params) {
+    if (!URLParams.has(key)) {
+      URLParams.append(key, params[key]);
+    }
+  }
+  $(document).ready(function () {
+    $("#sort").val(URLParams.get('sort'));
+    $("#limit").val(URLParams.get('limit'));
+    $("#keyWord").val(URLParams.get('type'));
+
+    $('#pagination li').addClass('page-item');
+    $('#pagination li a').addClass('page-link');
+    let savePage = URLParams.get('page');
+    $('#pagination li a').each((index, item) => {
+      let page = $(item).attr('href').split('=')[1];
+      URLParams.set('page', page);
+      let href = `/admin/book-management?${URLParams.toString()}`;
+      $(item).attr('href', href);
+
+    });
+    URLParams.set('page', savePage);
+  });
+
+  function selectParam(key, value, reset = false) {
+    console.log(location.href);
+    if (reset) {
+      for (let key in params) {
+        URLParams.set(key, params[key]);
+      }
+    }
+    URLParams.set(key, value);
+    let url = `/admin/book-management?${URLParams.toString()}`;
+    location.href = url;
+
+  }
+  function searchFunction() {
+    selectParam('search', $('#search').val());
+  }
+  let idFind = 0;
+  function find() {
+    idFind = $('#idEdit').val();
+    let url = "/admin/book-management/edit?search=" + idFind;
+    location.href = url;
+  }
+</script>

@@ -26,4 +26,20 @@ controller.getAll = query => {
   });
 };
 
+controller.getById = id => {
+  return new Promise((resovle, reject) => {
+    let options = {
+      where: {
+        id: id
+      }
+    };
+    Author.findOne(options)
+      .then(data => resovle(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
+
+controller.createAuthor = author => {
+  return Author.create(author);
+};
 module.exports = controller;
