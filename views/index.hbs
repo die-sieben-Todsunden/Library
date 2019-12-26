@@ -22,7 +22,6 @@
       <div class="contentWrapper" style="height: 300px;">
         <div class=" carousel-inner col-lg-10" style="margin-left:50%; transform: translate(-50%)">
 
-          
           {{#each books}}
           {{#if @first}}
           <div class="carousel-item active">
@@ -33,7 +32,7 @@
               <div class="row">
                 <div class="col-lg-3">
                   <div class="content_img">
-                    <img src="/public/img/Book1.png" alt="">
+                    <img src="{{imgPath}}" alt="">
                   </div>
                 </div>
                 <div class="col-lg-9 bookinfo">
@@ -141,19 +140,19 @@
   </div>
   <div class="content">
     <div class="subcontentflex">
-      <a href="" style="color: black">
+      <a href="./book?search=begin" style="color: black">
         <div class="subcontentwrapprer">
           <div class="subcontent" style="background-image:url(/public/img/getting-started.jpg);"></div>
           <h4>Nhập môn</h4>
         </div>
       </a>
-      <a href="" style="color: black">
+      <a href="./book?search=machine learning" style="color: black">
         <div class="subcontentwrapprer">
           <div class="subcontent" style="background-image:url(/public/img/machinelearning.jpg);"></div>
           <h4>Machine learning</h4>
         </div>
       </a>
-      <a href="" style="color: black">
+      <a href="./book?search=new" style="color: black">
         <div class="subcontentwrapprer">
           <div class="subcontent" style="background-image:url(/public/img/newtech.jpg);"></div>
           <h4>Công nghệ mới</h4>
@@ -196,16 +195,10 @@
 </script>
 
 <script language="javascript">
-  document.getElementById("search").onclick = function () {
-    document.getElementById("quicksearch-hidden").hidden = false;
-    document.getElementById("search").hidden = true;
-  };
-
-  document.getElementById("searchClose").onclick = function () {
-    document.getElementById("quicksearch-hidden").hidden = true;
-    document.getElementById("search").hidden = false;
-  };
-
+ $(document).ready(function () {
+   sessionStorage.setItem('borrowType','6');
+ });
+  
   function Borrow(id) {
     localStorage.setItem("isbn", "053av55");
     window.location = `user/schedule/${id}`;

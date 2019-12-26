@@ -8,6 +8,9 @@ router.get("/", (req, res, next) => {
     if (req.query.author == null) {
         req.query.author = '';
     }
+    if (req.query.category == null) {
+        req.query.category = '';
+    }
     if (req.query.limit == null || isNaN(req.query.limit)) {
         req.query.limit = 3;
     }
@@ -40,8 +43,49 @@ router.get("/", (req, res, next) => {
                         //res.render('lookup');
                     return bookController.getAllAuthorSearch();
                 })
-                .then(result => {
-                    res.locals.same = result;
+                .then(array => {
+
+                    var uniqueArray = [];
+                    var categories = [];
+                    for (i = 0; i < array.length; i++) {
+                        categories.push(array[i]["dataValues"]["category"])
+                    }
+
+
+                    for (var value of categories) {
+                        if (value != null) {
+                            if (uniqueArray.indexOf(value) === -1) {
+                                uniqueArray.push(value);
+                                console.log(value);
+                            }
+                        }
+                    }
+
+                    uniqueArray.sort();
+                    res.locals.categories = uniqueArray;
+                    return bookController.getAllAuthorSearch();
+                    //res.render('lookup');
+                })
+                .then(array => {
+
+                    var uniqueArray = [];
+                    var authors = [];
+                    for (i = 0; i < array.length; i++) {
+                        authors.push(array[i]["dataValues"]["author"])
+                    }
+
+
+                    for (var value of authors) {
+                        if (value != null) {
+                            if (uniqueArray.indexOf(value) === -1) {
+                                uniqueArray.push(value);
+                                console.log(value);
+                            }
+                        }
+                    }
+
+                    uniqueArray.sort();
+                    res.locals.authors = uniqueArray;
                     res.render('lookup');
                 })
                 .catch(error => {
@@ -53,6 +97,7 @@ router.get("/", (req, res, next) => {
                 .getAllAuthor(req.query)
                 .then(data => {
                     //console.log(data.length);
+
                     res.locals.books = data.rows;
                     res.locals.pagination = {
                         page: parseInt(req.query.page),

@@ -108,18 +108,21 @@ controller.getAllBookName = query => {
         console.log(query.search);
 
         if (query.search) {
-            if (query.author == null) {
-                options.where.bookName = {
-                    [Op.iLike]: `%${query.search}%`
-                };
-            } else {
-                options.where.bookName = {
-                    [Op.iLike]: `%${query.search}%`
-                };
+            if (query.author != null) {
                 options.where.author = {
                     [Op.iLike]: `%${query.author}%`
                 };
             }
+            if (query.category != null) {
+                options.where.category = {
+                    [Op.iLike]: `%${query.category}%`
+                };
+            }
+
+            options.where.bookName = {
+                [Op.iLike]: `%${query.search}%`
+            };
+
         }
         bookInfo
             .findAndCountAll(options)
@@ -231,28 +234,28 @@ controller.getById = id => {
 };
 
 controller.createBookInfo = bookInfos => {
-  return bookInfo.create(bookInfos);
+    return bookInfo.create(bookInfos);
 };
 
 controller.getBookByISBN = isbn => {
-  return bookInfo.findOne({
-    where: { ISBN_API: isbn }
-  });
+    return bookInfo.findOne({
+        where: { ISBN_API: isbn }
+    });
 };
 controller.getAllId = query => {
-  return new Promise((resovle, reject) => {
-    let options = {
-      where: {}
-    };
+    return new Promise((resovle, reject) => {
+        let options = {
+            where: {}
+        };
 
-    options.where.id = {
-      [Op.iLike]: `%${query}%`
-    };
+        options.where.id = {
+            [Op.iLike]: `%${query}%`
+        };
 
-    bookInfo
-      .findAll(options)
-      .then(data => resovle(data))
-      .catch(error => reject(new Error(error)));
-  });
+        bookInfo
+            .findAll(options)
+            .then(data => resovle(data))
+            .catch(error => reject(new Error(error)));
+    });
 };
 module.exports = controller;

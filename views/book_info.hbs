@@ -4,11 +4,12 @@
     <!-- Body ---------------------------------------------------------------------------------------------->
     <div class="container-fluid" id="body">
         <div class="row" id="body-content-top">
+            {{#with book}}
             <div class="col-sm-12 col-md-3" id="body-content-left">
-                <img src="/public/img/Book1.png" style="border-radius: 5px;border-style: outset;" alt="">
+                <img src="{{imgPath}}" style="border-radius: 5px;border-style: outset;" alt="">
             </div>
             <div class="col-md-7" id="body-content-right">
-                {{#with book}}
+                
                 <div>
                     <h5>Thông tin chi tiết</h5>
                     <p>- Tên: {{bookName}} <br> - Tác giả: {{author}}<br> - ISBN: {{ISBN_API}}<br> - Tags: computer, science, ai, robot<br> - Tái bản lần thứ 7</p>
@@ -30,7 +31,7 @@
             
             <div class="col-md-4 " style="text-align: center;">
                 <a href="./{{id}}">
-                    <img src="/public/img/Book2.jpg" alt="">
+                    <img src="{{imgPath}}" alt="">
                 </a>
                 <p>{{bookName}}</p>
             </div>

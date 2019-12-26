@@ -29,8 +29,8 @@
 }
 
 #body-content-left img {
-    width: 120%;
-    height: auto;
+    width: 80%;
+    max-height: auto;
     /* Magic! */
     max-width: 50vw;
 }

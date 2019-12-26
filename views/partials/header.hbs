@@ -64,35 +64,13 @@
           </li>
         </ul>
       </div>
-      <div class="quicksearch">
-        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-          aria-controls="collapseExample" id="search">
-        </button>
-      </div>
-      <div class="" id="quicksearch-hidden" hidden=true>
-        <div class="input-group">
-          <input type="text" class="form-control" id="searchInput">
-          <div class="input-group-append">
-            <a class="input-group-text" href="#" id="searchClose"><i class="fa fa-times" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </div>
+      
     </nav>
   </div>
   {{/unless}}
 </div>
 
-<script language="javascript">
-  document.getElementById("search").onclick = function () {
-    document.getElementById("quicksearch-hidden").hidden = false;
-    document.getElementById("search").hidden = true;
-  };
 
-  document.getElementById("searchClose").onclick = function () {
-    document.getElementById("quicksearch-hidden").hidden = true;
-    document.getElementById("search").hidden = false;
-  };
-</script>
 <script>
   $(".noti-badge").prepend($(".noti a").length);
 </script>

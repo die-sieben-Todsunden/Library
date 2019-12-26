@@ -15,9 +15,11 @@
                 <div class="dropdown" style="margin-bottom: 20px;">
                     
                     <select name="type" id="type">
+                        
                         <option value="Borrow book" >Mượn sách</option>
                         <option value="View book"  id="booktopic">Xem sách</option>
                         <option value="Return book"  id="authername">Trả sách</option>
+                        <option value="Extension"  id="Extension">Gia Hạn</option>
                     </select>
                 </div>
             </div>
@@ -143,11 +145,7 @@
     document.getElementById("bookName").innerHTML = "Tên sách: "+nameAr[0];
     document.getElementById("authorName").innerHTML = "Tác giả: "+authorAr[0];
 </script>
-<script>
-    $('#datepicker').datepicker({
-        uiLibrary: 'bootstrap4',
-    });
-</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </script>
@@ -159,15 +157,6 @@
 
 
 <script>
-        document.getElementById("search").onclick = function () {
-                document.getElementById("quicksearch-hidden").hidden = false;
-            document.getElementById("search").hidden = true;
-        };
-
-        document.getElementById("searchClose").onclick = function () {
-                document.getElementById("quicksearch-hidden").hidden = true;
-            document.getElementById("search").hidden = false;
-        };
 
        
         backhome = function () {
@@ -175,17 +164,23 @@
             }
     
         $(document).ready(function () {
-        $('#datepicker').change(function (event) {
-        var date = $('#datepicker').val();
-    
-            $('#inputvalue_date').html(date);
-            });
-    
+        if(localStorage.getItem('borrowType')=='1')
+        {
+            $("#type").val('Extension');
+        }
+        else if(sessionStorage.getItem('borrowType')=='2')
+        {
+            $("#type").val('Return book');
+        }
+        else {
+            $("#type").val('Borrow book');
+        }
         $('#inputISBN').change(function (event) {
             var isbn = $('#inputISBN').val();
 
             $('#inputvalue_isbn').html(isbn);
         });
+        
 
         $('#inputvalue_isbn_moreinfo').click(function (event) {
             var date2 = $('#inputISBN').val();
