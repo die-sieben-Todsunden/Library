@@ -82,14 +82,19 @@
   <h2 class="display-4 text-white">Yêu cầu mới</h2>
   <hr>
   <form>
-    <select name="cars" class="custom-select col-lg-6" onchange="requestChange(this.value)">
-      <option value="1">Tất cả yêu cầu</option>
-      <option value="2">Yêu cầu mượn sách</option>
-      <option value="3">Yêu cầu gia hạn</option>
-      <option value="4">Yêu cầu mua sách</option>
-      <option value="5">Yêu cầu cấp tài khoản</option>
+    <select name="request" id="requestOpt" class="custom-select col-lg-6" onchange="requestChange(this.value)">
+      <option value="">Tất cả yêu cầu</option>
+      <option value="Borrow book">Yêu cầu mượn sách</option>
+      <option value="Extension">Yêu cầu gia hạn</option>
+      <option value="Return book">Yêu cầu trả sách</option>
+      <option value="Create account">Yêu cầu cấp tài khoản</option>
     </select>
   </form>
+  {{#if message}}
+  <div class="form-group alert {{type}}">
+    <strong>{{message}}</strong>
+  </div>
+  {{/if}}
   <script>
     var idtemp;
     var url;
@@ -97,11 +102,57 @@
     var arr = [];
     var check = 1;
   </script>
+  <div class="controlButton">
+    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseAccept"
+      aria-expanded="false" aria-controls="collapseAccept">
+      Xác nhận yêu cầu
+    </button>
+    <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseCancel"
+      aria-expanded="false" aria-controls="collapseCancel">Từ chối yêu cầu</button>
+  </div>
+
+  <!-- Collapse -->
+  <div class="collapse" id="collapseAccept">
+    <div class="card card-body">
+      <form action="accept" method="POST">
+        <h6>Xác nhận & gửi mail các yêu cầu sau</h6>
+        <div class="form-group">
+          <label for="idEdit">Nhập ID yêu cầu: </label>
+          <input class="form-control" name="idAccept" id="idAccept"></input>
+        </div>
+        <div class="form-group">
+          <label for="note">Nội dung khác: </label>
+          <textarea class="form-control" name="note" id="note"></textarea>
+        </div>
+
+        <button class="btn btn-success" type="submit" value="submit">Xác nhận</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="collapse" id="collapseCancel">
+    <div class="card card-body">
+      <form action="cancel" method="POST">
+        <h6>Từ chối & gửi mail các yêu cầu sau</h6>
+        <div class="form-group">
+          <label for="idCancel">Nhập ID yêu cầu: </label>
+          <input class="form-control" name="idCancel" id="idCancel"></input>
+        </div>
+        <div class="form-group">
+          <label for="note">Nội dung khác: </label>
+          <textarea class="form-control" name="note" id="note"></textarea>
+        </div>
+
+        <button class="btn btn-danger" type="submit" value="submit">Từ chối</button>
+      </form>
+    </div>
+  </div>
   <section>
     {{#each Request}}
 
     <div class="card tagRequest">
       <div class="card-header" id="header">
+        <p>ID yêu cầu: {{id}}</p>
         <p>{{type}}</p>
       </div>
       <div class="card-body">
@@ -114,15 +165,7 @@
         </p>
         <script>
           idtemp = "{{id}}";
-          arr.forEach(function (item, index, array) {
-            if (item == idtemp)
-              check++;
-          });
-          arr.push(idtemp);
-          if (check != 1)
-            ida = '#' + '{{id}}' + check;
-          else
-            ida = '#' + '{{id}}';
+          ida = '#' + '{{id}}';
           url = "/admin/book-management?search=" + idtemp + "&type=id";
           $(ida).attr('href', url);
           check = 1;
@@ -147,22 +190,28 @@
         <p class="card-text"><b>Ngày hẹn đến thư viện: </b>{{appointmentDate}}</p>
         <p class="card-text"><b>Nội dung khác: </b> {{note}}</p>
         <div style="text-align: right">
-          <form action="send" method="POST">
-            <button class="btn btn-success"><i class="fa fa-check"></i> Xác nhận</button>
-            <button href="#" class="btn btn-danger"><i class="fa fa-times"></i> Từ chối</button>
-            <br>
-            <a data-toggle="collapse" href="#collapseNote">Ghi chú thêm cho người dùng này</a>
-            <div class="collapse" id="collapseNote">
-              <div class="card card-body">
-                <div class="form-group">
-                  <label for="content">Nội dung: </label>
-                  <textarea class="form-control" id="content" name="content">
 
+          <button class="btn btn-success" type="submit" value="submit"><i class="fa fa-check"></i> Xác nhận</button>
+          <button class="btn btn-danger" type="submit" value="submit"><i class="fa fa-times"></i> Từ chối</button>
+          <br>
+          <a data-toggle="collapse" href="#collapseNote">Ghi chú thêm cho người dùng này</a>
+          <div class="collapse" id="collapseNote">
+            <div class="card card-body">
+              <div class="form-group">
+                <label for="content">Nội dung: </label>
+                <textarea class="form-control" id="content" name="content">
                   </textarea>
-                </div>
+                <input name="status" id="status">
+                <input name="reqid" id="reqid">
+                <script>
+                  $('#status').hide();
+                  $('#status').val("Checked");
+                  $('#reqid').hide();
+                  $('#reqid').val("{{id}}");
+                </script>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -187,7 +236,7 @@
     }
   }
   $(document).ready(function () {
-
+    $('#requestOpt').val(sessionStorage.getItem("requestOption"));
     $("#li").val(URLParams.get('limit'));
     $('#pagination li').addClass('page-item');
     $('#pagination li a').addClass('page-link');
@@ -210,16 +259,13 @@
       }
     }
     URLParams.set(key, value);
-    let url = `/admin/author-management?${URLParams.toString()}`;
+    let url = `/admin/request?${URLParams.toString()}`;
     location.href = url;
 
   }
-  function searchFunction() {
-    selectParam('search', $('#search').val());
-  }
-
-  function limitChange(li) {
-    selectParam('limit', li.value);
+  function requestChange(resq) {
+    sessionStorage.setItem("requestOption", resq);
+    selectParam('search', resq);
   }
 
 

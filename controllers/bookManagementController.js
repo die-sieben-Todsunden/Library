@@ -3,6 +3,8 @@ var controller = {};
 var models = require("../models");
 let borrow = models.BookManagement;
 let bookInfo = models.bookInfo;
+let Sequelize = require("sequelize");
+let Op = Sequelize.Op;
 // controller.getAll = function() {
 //   return borrow.findAll();
 // };
@@ -10,7 +12,7 @@ let bookInfo = models.bookInfo;
 controller.getAll = user => {
   return new Promise((resolve, reject) => {
     borrow
-      .findAll({
+      .findAndCountAll({
         include: [
           {
             model: models.Book,
@@ -31,13 +33,53 @@ controller.getAll = user => {
       .catch(error => reject(new Error(error)));
   });
 };
-controller.getAlls = () => {
+controller.getAlls = query => {
+  return new Promise((resolve, reject) => {
+    let options = {
+      where: {},
+      include: [
+        {
+          model: models.User
+        },
+        {
+          model: models.Book,
+          include: {
+            model: models.bookInfo
+          }
+        }
+      ]
+    };
+    if (query.limit > 0) {
+      options.limit = query.limit;
+      options.offset = query.limit * (query.page - 1);
+    }
+
+    if (query.search) {
+      if (query.search != "")
+        options.where.type = {
+          [Op.iLike]: `%${query.search}%`
+        };
+    }
+    options.where.status = {
+      [Op.iLike]: `borrowing`
+    };
+    borrow
+      .findAndCountAll(options)
+      .then(data => resolve(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
+
+controller.getAllStatistic = () => {
   return new Promise((resolve, reject) => {
     borrow
       .findAll()
       .then(data => resolve(data))
       .catch(error => reject(new Error(error)));
   });
+};
+controller.createBorrow = borrows => {
+  return borrow.create(borrows);
 };
 // controller.getAll = (user) => {
 //     return new Promise((resolve, reject) => {
@@ -57,4 +99,17 @@ controller.getAlls = () => {
 			include: [models.Comment]
 		});
 };*/
+controller.getById = id => {
+  return new Promise((resovle, reject) => {
+    let options = {
+      where: {
+        id: id
+      }
+    };
+    borrow
+      .findOne(options)
+      .then(data => resovle(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
 module.exports = controller;

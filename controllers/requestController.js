@@ -28,6 +28,9 @@ controller.getAll = query => {
           [Op.iLike]: `%${query.search}%`
         };
     }
+    options.where.status = {
+      [Op.iLike]: `Not Checked`
+    };
     Request.findAndCountAll(options)
       .then(data => resovle(data))
       .catch(error => reject(new Error(error)));
@@ -38,4 +41,16 @@ controller.createRequest = request => {
   return Request.create(request);
 };
 
+controller.getById = id => {
+  return new Promise((resovle, reject) => {
+    let options = {
+      where: {
+        id: id
+      }
+    };
+    Request.findOne(options)
+      .then(data => resovle(data))
+      .catch(error => reject(new Error(error)));
+  });
+};
 module.exports = controller;

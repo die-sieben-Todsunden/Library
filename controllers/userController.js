@@ -18,6 +18,12 @@ controller.getUserByEmail = email => {
     where: { email: email }
   });
 };
+
+controller.getUserById = id => {
+  return User.findOne({
+    where: { id:id }
+  });
+};
 controller.comparePassword = (password, hash) => {
   return bcrypt.compareSync(password, hash);
 };

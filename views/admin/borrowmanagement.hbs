@@ -105,97 +105,69 @@
     <div class="controlButton">
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdd"
         aria-expanded="false" aria-controls="collapseAdd">
-        Thêm sách
+        Thêm lượt mượn
       </button>
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEdit"
         aria-expanded="false" aria-controls="collapseEdit">
-        Sửa sách
+        Gia hạn
       </button>
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseRemove"
-        aria-expanded="false" aria-controls="collapseEdit">Xóa sách</button>
+        aria-expanded="false" aria-controls="collapseRemove">
+        Đánh dấu đã trả sách
+      </button>
     </div>
     <div class="collapse" id="collapseAdd">
       <div class="card card-body">
-        <form action="book-management" method="POST">
-          <h6>Thêm sách mới</h6>
+        <form action="borrowAdd" method="POST">
+          <h6>Thêm lượt mượn sách mới</h6>
           <div class="form-group">
-            <label for="newName">Nhập tên sách mới: </label>
-            <input class="form-control" name="newName" id="newName">
+            <label for="newUser">Nhập mã số người mượn: </label>
+            <input class="form-control" name="newUser" id="newUser">
             </input>
           </div>
           <div class="form-group">
-            <label for="newISBN">Nhập mã ISBN: </label>
-            <input class="form-control" name="newISBN" id="newISBN"></input>
+            <label for="newBook">Nhập id sách mượn: </label>
+            <input class="form-control" name="newBook" id="newBook"></input>
           </div>
           <div class="form-group">
-            <label for="newAuthor">Nhập tên tác giả: </label>
-            <input class="form-control" name="newAuthor" id="newAuthor"></input>
+            <label for="newNote">Ghi chú </label>
+            <textarea class="form-control" name="newNote" id="newNote"></textarea>
           </div>
-          <div class="form-group">
-            <label for="newCategory">Nhập thể loại sách </label>
-            <input class="form-control" name="newCategory" id="newCategory"></input>
-          </div>
-          <div class="form-group">
-            <label for="newDes">Mô tả: </label>
-            <textarea class="form-control" name="newDes" id="newDes"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="newYear">Năm xuất bản: </label>
-            <input class="form-control" name="newYear" id="newYear"></input>
-          </div>
-          <div class="form-group">
-            <label for="newLanguage">Ngôn ngữ: </label>
-            <select class="form-control" name="newLanguage" id="newLanguage">
-              <option>Tiếng Việt</option>
-              <option>Tiếng Anh</option>
-              <option>Khác</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="newTotal">Tổng số sách: </label>
-            <input class="form-control" name="newTotal" id="newTotal"></input>
-          </div>
-          <div class="form-group">
-            <label for="newImg">Link hình ảnh: </label>
-            <input class="form-control" name="newImg" id="newImg"></input>
-          </div>
-          <button type="submit" value="Submit" class="btn btn-primary">Thêm sách</button>
+          <button type="submit" value="Submit" class="btn btn-primary">Thêm lượt mượn</button>
         </form>
-
       </div>
     </div>
     <div class="collapse" id="collapseEdit">
       <div class="card card-body">
-        <form>
-          <h6>Sửa sách</h6>
+        <form action="borrow-management-extension" method="POST">
+          <h6>Gia hạn lượt mượn</h6>
           <div class="form-group">
-            <label for="idEdit">Nhập ID cuốn sách bạn muốn sửa: </label>
-            <input class="form-control" name="idEdit" id="idEdit"></input>
-            <button type="button" class="btn btn-primary" onclick="find()">Tìm sách</button>
-
+            <label for="extendId">ID lượt mượn: </label>
+            <input class="form-control" name="extendId" id="extendId">
+            </input>
           </div>
+          <button type="submit" value="Submit" class="btn btn-primary">Gia hạn</button>
         </form>
       </div>
     </div>
     <div class="collapse" id="collapseRemove">
       <div class="card card-body">
-        <form action="book-management-remove" method="POST">
-          <h6>Xóa sách</h6>
+        <form action="borrow-management-returned" method="POST">
+          <h6>Đánh dấu trả sách</h6>
           <div class="form-group">
-            <label for="idEdit">Nhập ID cuốn sách bạn muốn xóa: </label>
-            <input class="form-control" name="idRemove" id="idRemove"></input>
-
+            <label for="returnId">Nhập ID lượt mượn: </label>
+            <input class="form-control" name="returnId" id="returnId"></input>
           </div>
-          <button type="submit" value="Submit" class="btn btn-primary">Xóa sách</button>
+          <button type="submit" value="Submit" class="btn btn-primary">Đánh dấu đã trả</button>
         </form>
       </div>
     </div>
     <div class=" form-group">
       <label for="pageLimit">Số kết quả hiển thị / trang: </label>
       <select class="form-control" id="pageLimit" onchange="selectParam('limit' , this.value)">
-        <option>3</option>
-        <option>6</option>
-        <option>9</option>
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
       </select>
     </div>
 
@@ -204,46 +176,38 @@
         <thead>
           <tr>
             <th>STT</th>
+            <th>ID sách</th>
             <th>Tên sách</th>
-            <th>Thể loại sách</th>
-            <th>Tác giả</th>
-            <th>Nhà xuất bản</th>
-            <th>Năm xuất bản</th>
-            <th>Version</th>
-            <th>Tái bản</th>
-            <th>ISBN</th>
-            <th>Số lượng</th>
-            <th>Đã cho mượn</th>
-            <th>Còn lại</th>
-            <th>Link hình ảnh</th>
-            <th>Ẩn</th>
+            <th>Người mượn</th>
+            <th>Mã số sinh viên</th>
+            <th>ID Người mượn</th>
+            <th>Ngày mượn</th>
+            <th>Ngày hết hạn</th>
+            <th>Tình trạng</th>
+            <th>Ghi chú</th>
           </tr>
         </thead>
         <tbody>
-          {{#each books}}
+          {{#each borrow}}
           <tr>
             <td>{{id}}</td>
+            <td>{{BookId}}</td>
+            {{#with Book}}
+            {{#with bookInfo}}
             <td>{{bookName}}</td>
-            <td>{{category}}</td>
-            <td>{{author}}</td>
-            <td>Chưa cập nhật</td>
-            <td>{{year}}</td>
-            <td></td>
-            <td></td>
-            <td>{{ISBN_API}}</td>
-            <td>{{total}}</td>
-            <td>{{borrowed}}</td>
-            <td>{{remain}}</td>
-            <td>{{imgPath}}</td>
-            {{#if isHidden}}
-            <td>x</td>
-            {{else}}
-            <td></td>
-            {{/if}}
+            {{/with}}
+            {{/with}}
+            {{#with User}}
+            <td>{{userName}}</td>
+            <td>{{personalID}}</td>
+            <td>{{id}}</td>
+            {{/with}}
+            <td>{{borrowedDate}}</td>
+            <td>{{dueDate}}</td>
+            <td>{{status}}</td>
+            <td>{{note}}</td>
           </tr>
-
           {{/each}}
-
         </tbody>
       </table>
 
@@ -264,9 +228,8 @@
   let URLParams = new URLSearchParams(location.search)
   let params = {
     search: '',
-    type: 'bookName',
-    sort: 'bookNameASC',
-    limit: 3,
+    /*type: 'bookName',*/
+    limit: 10,
     page: 1
   }
 
@@ -276,17 +239,16 @@
     }
   }
   $(document).ready(function () {
-    $("#sort").val(URLParams.get('sort'));
+
     $("#limit").val(URLParams.get('limit'));
     $("#keyWord").val(URLParams.get('type'));
-
     $('#pagination li').addClass('page-item');
     $('#pagination li a').addClass('page-link');
     let savePage = URLParams.get('page');
     $('#pagination li a').each((index, item) => {
       let page = $(item).attr('href').split('=')[1];
       URLParams.set('page', page);
-      let href = `/admin/book-management?${URLParams.toString()}`;
+      let href = `/admin/borrow-management?${URLParams.toString()}`;
       $(item).attr('href', href);
 
     });
@@ -301,17 +263,17 @@
       }
     }
     URLParams.set(key, value);
-    let url = `/admin/book-management?${URLParams.toString()}`;
+    let url = `/admin/borrow-management?${URLParams.toString()}`;
     location.href = url;
 
   }
-  function searchFunction() {
-    selectParam('search', $('#search').val());
-  }
-  let idFind = 0;
-  function find() {
-    idFind = $('#idEdit').val();
-    let url = "/admin/book-management/edit?search=" + idFind;
-    location.href = url;
-  }
+ /*function searchFunction() {
+                       selectParam('search', $('#search').val());
+                     }
+                     let idFind = 0;
+                     function find() {
+                       idFind = $('#idEdit').val();
+                       let url = "/admin/book-management/edit?search=" + idFind;
+                       location.href = url;
+                     }*/
 </script>

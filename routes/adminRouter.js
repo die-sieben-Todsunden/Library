@@ -241,17 +241,36 @@ router.get("/catagory-management", (req, res, next) => {
 });
 
 router.get("/borrow-management", (req, res, next) => {
-  /* let accountController = require("../controllers/accountController");
-   accountController.getAll().then(data => {
-     res.locals.User = data;
-     res.render("admin/accountmanagement");
-   });*/
-  res.render("admin/borrowmanagement");
+  if (req.query.limit == null || isNaN(req.query.limit)) {
+    req.query.limit = 10;
+  }
+  if (req.query.page == null || isNaN(req.query.page)) {
+    req.query.page = 1;
+  }
+  if (req.query.search == null || req.query.search.trim() == "") {
+    req.query.search = "";
+  }
+  let borrowController = require("../controllers/bookManagementController");
+  borrowController
+    .getAlls(req.query)
+    .then(data => {
+      //console.log(data.length);
+      res.locals.borrow = data.rows;
+      res.locals.pagination = {
+        page: parseInt(req.query.page),
+        limit: parseInt(req.query.limit),
+        totalRows: data.count
+      };
+      //console.log(res.locals.books);
+      res.render("admin/borrowmanagement");
+    })
+    .catch(error => {
+      next(error);
+    });
 });
-
 router.get("/statistic", (req, res) => {
   let bookManagementController = require("../controllers/bookManagementController");
-  bookManagementController.getAlls().then(data => {
+  bookManagementController.getAllStatistic().then(data => {
     res.locals.borrow = data;
     res.render("admin/statistic");
   });
@@ -689,39 +708,268 @@ router.get("/request", (req, res, next) => {
     });
 });
 
-router.post("/send", function(req, res, next) {
-  console.log(req.body);
+router.post("/accept", function(req, res, next) {
+  let reqid = req.body.idAccept;
+  let status = "Checked";
   const output = `
   <p>Yêu cầu của bạn đã được xác nhận</p>
   <p>Hãy đến đúng hẹn, không quá 5 ngày (không kể thứ 7 và chủ nhật)</p>
-  <p>Khác: $(req.body.content)</p>
+  <p>Khác: $(req.body.note)</p>
     `;
+  let requestController = require("../controllers/requestController");
+  let userId;
+  let email;
+  requestController.getById(reqid).then(request => {
+    if (request) {
+      userId = request.dataValues.UserId;
+      let userController = require("../controllers/userController");
+      userController.getUserById(userId).then(user => {
+        if (user) {
+          email = user.dataValues.email;
 
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  let transporter = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 25,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: "e6026b842e6d96", // generated ethereal user
-      pass: "c6e7d292d11d34" // generated ethereal password
+          console.log(email);
+          let transporter = nodemailer.createTransport({
+            host: "smtp.mailtrap.io",
+            port: 25,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: "e6026b842e6d96", // generated ethereal user
+              pass: "c6e7d292d11d34" // generated ethereal password
+            }
+            // service: 'gmail',
+            // auth:{
+            //   user:'chromevi123@gmail.com',
+            //   pass:''
+            // }
+          });
+          transporter.sendMail({
+            from: "admin.library@library.hcmus.edu.vn", // sender address
+            //to: `${user.email}`, // list of receivers
+            to: email,
+            subject: "Confirm appointment", // Subject line
+            html: output // html body
+          });
+
+          requestController.getById(reqid).then(request => {
+            if (request) {
+              request
+                .update({ status: status })
+                .then(request => {
+                  // console.log(user)
+                  return res.render("admin/request", {
+                    message: "Xác nhận thành công, đã gửi mail thông báo!",
+                    type: "alert-primary"
+                  });
+                })
+                .catch(error => next(error));
+            } else {
+              return res.render("admin/request", {
+                message: "Lỗi!",
+                type: "alert-danger"
+              });
+            }
+          });
+        }
+      });
     }
-    // service: 'gmail',
-    // auth:{
-    //   user:'chromevi123@gmail.com',
-    //   pass:''
-    // }
   });
-  transporter.sendMail({
-    from: "admin.library@library.hcmus.edu.vn", // sender address
-    //to: `${user.email}`, // list of receivers
-    to: "1753048@student.hcmus.edu.vn",
-    subject: "Confirm appointment", // Subject line
-    html: output // html body
-  });
-  console.log("HI");
-  return res.render("admin/request");
 });
 
+router.post("/cancel", function(req, res, next) {
+  let reqid = req.body.idCancel;
+  let status = "Checked";
+  const output = `
+  <p>Yêu cầu của bạn không được xác nhận</p>
+  <p>Khác: $(req.body.note)</p>
+    `;
+  let requestController = require("../controllers/requestController");
+  let userId;
+  let email;
+  requestController.getById(reqid).then(request => {
+    if (request) {
+      userId = request.dataValues.UserId;
+      let userController = require("../controllers/userController");
+      userController.getUserById(userId).then(user => {
+        if (user) {
+          email = user.dataValues.email;
+
+          console.log(email);
+          let transporter = nodemailer.createTransport({
+            host: "smtp.mailtrap.io",
+            port: 25,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: "e6026b842e6d96", // generated ethereal user
+              pass: "c6e7d292d11d34" // generated ethereal password
+            }
+            // service: 'gmail',
+            // auth:{
+            //   user:'chromevi123@gmail.com',
+            //   pass:''
+            // }
+          });
+          transporter.sendMail({
+            from: "admin.library@library.hcmus.edu.vn", // sender address
+            //to: `${user.email}`, // list of receivers
+            to: email,
+            subject: "Cancel appointment", // Subject line
+            html: output // html body
+          });
+
+          requestController.getById(reqid).then(request => {
+            if (request) {
+              request
+                .update({ status: status })
+                .then(request => {
+                  // console.log(user)
+                  return res.render("admin/request", {
+                    message: "Từ chối thành công, đã gửi mail thông báo!",
+                    type: "alert-primary"
+                  });
+                })
+                .catch(error => next(error));
+            } else {
+              return res.render("admin/request", {
+                message: "Lỗi!",
+                type: "alert-danger"
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
+router.post("/borrowAdd", function(req, res, next) {
+  let book = req.body.newBook;
+  let user = req.body.newUser;
+  let note = req.body.newNote;
+  let now = new Date();
+  let borrowed = now.toString();
+  let date = new Date();
+  date.setMonth(now.getMonth() + 1);
+  let due = date.toString();
+
+  console.log(borrowed + " " + due);
+
+  if (book == "" || user == "") {
+    return res.render("admin/borrowmanagement", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
+
+  let borrowController = require("../controllers/bookManagementController");
+  let userController = require("../controllers/userController");
+  let bookController = require("../controllers/realBookController");
+  bookController.getById(book).then(books => {
+    if (!books) {
+      return res.render("admin/borrowmanagement", {
+        message: `Book ${book} does not exists`,
+        type: "alert-danger"
+      });
+    }
+    userController.getUserById(user).then(users => {
+      if (!users) {
+        return res.render("admin/borrowmanagement", {
+          message: `User ${user} does not exists`,
+          type: "alert-danger"
+        });
+      }
+      return borrowController
+        .createBorrow({
+          borrowedDate: borrowed,
+          dueDate: due,
+          status: "borrowing",
+          note: note,
+          BookId: book,
+          UserId: user
+        })
+        .then(borrow => {
+          // console.log(user)
+          res.render("admin/borrowmanagement", {
+            message: "Tạo thành công!",
+            type: "alert-primary"
+          });
+        })
+        .catch(error => next(error));
+    });
+  });
+  console.log(req.body);
+});
+
+router.post("/borrow-management-extension", function(req, res, next) {
+  let id = req.body.extendId;
+
+  if (id == "") {
+    return res.render("admin/borrowmanagement", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
+
+  let borrowController = require("../controllers/bookManagementController");
+
+  borrowController.getById(id).then(borrow => {
+    if (!borrow) {
+      return res.render("admin/borrowmanagement", {
+        message: `ID: ${id} does not exists`,
+        type: "alert-danger"
+      });
+    }
+    let newDueDate = new Date(borrow.dueDate);
+    newDueDate.setDate(newDueDate.getDate() + 15);
+
+    return borrow
+      .update({
+        dueDate: newDueDate
+      })
+      .then(borrow => {
+        // console.log(user)
+        res.render("admin/borrowmanagement", {
+          message: "Gia hạn thành công!",
+          type: "alert-primary"
+        });
+      })
+      .catch(error => next(error));
+  });
+  console.log(req.body);
+});
+
+router.post("/borrow-management-returned", function(req, res, next) {
+  let id = req.body.returnId;
+
+  if (id == "") {
+    return res.render("admin/borrowmanagement", {
+      message: "Empty",
+      type: "alert-danger"
+    });
+  }
+
+  let borrowController = require("../controllers/bookManagementController");
+
+  borrowController.getById(id).then(borrow => {
+    if (!borrow) {
+      return res.render("admin/borrowmanagement", {
+        message: `ID: ${id} does not exists`,
+        type: "alert-danger"
+      });
+    }
+
+    return borrow
+      .update({
+        status: "returned"
+      })
+      .then(borrow => {
+        // console.log(user)
+        res.render("admin/borrowmanagement", {
+          message: "Đã trả sách!",
+          type: "alert-primary"
+        });
+      })
+      .catch(error => next(error));
+  });
+  console.log(req.body);
+});
 module.exports = router;
