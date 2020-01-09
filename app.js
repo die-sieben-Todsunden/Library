@@ -70,6 +70,8 @@ app.use((req, res, next) => {
   res.locals.user = req.session.user;
   res.locals.username = req.session.user ? req.session.user.name : "";
   res.locals.isLoggedIn = req.session.user ? true : false;
+  res.locals.new = req.session.new;
+  res.locals.new2 = req.session.new2;
   next();
 });
 // Define route

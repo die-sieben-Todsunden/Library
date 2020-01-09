@@ -15,9 +15,13 @@
               style="position: absolute; top: 10px;right: 10px; background-color: red; border-radius: 10px;"></span>
           </div>
           <div class="dropdown-menu noti">
-            <a class="dropdown-item" href="#">Link 1</a>
-            <a class="dropdown-item" href="#">Link 2</a>
-            <a class="dropdown-item" href="#">Link 3</a>
+            {{#each new}}
+            <a class="dropdown-item" href="">{{content}}</a>
+            {{/each}}
+
+            {{#each new2}}
+            <a class="dropdown-item" href="">{{content}}</a>
+            {{/each}}
           </div>
         </div>
         <a href="/user/profile"><img src="/public/img/avatar-icon.png" width='64' alt=""></a>
@@ -64,7 +68,7 @@
           </li>
         </ul>
       </div>
-      
+
     </nav>
   </div>
   {{/unless}}

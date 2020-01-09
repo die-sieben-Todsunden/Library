@@ -144,22 +144,31 @@ router.post("/login", function(req, res, next) {
   }
   userController.getUserByUserName(userName).then(user => {
     if (user) {
-      if (userController.comparePassword(password, user.password)) {
-        req.session.cookie.maxAge = req.body.keepLoggedIn
-          ? 30 * 24 * 60 * 60 * 1000
-          : null;
-        req.session.user = user;
-        // console.log('success');
-        if (user.role == "admin") {
-          req.session.user.role = "admin";
-          res.redirect("/admin");
-        } else res.redirect("/");
-      } else {
-        res.render("login", {
-          message: "password is incorect",
-          type: "alert-danger"
+      let newController = require("../controllers/newController");
+      let newController2 = require("../controllers/newController");
+      newController.getAll().then(data => {
+        console.log(data);
+        req.session.new = data;
+        newController2.getByUserId(user.id).then(data2 => {
+          req.session.new2 = data2;
+          if (userController.comparePassword(password, user.password)) {
+            req.session.cookie.maxAge = req.body.keepLoggedIn
+              ? 30 * 24 * 60 * 60 * 1000
+              : null;
+            req.session.user = user;
+            // console.log('success');
+            if (user.role == "admin") {
+              req.session.user.role = "admin";
+              res.redirect("/admin");
+            } else res.redirect("/");
+          } else {
+            res.render("login", {
+              message: "password is incorect",
+              type: "alert-danger"
+            });
+          }
         });
-      }
+      });
     } else {
       res.render("login", {
         message: `no account with ${userName}`,
