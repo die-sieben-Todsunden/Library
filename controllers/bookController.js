@@ -33,9 +33,10 @@ controller.getAll = query => {
       }
     }
     if (query.search) {
-      options.where.bookName = {
-        [Op.iLike]: `%${query.search}%`
-      };
+      if (query.search != "")
+        options.where.bookName = {
+          [Op.iLike]: `%${query.search}%`
+        };
     }
     bookInfo
       .findAll()

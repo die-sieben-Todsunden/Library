@@ -30,11 +30,7 @@ router.get("/book-management", (req, res, next) => {
   }
 
   let bookController = require("../controllers/bookController");
-  if (req.query.search == "") {
-    res.locals.books = null;
-
-    res.render("admin/bookmanagement");
-  } else {
+  
     console.log(req.query.type);
     if (req.query.type == "bookName") {
       bookController
@@ -102,7 +98,7 @@ router.get("/book-management", (req, res, next) => {
           next(error);
         });
     }
-  }
+  
 });
 
 router.get("/account-management", (req, res, next) => {
@@ -256,6 +252,7 @@ router.get("/borrow-management", (req, res, next) => {
     .then(data => {
       //console.log(data.length);
       res.locals.borrow = data.rows;
+      console.log(res.locals.borrow);
       res.locals.pagination = {
         page: parseInt(req.query.page),
         limit: parseInt(req.query.limit),

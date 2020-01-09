@@ -16,7 +16,8 @@ router.get("/books", function(req, res, next) {
     .getAll(user.id)
     .then(data => {
       console.log(data);
-      res.locals.books = data;
+      res.locals.books = data.rows;
+      console.log(res.locals.books);
       res.render("manage_books");
     })
     .catch(error => next(error));

@@ -3,9 +3,6 @@
     <div class="Manage-book-tile">
         <h2>Quản lí sách của bạn</h2>
     </div>
-    <div class="number-of-books">
-        <label>Đã mượn 1 cuốn sách</label>
-    </div>
     <div class="content">
         <div class="row">
             <script>var count = 0; var a = []; var now = new Date();</script>
@@ -41,10 +38,12 @@
 
                 <div class="row">
                     <div class="col-lg-5 col-md-4">
-                        <button  type="submit " class="btn btn-primary " onclick="borrow({{Book.bookInfo.id}},'1')">Gia Hạn</button>
+                        <button type="submit " class="btn btn-primary " onclick="borrow({{Book.bookInfo.id}},'1')">Gia
+                            Hạn</button>
                     </div>
                     <div class="col-lg-7 col-md-7">
-                        <button type="submit " class="btn btn-primary " onclick="borrow({{Book.bookInfo.id}},'2')">Hẹn trả sách</button>
+                        <button type="submit " class="btn btn-primary " onclick="borrow({{Book.bookInfo.id}},'2')">Hẹn
+                            trả sách</button>
                     </div>
                 </div>
             </div>
@@ -79,9 +78,9 @@
 
 <script language="javascript">
 
-    function borrow(id, borrowType){
-            sessionStorage.setItem('borrowType',borrowType);
-            location.href=`../user/schedule/${id}`;
-            
+    function borrow(id, borrowType) {
+        sessionStorage.setItem('borrowType', borrowType);
+        location.href = `../user/schedule/${id}`;
+
     }
 </script>

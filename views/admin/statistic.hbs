@@ -1,7 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <link rel="stylesheet" href="/public/css/resetAdmin.css">
-<link rel="stylesheet" href="/public/css/adminRequest.css">
 <script type="text/javascript" src="/public/js/menuAdmin.js"></script>
 <!-- Vertical navbar -->
 <div class="vertical-nav bg-white" id="sidebar">
@@ -117,32 +116,26 @@
             <tr>
               <th scope="row">Tháng 1</th>
               <td id="Jan">15</td>
-
             </tr>
             <tr>
               <th scope="row">Tháng 2</th>
               <td id="Feb">15</td>
-
             </tr>
             <tr>
               <th scope="row">Tháng 3</th>
               <td id="Mar">15</td>
-
             </tr>
             <tr>
               <th scope="row">Tháng 4</th>
               <td id="Apr">15</td>
-
             </tr>
             <tr>
               <th scope="row">Tháng 5</th>
               <td id="May">15</td>
-
             </tr>
             <tr>
               <th scope="row">Tháng 6</th>
               <td id="Jun">15</td>
-
             </tr>
             <tr>
               <th scope="row">Tháng 7</th>
@@ -175,44 +168,36 @@
             <tr>
               <th scope="col"></th>
               <th scope="col">Số lượt mượn</th>
-
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Thứ hai</th>
               <td id="Mon">15</td>
-
             </tr>
             <tr>
               <th scope="row">Thứ ba</th>
               <td id="Tue">15</td>
-
             </tr>
             <tr>
               <th scope="row">Thứ tư</th>
               <td id="Wed">15</td>
-
             </tr>
             <tr>
               <th scope="row">Thứ năm</th>
               <td id="Thu">15</td>
-
             </tr>
             <tr>
               <th scope="row">Thứ sáu</th>
               <td id="Fri">15</td>
-
             </tr>
             <tr>
               <th scope="row">Thứ bảy</th>
               <td id="Sat">15</td>
-
             </tr>
             <tr>
               <th scope="row">Chủ nhật</th>
               <td id="Sun">15</td>
-
             </tr>
           </tbody>
         </table>
@@ -530,7 +515,7 @@
   document.getElementById('Chart5').style.display = 'none';
   document.getElementById('Chart6').style.display = 'none';
 
-  document.getElementById('borrow-month').style.display = 'none';
+  $('#borrow-month').hide();
 
   var fig = "date";
   var typee = "bar";
@@ -595,8 +580,8 @@
   }
   function ChangeFigure(figure) {
     if (fig == "date") {
-      document.getElementById('borrow-date').style.display = 'none';
-      document.getElementById('borrow-month').style.display = 'block';
+      $('#borrow-date').hide();
+      $('#borrow-month').show();
       fig = "month";
       if (typee == "bar") {
         document.getElementById('Chart').style.display = 'none';
@@ -612,8 +597,8 @@
       }
     }
     else {
-      document.getElementById('borrow-month').style.display = 'none';
-      document.getElementById('borrow-date').style.display = 'block';
+      $('#borrow-month').hide();
+      $('#borrow-date').show();
       fig = "date";
       if (typee == "bar") {
         document.getElementById('Chart4').style.display = 'none';
