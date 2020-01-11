@@ -29,9 +29,9 @@ module.exports = {
             var results = JSON.parse(response);
             if (results.totalItems) {
                 var book = results.items[0];
-                item.category = ?(book["volumeInfo"]["categories"][0]):"";
-                item.imgPath = (book["volumeInfo"]["imageLinks"]["thumbnail"])?book["volumeInfo"]["imageLinks"]["thumbnail"]:"";
-                item.rate = (book["volumeInfo"]["averageRating"])?(book["volumeInfo"]["averageRating"]):"";
+                item.category = (book["volumeInfo"]["categories"][0]) != undefined?(book["volumeInfo"]["categories"][0]):"";
+                item.imgPath = (book["volumeInfo"]["imageLinks"]["thumbnail"])!= undefined?book["volumeInfo"]["imageLinks"]["thumbnail"]:"";
+                item.rate = (book["volumeInfo"]["averageRating"])!= undefined?(book["volumeInfo"]["averageRating"]):"";
             }
             //   // console.log(book["volumeInfo"]["language"]);
             // }
