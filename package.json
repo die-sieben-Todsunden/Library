@@ -35,7 +35,7 @@
         "jsonwebtoken": "^8.5.1",
         "mysql2": "^2.1.0",
         "node-localstorage": "^2.1.5",
-        "nodemailer": "^6.4.2",
+        "nodemailer": "^6.4.16",
         "nodemon": "^2.0.1",
         "pagination.js": "^0.1.1",
         "pg": "^7.14.0",
